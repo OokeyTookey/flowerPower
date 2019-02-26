@@ -14,7 +14,6 @@ public class AnnaPlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKey(KeyCode.W))
         {
             print("fikjc");
