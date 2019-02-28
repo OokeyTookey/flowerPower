@@ -9,11 +9,6 @@ public class GenericTweenToPosition : MonoBehaviour
     public float tweenSpeed;
     bool isTurnedOn;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
