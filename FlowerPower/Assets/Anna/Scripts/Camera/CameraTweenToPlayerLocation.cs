@@ -21,6 +21,7 @@ public class CameraTweenToPlayerLocation : MonoBehaviour
     {
         cameraOffset = playerReference.position + startPositionCamera;
         transform.position = Vector3.Lerp(transform.position, cameraOffset, 0.1f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, playerReference.transform.localRotation, 0.1f);
         Debug.DrawLine(playerReference.position, cameraOffset);
     }
 }

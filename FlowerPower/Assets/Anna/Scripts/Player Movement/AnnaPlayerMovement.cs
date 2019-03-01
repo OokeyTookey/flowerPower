@@ -13,6 +13,8 @@ public class AnnaPlayerMovement : MonoBehaviour
     public float maxSpeed;
     public float maxJumpForce;
 
+    public float rotateSpeed;
+
     void Start()
     {
         RB = this.GetComponent<Rigidbody>();
@@ -53,5 +55,14 @@ public class AnnaPlayerMovement : MonoBehaviour
         {
             RB.AddForce(transform.forward * maxJumpForce, ForceMode.Impulse);
         }
+
+        if (Input.GetKey(KeyCode.Q))
+      {
+          transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * rotateSpeed, Space.World);
+      }
+      if (Input.GetKey(KeyCode.E))
+      {
+          transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * rotateSpeed, Space.World);
+      }
     }
 }
