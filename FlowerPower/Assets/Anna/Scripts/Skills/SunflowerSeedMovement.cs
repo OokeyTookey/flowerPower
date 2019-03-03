@@ -16,4 +16,11 @@ public class SunflowerSeedMovement : MonoBehaviour
 
         else Debug.Log("No projectile speed, sunflower seed.");
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collsion");
+        speed = 0;
+        Destroy(this.gameObject);
+    }
 }
