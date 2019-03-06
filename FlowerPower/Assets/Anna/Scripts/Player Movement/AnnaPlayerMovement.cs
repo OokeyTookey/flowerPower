@@ -12,11 +12,15 @@ public class AnnaPlayerMovement : MonoBehaviour
     float moveXAxis;
     float moveYAxis;
 
+    float angle;
     public float speed;
     public float maxSpeed;
     public float maxJumpForce;
+    public float angleForce;
 
     bool isGrounded;
+
+    public GameObject firepoint;
 
     void Start()
     {
@@ -27,32 +31,19 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         moveXAxis = Input.GetAxis("Horizontal");
         moveYAxis = Input.GetAxis("Vertical");
+        //Angle is calculated by (sin and cos of each, otherwise known as:) tan-1 y/xx
 
-        //mouseXAxis += Input.GetAxis("Mouse X");
-        //mouseYAxis += Input.GetAxis("Mouse Y");
+        angle = Mathf.Atan2(moveYAxis, moveXAxis); //Gives the angle 
+        Debug.Log(angle * Mathf.Rad2Deg);
 
         direction = (moveXAxis * Vector3.right + moveYAxis * Vector3.forward).normalized;
-        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object
-                                                                //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                    
-        if (moveXAxis > 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 90, transform.rotation.eulerAngles.z));
-        }
+        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object                                                
+                                                    //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
 
-        if (moveXAxis < 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, -90, transform.rotation.eulerAngles.z));
-        }
+        transform.rotation = Quaternion.Euler(transform.rotation.x, angle *Mathf.Rad2Deg, transform.rotation.z);                                                    //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
 
-        if (moveYAxis > 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z));
-        }
 
-        if (moveYAxis < 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 180, transform.rotation.eulerAngles.z));
-        }
+
 
         //if (RB.velocity.magnitude > maxSpeed)
         {
