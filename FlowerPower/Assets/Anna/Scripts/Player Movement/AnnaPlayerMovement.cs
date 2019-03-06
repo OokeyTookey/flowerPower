@@ -17,6 +17,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     public float maxSpeed;
     public float maxJumpForce;
     public float angleForce;
+    public float slerpSpeed;
 
     bool isGrounded;
 
@@ -33,22 +34,19 @@ public class AnnaPlayerMovement : MonoBehaviour
         moveYAxis = Input.GetAxis("Vertical");
         //Angle is calculated by (sin and cos of each, otherwise known as:) tan-1 y/xx
 
-        angle = Mathf.Atan2(moveYAxis, moveXAxis); //Gives the angle 
+        angle = Mathf.Atan2(moveXAxis, moveYAxis); //Gives the angle 
         Debug.Log(angle * Mathf.Rad2Deg);
+
+
 
         direction = (moveXAxis * Vector3.right + moveYAxis * Vector3.forward).normalized;
         RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object                                                
-                                                    //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
+                                                                //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
 
-        transform.rotation = Quaternion.Euler(transform.rotation.x, angle *Mathf.Rad2Deg, transform.rotation.z);                                                    //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
-
-
-
-
-        //if (RB.velocity.magnitude > maxSpeed)
-        {
-            RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
+        
+         RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
+        
 
         if (RB.velocity.y < 0) //Checks if he is falling.   
         {
