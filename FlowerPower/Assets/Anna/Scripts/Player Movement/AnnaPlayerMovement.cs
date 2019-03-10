@@ -11,13 +11,17 @@ public class AnnaPlayerMovement : MonoBehaviour
 
     float moveXAxis;
     float moveYAxis;
-    float mouseXAxis;
-    float mouseYAxis;
+
+    float angle;
     public float speed;
     public float maxSpeed;
     public float maxJumpForce;
+    public float angleForce;
+    public float slerpSpeed;
 
-    public float rotateSpeed;
+    bool isGrounded;
+
+    public GameObject firepoint;
 
     void Start()
     {
@@ -28,29 +32,27 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         moveXAxis = Input.GetAxis("Horizontal");
         moveYAxis = Input.GetAxis("Vertical");
+        //Angle is calculated by (sin and cos of each, otherwise known as:) tan-1 y/xx
 
-        mouseXAxis += Input.GetAxis("Mouse X");
-        mouseYAxis += Input.GetAxis("Mouse Y");
+        angle = Mathf.Atan2(moveXAxis, moveYAxis); //Gives the angle 
+        Debug.Log(angle * Mathf.Rad2Deg);
 
 
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mouseXAxis, transform.rotation.eulerAngles.z);
 
-        direction = (moveXAxis * transform.right + moveYAxis * -transform.up).normalized; //Inverse because model shape
+        direction = (moveXAxis * Vector3.right + moveYAxis * Vector3.forward).normalized;
+        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object                                                
+                                                                //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
 
-        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object
-                                                                //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange.
-
-        if (RB.velocity.magnitude > maxSpeed)
-        {
-            RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
+        
+         RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
+        
 
         if (RB.velocity.y < 0) //Checks if he is falling.   
         {
             //Figure out the height of objects and make the force that pulls the player down 
-            RB.velocity += Physics.gravity * Time.deltaTime; //Doubles gravity when the player goes down.
+            RB.velocity += Physics.gravity  * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
         }
-
     }
 
     void Update()
