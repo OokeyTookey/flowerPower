@@ -13,7 +13,6 @@ public class CameraTweenToPlayerLocation : MonoBehaviour
     
     void Start()
     {
-        playerReference = FindObjectOfType<Rigidbody>();
         startPositionCamera = transform.position - playerReference.transform.position;
     }
 
@@ -21,6 +20,6 @@ public class CameraTweenToPlayerLocation : MonoBehaviour
     {
         cameraOffset = playerReference.position + startPositionCamera;
         transform.position = Vector3.Lerp(transform.position, cameraOffset, 0.1f);
-        Debug.DrawLine(playerReference.position, cameraOffset);
+        //Debug.DrawLine(playerReference.position, cameraOffset);
     }
 }
