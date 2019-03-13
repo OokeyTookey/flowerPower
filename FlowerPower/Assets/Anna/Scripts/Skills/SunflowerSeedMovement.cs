@@ -7,6 +7,7 @@ public class SunflowerSeedMovement : MonoBehaviour
     public float speed;
     public float fireRate;
 
+
     void Update()
     {
         if (speed != 0)

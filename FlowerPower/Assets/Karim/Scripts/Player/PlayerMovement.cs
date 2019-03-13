@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float groundRadius;
 
     public bool grounded;
+
+   
 
     private Rigidbody rb;
 
@@ -29,12 +32,15 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, groundRadius) ? true : false;
         Move();
         Jump();
+        
         //Rotate();
     }
 
     // Movement
     private void Move()
     {
+
+
         if (Input.GetKey(KeyCode.W))
         {
             rb.velocity = transform.forward * playerSpeed;
@@ -53,13 +59,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void Jump()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(new Vector3(0, playerJumpForce));
         }
-    }
+
+    } 
 
     //Rotation
     //public void Rotate()
@@ -73,4 +83,6 @@ public class PlayerMovement : MonoBehaviour
     //        transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * rotateSpeed, Space.World);
     //    }
     //}
+   
+
 }

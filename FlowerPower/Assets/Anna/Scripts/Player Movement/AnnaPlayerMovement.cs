@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class AnnaPlayerMovement : MonoBehaviour
 {
-    Rigidbody RB;
+    public Rigidbody RB;
     Vector3 direction;
+
+    public Collider playerCollider;
 
     float moveXAxis;
     float moveYAxis;
@@ -21,6 +23,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     void Start()
     {
         RB = this.GetComponent<Rigidbody>();
+        playerCollider = GetComponent<Collider>();
     }
 
     private void FixedUpdate()
