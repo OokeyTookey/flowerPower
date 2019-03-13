@@ -8,7 +8,7 @@ public class AnnaPlayerMovement : MonoBehaviour
 {
     Rigidbody RB;
     Vector3 direction;
-
+    Vector3 tempDirection;
     float moveXAxis;
     float moveYAxis;
     public float angle;
@@ -34,17 +34,18 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         moveXAxis = Input.GetAxis("Horizontal");
         moveYAxis = Input.GetAxis("Vertical");
-
-        //Angle is calculated by (sin and cos of each, otherwise known as:) tan-1 y/xx
-        angle = Mathf.Atan2(moveXAxis, moveYAxis); //Gives the angle 
+    
+        //Angle is calculated by (sin and cos of each, otherwise known as:) tan-1 y/x
+        angle = Mathf.Atan2(moveYAxis, moveXAxis); //Gives the angle 
         Debug.Log(angle * Mathf.Rad2Deg);
 
-        direction = (moveXAxis * Vector3.right + moveYAxis * Vector3.forward).normalized;
+        direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
         RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object                                                
                                                                 //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
-        
+ 
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                                                                    angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
+                                                                    -angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
+
         RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
 
         if (RB.velocity.y < 0) //Checks if he is falling.   
