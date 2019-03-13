@@ -6,61 +6,47 @@ using UnityEngine;
 
 public class AnnaPlayerMovement : MonoBehaviour
 {
-    public Rigidbody RB;
+    Rigidbody RB;
     Vector3 direction;
-
-    public Collider playerCollider;
-
+    Vector3 tempDirection;
     float moveXAxis;
     float moveYAxis;
+    public float angle;
 
+
+    public float range;
     public float speed;
     public float maxSpeed;
     public float maxJumpForce;
+    public float angleForce;
+    public float slerpSpeed;
 
     bool isGrounded;
+
+    public GameObject firepoint;
 
     void Start()
     {
         RB = this.GetComponent<Rigidbody>();
-        playerCollider = GetComponent<Collider>();
     }
 
     private void FixedUpdate()
     {
         moveXAxis = Input.GetAxis("Horizontal");
         moveYAxis = Input.GetAxis("Vertical");
+    
+        //Angle is calculated by (sin and cos of each, otherwise known as:) tan-1 y/x
+        angle = Mathf.Atan2(moveYAxis, moveXAxis); //Gives the angle 
+        Debug.Log(angle * Mathf.Rad2Deg);
 
-        //mouseXAxis += Input.GetAxis("Mouse X");
-        //mouseYAxis += Input.GetAxis("Mouse Y");
+        direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
+        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object                                                
+                                                                //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
+ 
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, 
+                                                                    -angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
 
-        direction = (moveXAxis * Vector3.right + moveYAxis * Vector3.forward).normalized;
-        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object
-                                                                //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                    
-        if (moveXAxis > 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 90, transform.rotation.eulerAngles.z));
-        }
-
-        if (moveXAxis < 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, -90, transform.rotation.eulerAngles.z));
-        }
-
-        if (moveYAxis > 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z));
-        }
-
-        if (moveYAxis < 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, 180, transform.rotation.eulerAngles.z));
-        }
-
-        //if (RB.velocity.magnitude > maxSpeed)
-        {
-            RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
-        }
+        RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
 
         if (RB.velocity.y < 0) //Checks if he is falling.   
         {
