@@ -33,10 +33,10 @@ public class AnnaPlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // ---- Take input from the player & Calculate angle
-        moveXAxis = Input.GetAxis("Horizontal");
+        moveXAxis = Input.GetAxis("Horizontal"); //Between -1 & 1
         moveYAxis = Input.GetAxis("Vertical");
         angle = Mathf.Atan2(moveYAxis, moveXAxis); //Angle is calculated by (sin and cos of each, aka) tan-1 y/x
-             Debug.Log(angle * Mathf.Rad2Deg);
+             //Debug.Log(angle * Mathf.Rad2Deg);
 
 
         // ---- Calcuate the direction using the input then add force.
@@ -50,7 +50,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         // Quaternion targetRotation = Quaternion.LookRotation(direction);
         /*transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction.x, 
           -angle * Mathf.Rad2Deg, direction.z), Time.deltaTime * slerpSpeed);*/
-
+          // += angle/ horizontal x/y but then clamp it
 
 
 
