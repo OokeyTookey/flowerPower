@@ -27,7 +27,7 @@ public class AnnaRosieCompanion : MonoBehaviour
     public GameObject targetPosition;
     AnnaPlayerMovement playerMovementScript;
 
-    Rigidbody thisObject;
+    Rigidbody rosieRB;
 
     [Header("Seek Variables")]
     public float maxSpeed;
@@ -40,7 +40,7 @@ public class AnnaRosieCompanion : MonoBehaviour
 
     public void Start()
     {
-        thisObject = this.GetComponent<Rigidbody>();
+        rosieRB = this.GetComponent<Rigidbody>();
     }
 
     public void Update()
@@ -54,15 +54,15 @@ public class AnnaRosieCompanion : MonoBehaviour
         if (distance > range)
         {
             desiredVelo = (playerReferenceTransform.position - transform.position).normalized * maxSpeed; //Get the desired velocity for flee by minusing the target positions (in this case the player) from the attached objects position
-            steering = desiredVelo - thisObject.velocity; //Sets the steering behaviour by minusing
+            steering = desiredVelo - rosieRB.velocity; //Sets the steering behaviour by minusing
 
-            thisObject.AddForce(new Vector3(steering.x, 0, steering.z) * force);
+            rosieRB.AddForce(new Vector3(steering.x, 0, steering.z) * force);
         }
 
 
-        if (thisObject.velocity.magnitude >= maxSpeed)
+        if (rosieRB.velocity.magnitude >= maxSpeed)
         {
-            thisObject.velocity = thisObject.velocity.normalized * maxSpeed; //limit the speed 
+            rosieRB.velocity = rosieRB.velocity.normalized * maxSpeed; //limit the speed 
         }
     }
 

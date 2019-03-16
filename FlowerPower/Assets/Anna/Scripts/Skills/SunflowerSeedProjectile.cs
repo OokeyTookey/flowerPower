@@ -4,40 +4,15 @@ using UnityEngine;
 
 public class SunflowerSeedProjectile : MonoBehaviour
 {
-    private GameObject sunFlowerSeed;
+    public GameObject sunFlowerSeedPrefab;
     public GameObject projectileSpawnLocation;
-    public List<GameObject> projectileSeeds = new List<GameObject>();
-
-    void Start()
-    {
-        if (projectileSpawnLocation == null)
-        {
-            Debug.LogError("No sunflower seed spawn location -A");
-        }
-
-        sunFlowerSeed = projectileSeeds[0];
-    }
+    GameObject spawnedProjectile;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SpawnProjectile();
-        }
-    }
-
-    public void SpawnProjectile()
-    {
-        GameObject spawnedProjectile;
-
-        if ( projectileSpawnLocation != null)
-        {
-            spawnedProjectile = Instantiate(sunFlowerSeed, projectileSpawnLocation.transform.position, Quaternion.identity);
-        }
-
-        else
-        {
-            Debug.LogError("Projectile not fired. -A");
+            spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, Quaternion.identity);
         }
     }
 }

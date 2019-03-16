@@ -7,13 +7,13 @@ using UnityEngine;
 public class AnnaPlayerMovement : MonoBehaviour
 {
     Rigidbody RB;
-    Vector3 direction;
+    Collider playerCollider;
     Vector3 tempDirection;
     float moveXAxis;
     float moveYAxis;
+
+    public Vector3 direction;
     public float angle;
-
-
     public float range;
     public float speed;
     public float maxSpeed;
@@ -21,45 +21,66 @@ public class AnnaPlayerMovement : MonoBehaviour
     public float angleForce;
     public float slerpSpeed;
 
-    bool isGrounded;
-
     public GameObject firepoint;
+    public LayerMask groundLayer;
 
     void Start()
     {
         RB = this.GetComponent<Rigidbody>();
+        playerCollider = this.GetComponent<Collider>();
     }
 
     private void FixedUpdate()
     {
+        // ---- Take input from the player & Calculate angle
         moveXAxis = Input.GetAxis("Horizontal");
         moveYAxis = Input.GetAxis("Vertical");
-    
-        //Angle is calculated by (sin and cos of each, otherwise known as:) tan-1 y/x
-        angle = Mathf.Atan2(moveYAxis, moveXAxis); //Gives the angle 
-        Debug.Log(angle * Mathf.Rad2Deg);
+        angle = Mathf.Atan2(moveYAxis, moveXAxis); //Angle is calculated by (sin and cos of each, aka) tan-1 y/x
+             Debug.Log(angle * Mathf.Rad2Deg);
 
+
+        // ---- Calcuate the direction using the input then add force.
         direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
-        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object                                                
-                                                                //Add Force parameter; Acceleration, Force, Impulse, and VelocityChange                                                   
- 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                                                                    -angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
+        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object  
 
+        // FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
+
+
+
+        // Quaternion targetRotation = Quaternion.LookRotation(direction);
+        /*transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction.x, 
+          -angle * Mathf.Rad2Deg, direction.z), Time.deltaTime * slerpSpeed);*/
+
+
+
+
+
+        // ---- Setting the rotation by slerping between the original rotation to the angle specified above.
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x,
+         -angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
+
+        // ---- Clamping the speed so player is limited & making gravity stronger so the player falls faster.
         RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
 
         if (RB.velocity.y < 0) //Checks if he is falling.   
         {
-            //Figure out the height of objects and make the force that pulls the player down 
-            RB.velocity += Physics.gravity  * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
+            RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            RB.AddForce(transform.forward * maxJumpForce, ForceMode.Impulse); //Move the object forward because its rotated -90
+            // ---- Makes the player up, "Transform.forward" might change due to rotation of object
+            RB.AddForce(transform.forward * maxJumpForce, ForceMode.Impulse); 
         }
+    }
+
+    private bool IsGrounded()
+    {
+        //CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
+        return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
+            playerCollider.bounds.min.y, playerCollider.bounds.center.z), 2f /*<- Radius size*/, groundLayer);
     }
 }
