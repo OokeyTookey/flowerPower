@@ -61,6 +61,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             // ---- Makes the player up
+            Debug.Log("lets do the jump");
             RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
         }
     }
@@ -69,6 +70,6 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         //CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
         return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
-            playerCollider.bounds.min.y, playerCollider.bounds.center.z), 2f /*<- Radius size*/, groundLayer);
+            playerCollider.bounds.min.y, playerCollider.bounds.center.z), 3f /*<- Radius size*/, groundLayer);
     }
 }
