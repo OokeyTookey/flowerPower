@@ -16525,10 +16525,10 @@ MonoBehaviour:
   playerReferenceRB: {fileID: 3535365891517466859}
   lookRotationSpeed: 50
   rosieLookDelay: 3
-  maxSpeed: 10
-  force: 5
-  range: 20
-  maxRange: 50
+  maxSpeed: 15
+  force: 10
+  range: 30
+  maxRange: 60
   speedUpRange: 20
 --- !u!136 &3318236362216917036
 CapsuleCollider:
@@ -17376,7 +17376,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3318236362216917034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.38, y: 1.6, z: 305.8}
+  m_LocalPosition: {x: 57.38, y: 0.6, z: 305.8}
   m_LocalScale: {x: 2.6279235, y: 2.6279235, z: 2.6279235}
   m_Children:
   - {fileID: 3318236362217280914}
@@ -19268,6 +19268,7 @@ MonoBehaviour:
   maxJumpForce: 10
   angleForce: 10
   slerpSpeed: 10
+  tempD: 0
   firepoint: {fileID: 0}
   groundLayer:
     serializedVersion: 2

@@ -20,6 +20,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     public float maxJumpForce;
     public float angleForce;
     public float slerpSpeed;
+    public float tempD;
 
     public GameObject firepoint;
     public LayerMask groundLayer;
@@ -35,33 +36,20 @@ public class AnnaPlayerMovement : MonoBehaviour
         // ---- Take input from the player & Calculate angle
         moveXAxis = Input.GetAxis("Horizontal"); //Between -1 & 1
         moveYAxis = Input.GetAxis("Vertical");
-        angle = Mathf.Atan2(moveYAxis, moveXAxis); //Angle is calculated by (sin and cos of each, aka) tan-1 y/x
-             //Debug.Log(angle * Mathf.Rad2Deg);
-
 
         // ---- Calcuate the direction using the input then add force.
         direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
-        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object  
+        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object 
+        //FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
 
-        // FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
-
-
-
-        // Quaternion targetRotation = Quaternion.LookRotation(direction);
-        /*transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction.x, 
-          -angle * Mathf.Rad2Deg, direction.z), Time.deltaTime * slerpSpeed);*/
-          // += angle/ horizontal x/y but then clamp it
-
-
-
-
-        // ---- Setting the rotation by slerping between the original rotation to the angle specified above.
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x,
-         -angle * Mathf.Rad2Deg, transform.rotation.eulerAngles.z), Time.deltaTime * slerpSpeed);
+        // ---- if there is some input then rotate the object.
+        if (direction.magnitude != 0)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * slerpSpeed);
+        }
 
         // ---- Clamping the speed so player is limited & making gravity stronger so the player falls faster.
         RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
-
         if (RB.velocity.y < 0) //Checks if he is falling.   
         {
             RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
@@ -72,8 +60,8 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            // ---- Makes the player up, "Transform.forward" might change due to rotation of object
-            RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse); 
+            // ---- Makes the player up
+            RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
         }
     }
 
