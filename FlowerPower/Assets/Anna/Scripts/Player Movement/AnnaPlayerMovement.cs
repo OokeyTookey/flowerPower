@@ -36,23 +36,13 @@ public class AnnaPlayerMovement : MonoBehaviour
         moveXAxis = Input.GetAxis("Horizontal"); //Between -1 & 1
         moveYAxis = Input.GetAxis("Vertical");
         angle = Mathf.Atan2(moveYAxis, moveXAxis); //Angle is calculated by (sin and cos of each, aka) tan-1 y/x
-             //Debug.Log(angle * Mathf.Rad2Deg);
+             Debug.Log(angle * Mathf.Rad2Deg);
 
 
         // ---- Calcuate the direction using the input then add force.
         direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
         RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object  
-
         // FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
-
-
-
-        // Quaternion targetRotation = Quaternion.LookRotation(direction);
-        /*transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction.x, 
-          -angle * Mathf.Rad2Deg, direction.z), Time.deltaTime * slerpSpeed);*/
-          // += angle/ horizontal x/y but then clamp it
-
-
 
 
         // ---- Setting the rotation by slerping between the original rotation to the angle specified above.
@@ -83,4 +73,17 @@ public class AnnaPlayerMovement : MonoBehaviour
         return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
             playerCollider.bounds.min.y, playerCollider.bounds.center.z), 2f /*<- Radius size*/, groundLayer);
     }
+
+
+
+
+    // Quaternion targetRotation = Quaternion.LookRotation(direction);
+    /*transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction.x, 
+      -angle * Mathf.Rad2Deg, direction.z), Time.deltaTime * slerpSpeed);*/
+    // += angle/ horizontal x/y but then clamp it
+
+
+
+
+
 }
