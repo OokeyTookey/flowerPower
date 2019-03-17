@@ -4,30 +4,15 @@ using UnityEngine;
 
 public class AnnaRosieCompanion : MonoBehaviour
 {
-
-    // Follow the velocity of the player.
-
-    // Seek to players range.
-    // Closer rosie gets to player then the slower they go.
-    // If in a specific range then dont follow.
-    // Look in direction of interest???  ? ? ?? *Tag objects, if in range then change direction of the head.
-    // Look around randomly in locations when standing still.
-    // done by choosing a random angle between two constraints, every few seconds pick a value
-    // transform.lookat(randomAngle)
-
-
-    // Check the players position, if they are out of a "MAX RANGE"
-    // Teleport rosie to a designated spawn point by the player. 
-
-
-    //Possible speech bubble interactions. HINT SYSTEM?!?!!
-
-    public Transform playerReferenceTransform;
     public Rigidbody playerReferenceRB;
-    public GameObject targetPosition;
     AnnaPlayerMovement playerMovementScript;
+    float distanceFromSunny;
 
-    Rigidbody thisObject;
+    Rigidbody rosieRB;
+    public float lookRotationSpeed;
+    public float rosieLookDelay;
+    private float rosieLookCountUp;
+    private Vector3 outOfRangeRespawn;
 
     [Header("Seek Variables")]
     public float maxSpeed;
@@ -36,44 +21,60 @@ public class AnnaRosieCompanion : MonoBehaviour
     Vector3 desiredVelo;
 
     public float range;
+    public float maxRange;
+    public float speedUpRange;
     Vector3 radiusAroundPlayer;
+    Vector3 playerLocation;
 
     public void Start()
     {
-        thisObject = this.GetComponent<Rigidbody>();
+        rosieRB = this.GetComponent<Rigidbody>();
     }
 
     public void Update()
     {
+        // ---- Locks the Y axis and makes rosie look at player.
+        playerLocation = playerReferenceRB.position;
+        playerLocation.y = transform.position.y;
+        transform.LookAt(playerLocation);
+
+        // ---- Creates a radius around the player then calcuates the distance between em.
         radiusAroundPlayer = playerReferenceRB.transform.position + new Vector3(range, 0, range); //0 to lock the Y position
+        distanceFromSunny = Vector3.Distance(this.transform.position, playerReferenceRB.transform.position);
+        Debug.DrawLine(playerReferenceRB.transform.position, radiusAroundPlayer);
 
-        float distance = Vector3.Distance(this.transform.position, playerReferenceRB.transform.position);
+        outOfRangeRespawn = new Vector3(playerReferenceRB.transform.position.x + 5, playerReferenceRB.transform.position.y, playerReferenceRB.transform.position.z + 5);
 
-        Debug.DrawLine(playerReferenceRB.transform.position,radiusAroundPlayer);
-
-        if (distance > range)
+        // ---- If Rosie is in range then slow down.
+        if (distanceFromSunny < range)
         {
-            desiredVelo = (playerReferenceTransform.position - transform.position).normalized * maxSpeed; //Get the desired velocity for flee by minusing the target positions (in this case the player) from the attached objects position
-            steering = desiredVelo - thisObject.velocity; //Sets the steering behaviour by minusing
-
-            thisObject.AddForce(new Vector3(steering.x, 0, steering.z) * force);
+            rosieRB.velocity += Vector3.zero;
         }
 
-
-        if (thisObject.velocity.magnitude >= maxSpeed)
+        // ---- Checks is Rosie is out of range then run towards Sunny.
+        else if (distanceFromSunny > range)
         {
-            thisObject.velocity = thisObject.velocity.normalized * maxSpeed; //limit the speed 
+            desiredVelo = (playerReferenceRB.transform.position - transform.position).normalized * maxSpeed; //Get the desired velocity for flee by minusing the target positions (in this case the player) from the attached objects position
+            steering = desiredVelo - rosieRB.velocity; //Sets the steering behaviour by minusing
+            rosieRB.AddForce(new Vector3(steering.x, 0, steering.z) * force);
+        }
+
+        // ---- Checks is Rosie is out of the max range then teleport
+        if (distanceFromSunny > maxRange /*&& Input.GetKeyDown(KeyCode.R*/)
+        {
+            rosieRB.position = outOfRangeRespawn;
+            Debug.Log("Respawn Rosie!!");
+        }
+
+        // --- Limits Rosies speed.
+        if (rosieRB.velocity.magnitude >= maxSpeed)
+        {
+            rosieRB.velocity = rosieRB.velocity.normalized * maxSpeed;
         }
     }
 
-    /*desiredVelo = (playerReferenceTransform.position - transform.position).normalized * maxSpeed; //Get the desired velocity for flee by minusing the target positions (in this case the player) from the attached objects position
-        steering = desiredVelo - thisObject.velocity; //Sets the steering behaviour by minusing
-
-        thisObject.AddForce(new Vector3(steering.x, 0, steering.z) * force);
-
-        if (thisObject.velocity.magnitude >= maxSpeed)
-        {
-            thisObject.velocity = thisObject.velocity.normalized * maxSpeed; //limit the speed 
-        }*/
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(playerReferenceRB.transform.position, range);
+    }
 }
