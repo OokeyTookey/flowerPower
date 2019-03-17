@@ -22,7 +22,9 @@ public class AnnaRosieCompanion : MonoBehaviour
 
     public float range;
     public float maxRange;
+    public float speedUpRange;
     Vector3 radiusAroundPlayer;
+    Vector3 playerLocation;
 
     public void Start()
     {
@@ -31,13 +33,15 @@ public class AnnaRosieCompanion : MonoBehaviour
 
     public void Update()
     {
-        rosieLookCountUp += Time.deltaTime;
-        transform.LookAt(playerReferenceRB.position);
+        // ---- Locks the Y axis and makes rosie look at player.
+        playerLocation = playerReferenceRB.position;
+        playerLocation.y = transform.position.y;
+        transform.LookAt(playerLocation);
 
         // ---- Creates a radius around the player then calcuates the distance between em.
         radiusAroundPlayer = playerReferenceRB.transform.position + new Vector3(range, 0, range); //0 to lock the Y position
         distanceFromSunny = Vector3.Distance(this.transform.position, playerReferenceRB.transform.position);
-            Debug.DrawLine(playerReferenceRB.transform.position,radiusAroundPlayer);
+        Debug.DrawLine(playerReferenceRB.transform.position, radiusAroundPlayer);
 
         outOfRangeRespawn = new Vector3(playerReferenceRB.transform.position.x + 5, playerReferenceRB.transform.position.y, playerReferenceRB.transform.position.z + 5);
 
@@ -56,7 +60,7 @@ public class AnnaRosieCompanion : MonoBehaviour
         }
 
         // ---- Checks is Rosie is out of the max range then teleport
-        if (distanceFromSunny > maxRange && Input.GetKeyDown(KeyCode.R))
+        if (distanceFromSunny > maxRange /*&& Input.GetKeyDown(KeyCode.R*/)
         {
             rosieRB.position = outOfRangeRespawn;
             Debug.Log("Respawn Rosie!!");

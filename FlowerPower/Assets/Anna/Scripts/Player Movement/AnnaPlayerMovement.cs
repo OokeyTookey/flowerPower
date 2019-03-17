@@ -73,7 +73,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             // ---- Makes the player up, "Transform.forward" might change due to rotation of object
-            RB.AddForce(transform.forward * maxJumpForce, ForceMode.Impulse); 
+            RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse); 
         }
     }
 
