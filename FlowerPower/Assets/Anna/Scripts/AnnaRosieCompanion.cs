@@ -7,7 +7,6 @@ public class AnnaRosieCompanion : MonoBehaviour
     public Rigidbody playerReferenceRB;
     AnnaPlayerMovement playerMovementScript;
     float distanceFromSunny;
-    Vector3 playerLocation;
 
     Rigidbody rosieRB;
     public float lookRotationSpeed;
@@ -32,10 +31,8 @@ public class AnnaRosieCompanion : MonoBehaviour
 
     public void Update()
     {
-
-        playerLocation = playerReferenceRB.position;
-        playerLocation.y = transform.position.y;
-        transform.LookAt(playerLocation);
+        rosieLookCountUp += Time.deltaTime;
+        transform.LookAt(playerReferenceRB.position);
 
         // ---- Creates a radius around the player then calcuates the distance between em.
         radiusAroundPlayer = playerReferenceRB.transform.position + new Vector3(range, 0, range); //0 to lock the Y position
@@ -59,7 +56,7 @@ public class AnnaRosieCompanion : MonoBehaviour
         }
 
         // ---- Checks is Rosie is out of the max range then teleport
-        if (distanceFromSunny > maxRange /*&& Input.GetKeyDown(KeyCode.R)*/)
+        if (distanceFromSunny > maxRange && Input.GetKeyDown(KeyCode.R))
         {
             rosieRB.position = outOfRangeRespawn;
             Debug.Log("Respawn Rosie!!");
@@ -74,6 +71,6 @@ public class AnnaRosieCompanion : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(playerReferenceRB.transform.position, range); //Debugging range 
+        Gizmos.DrawWireSphere(playerReferenceRB.transform.position, range);
     }
 }
