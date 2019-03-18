@@ -63,7 +63,7 @@ public class AnnaRosieCompanion : MonoBehaviour
         if (distanceFromSunny > maxRange /*&& Input.GetKeyDown(KeyCode.R*/)
         {
             rosieRB.position = outOfRangeRespawn;
-            Debug.Log("Respawn Rosie!!");
+            //Debug.Log("Respawn Rosie!!");
         }
 
         // --- Limits Rosies speed.
