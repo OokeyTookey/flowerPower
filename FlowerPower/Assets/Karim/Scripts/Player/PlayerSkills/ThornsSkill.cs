@@ -4,20 +4,20 @@ using UnityEngine;
 
 
 
-public class ThornsSkill : MonoBehaviour
+public class ThornsSkill : Skills
 {
     public GameObject thorns;
     public float thornsActiveTime;
     public bool thornsActive;
 
+    
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
         thorns.SetActive(false);
-        
         thornsActiveTime = 2;
-       
     }
 
     // Update is called once per frame
@@ -27,7 +27,6 @@ public class ThornsSkill : MonoBehaviour
         {
             thornsActive = true;
         }
-
         ThornsActive();
     }
 
@@ -38,11 +37,15 @@ public class ThornsSkill : MonoBehaviour
             thorns.SetActive(true);
             thornsActiveTime -= Time.deltaTime;
         }
-        if (thornsActive && thornsActiveTime <=0)
+        if (thornsActive && thornsActiveTime <= 0)
         {
             thornsActive = false;
             thorns.SetActive(false);
             thornsActiveTime = 2;
         }
     }
+
+   
+
+    
 }
