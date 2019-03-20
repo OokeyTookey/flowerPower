@@ -4,40 +4,20 @@ using UnityEngine;
 
 public class SunflowerSeedProjectile : MonoBehaviour
 {
-    private GameObject sunFlowerSeed;
+    public float projectileSpawnOffset;
+    public GameObject sunFlowerSeedPrefab;
     public GameObject projectileSpawnLocation;
-    public List<GameObject> projectileSeeds = new List<GameObject>();
+    GameObject spawnedProjectile;
 
-    void Start()
-    {
-        if (projectileSpawnLocation == null)
-        {
-            Debug.LogError("No sunflower seed spawn location -A");
-        }
-
-        sunFlowerSeed = projectileSeeds[0];
-    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SpawnProjectile();
-        }
-    }
+            //spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, Quaternion.identity);
+            spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, transform.rotation);
 
-    public void SpawnProjectile()
-    {
-        GameObject spawnedProjectile;
-
-        if ( projectileSpawnLocation != null)
-        {
-            spawnedProjectile = Instantiate(sunFlowerSeed, projectileSpawnLocation.transform.position, Quaternion.identity);
-        }
-
-        else
-        {
-            Debug.LogError("Projectile not fired. -A");
+            //Player position +  offset value on one of the axis. instan there, then transform.forward in that directio. 
         }
     }
 }
