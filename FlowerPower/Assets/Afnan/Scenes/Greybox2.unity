@@ -2790,6 +2790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4ce2b44e0dacc499a70bced1c1404e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0, z: 0}
   angle: 0
   range: 10
   speed: 100
@@ -2797,7 +2798,11 @@ MonoBehaviour:
   maxJumpForce: 10
   angleForce: 10
   slerpSpeed: 10
+  tempD: 0
   firepoint: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1633375278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,9 +2815,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92686ef14fe76cc499ff238923f1b651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileSpawnOffset: 0
+  sunFlowerSeedPrefab: {fileID: 0}
   projectileSpawnLocation: {fileID: 2103815590}
-  projectileSeeds:
-  - {fileID: 7668105684571776866, guid: 24abb9e5860033f4cba733f09434bf39, type: 3}
 --- !u!95 &1633375279
 Animator:
   serializedVersion: 3
@@ -2969,7 +2974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645985316}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -35.987656, y: 15.91, z: -14.864367}
+  m_LocalPosition: {x: -35.987656, y: 16.149942, z: -14.864367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 963139708}
