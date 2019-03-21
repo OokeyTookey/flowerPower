@@ -62,7 +62,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         RB.velocity = new Vector3(vx, RB.velocity.y, vz);
 
 
-        if (RB.velocity.y < 0) //Checks if he is falling and doubles gravity  
+        if (RB.velocity.y < 0) //Checks if he is falling and double gravity  
         {
             RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
         }
