@@ -28,10 +28,8 @@ public class GenericTweenToPosition : MonoBehaviour
         while (percentage > 0)
         {
             percentage += 0.01f;
-            int t = 0;
-            for (int i = 0; i < cameraPositions.Length; i++)
+            for (int i = 0; i < cameraPositions.Length-1; i++)
             {
-
                 transform.position = Vector3.Lerp(transform.position, cameraPositions[i].transform.position, percentage * Time.deltaTime);
                 transform.rotation = Quaternion.Slerp(transform.rotation, cameraPositions[i].transform.rotation, percentage * Time.deltaTime);
                 Debug.DrawLine(transform.position, cameraPositions[i].transform.position);

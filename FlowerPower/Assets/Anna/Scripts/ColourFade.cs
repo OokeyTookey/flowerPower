@@ -35,11 +35,14 @@ public class ColourFade : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeColour()
+    private IEnumerator FadeColour() //Use fade in mat
     {
         float percentage = 0;
+        float fadeAlpha = 1;
+
         while (percentage < 1)
         {
+            fadeAlpha -= 0.01f;
             percentage += 0.01f;
 
             int t = 0;
@@ -48,7 +51,7 @@ public class ColourFade : MonoBehaviour
                 for (int j = 0; j < rends[i].materials.Length; j++)
                 {
                     float greyscale = OriginalColors[t].grayscale;
-                    rends[i].materials[j].color = Color.Lerp(OriginalColors[t], new Color(greyscale, greyscale, greyscale), percentage);
+                    rends[i].materials[j].color = Color.Lerp(OriginalColors[t], new Color(greyscale, greyscale, greyscale, fadeAlpha), percentage);
                     t++;
                 }
             }
