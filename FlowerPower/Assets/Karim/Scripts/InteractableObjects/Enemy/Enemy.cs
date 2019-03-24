@@ -35,8 +35,11 @@ public class Enemy : MonoBehaviour
     public ThornsSkill thornSkill;
     public SporesSkill sporeSkill;
 
+    public Collider knockCollider;
+
 
     public Transform[] patrolspot;
+
 
 
 
@@ -62,21 +65,22 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+                if (knockbackCounter <= 0)
+                {
+                    knockback = false;
 
-        if (knockbackCounter <= 0)
-        {
-            knockback = false;
-            
-        }
-        if(!distracted && !stunned && !knockback)
-        {
-            Patrol();
-        }
-        else
-        {
-            knockbackCounter -= Time.deltaTime;
-            
-        }
+                }
+                if(!distracted && !stunned && !knockback)
+                {
+                    Patrol();
+                }
+                else
+                {
+                    knockbackCounter -= Time.deltaTime;
+
+                }
+           
         //GetKnockedBack();
 
         GetStunned();
@@ -97,7 +101,7 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, patrolspot[randomPatrolSpot].position, speed * Time.deltaTime);
         
 
-        if (Vector3.Distance(transform.position, patrolspot[randomPatrolSpot].position) < 0.05f)
+        if (Vector3.Distance(transform.position, patrolspot[randomPatrolSpot].position) < 3f)
         {
             if (waitTime <= 0)
             {
@@ -138,7 +142,7 @@ public class Enemy : MonoBehaviour
         if (stunned && !knockback)
         {
             speed = 0;
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             stunDuration -= Time.deltaTime;
         }
 
@@ -155,32 +159,63 @@ public class Enemy : MonoBehaviour
 
     public void GetKnockedBack()
     {
-
+        rb.velocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         knockbackCounter = knockbackTime;
         direction = transform.position - player.transform.position;
-        rb.velocity = (direction * knockbackForce);
+        direction.y = 0;
+        direction = direction.normalized + Vector3.up;
+        rb.AddForce(direction.normalized * knockbackForce, ForceMode.Impulse);
+
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
+        if (other.tag == "Player")
+        {
+            insidePlayer = true;
+        }
+        */
         if (other.tag == "Player" && !thornSkill.thornsActive)
         {
             DealDamage();
             knockback = false;
         }
-        else if (other.tag == "Player" && thornSkill.thornsActive)
+        /*
+        else if (other.tag == "Player" && thornSkill.thornsActive && !knockback && insidePlayer)
         {
 
             knockback = true;
             GetKnockedBack();
 
+            stunned = true;
+            GetStunned();
+        }
+        */
+    }
+    
+    private void OnTriggerStay(Collider other)
+    {
 
+        if (other.tag == "Player" && !thornSkill.thornsActive)
+        {
+            DealDamage();
+            knockback = false;
+        }
+
+        else if ((other.tag == "Player" && thornSkill.thornsActive) && (!knockback))
+        {
+            
+            knockback = true;
+            GetKnockedBack();
 
             stunned = true;
             GetStunned();
-
         }
     }
+
+    
 
 }

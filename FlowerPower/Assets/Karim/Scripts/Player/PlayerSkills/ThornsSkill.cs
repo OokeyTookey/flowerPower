@@ -23,7 +23,7 @@ public class ThornsSkill : Skills
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.Q))
         {
             thornsActive = true;
         }
