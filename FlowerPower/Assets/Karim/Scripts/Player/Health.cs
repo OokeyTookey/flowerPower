@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
         //player.currentHealth = 4
         //6 - 4 = 2 so you only disable 2 pellets
 
-        for (int i = 0; i < playerStats.maxHealth - playerStats.currentHealth; i++)
+        for (int i = 0; i <playerStats.maxHealth-  playerStats.currentHealth; i++)
         {
             healthPetals[i].SetActive(false);
         }
@@ -46,8 +46,9 @@ public class Health : MonoBehaviour
 
 
 
-        for (int i = 0; i < playerStats.currentHealth; i++)
+        for (int i = playerStats.maxHealth -1; i >= playerStats.maxHealth - playerStats.currentHealth ; i--)
         {
+            if(playerStats.currentHealth <= playerStats.maxHealth)
             healthPetals[i].SetActive(true);
         }
 

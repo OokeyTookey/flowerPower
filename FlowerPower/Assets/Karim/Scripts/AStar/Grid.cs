@@ -7,6 +7,8 @@ public class Grid : MonoBehaviour
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
 
+    public bool displayGridGizmos;
+
     public float nodeRadius;
 
     Node[,] grid;
@@ -15,7 +17,7 @@ public class Grid : MonoBehaviour
     int gridSizeX;
     int gridSizeY;
 
-    private void Start()
+    private void Awake()
     {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -23,6 +25,13 @@ public class Grid : MonoBehaviour
         CreateGrid();
     }
 
+    public int MaxSize
+    {
+        get
+        {
+            return gridSizeX * gridSizeY;
+        }
+    }
     public void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
@@ -39,29 +48,23 @@ public class Grid : MonoBehaviour
             }
         }
     }
-    public List<Node> path;
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
-        if (grid != null)
+        if (grid != null && displayGridGizmos)
         {
-           
+
             foreach (Node node in grid)
             {
                 Gizmos.color = (node.walkable) ? Color.white : Color.red;
-                if (path != null)
-                {
-                    if (path.Contains(node))
-                    {
-                        Gizmos.color = Color.black;
-                    }
-                }
-               
                 Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
         }
     }
+
+
 
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {
@@ -80,11 +83,11 @@ public class Grid : MonoBehaviour
     public List<Node> GetNeighbors(Node node)
     {
         List<Node> neighbors = new List<Node>();
-        for (int x = -1; x <= 1 ; x++)
+        for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
             {
-                if(x ==0 && y == 0)
+                if (x == 0 && y == 0)
                 {
                     continue;
                 }
@@ -92,13 +95,13 @@ public class Grid : MonoBehaviour
                 int checkX = node.gridX + x;
                 int checkY = node.gridY + y;
 
-                if(checkX >=0 && checkX< gridSizeX && checkY >=0 && checkY < gridSizeY)
+                if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
                 {
                     neighbors.Add(grid[checkX, checkY]);
                 }
 
             }
         }
-                return neighbors;
+        return neighbors;
     }
 }

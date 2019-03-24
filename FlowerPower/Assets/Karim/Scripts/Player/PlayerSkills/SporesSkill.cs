@@ -8,6 +8,7 @@ public class SporesSkill : Skills
     public Enemy enemy;
     public GameObject spores;
     public GameObject intSpore;
+    public GameObject firepoint;
     
     public float throwForce;
     public float sporeDuration;
@@ -35,11 +36,11 @@ public class SporesSkill : Skills
 
     public void LaunchSpores()
     {
-        intSpore = Instantiate(spores, playerMovement.transform.position , playerMovement.transform.rotation);
-        intSpore.GetComponent<Rigidbody>().AddForce(transform.right * throwForce );
-        enemy.distractedTimer = 3;
+        intSpore = Instantiate(spores, firepoint.transform.position , playerMovement.transform.rotation);
+        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce );
+        enemy.distractedTimer = 10;
 
-        Destroy(intSpore, 3);
+        Destroy(intSpore, 10);
 
 
         Debug.Log(throwForce);
