@@ -29,12 +29,6 @@ public class SunflowerSeedMovement : MonoBehaviour
 
     void Update()
     {
-        //RB.AddForce(transform.forward * (speed * Time.deltaTime), ForceMode.Acceleration);
-        //RB.AddForceAtPosition(Vector3.forward * 600, transform.position, ForceMode.Impulse);
-        //Debug.Log(annaPlayerMovement.speed);
-        //RB.AddForceAtPosition(, transform.position, ForceMode.Impulse);
-        //transform.position = transform.TransformPoint(Vector3.forward * (speed * Time.deltaTime));
-        //transform.position += annaPlayerMovement.direction * (speed * Time.deltaTime);
         transform.position += transform.forward * (speed * Time.deltaTime);
     }
 

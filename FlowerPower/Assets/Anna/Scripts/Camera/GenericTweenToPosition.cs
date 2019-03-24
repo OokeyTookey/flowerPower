@@ -24,11 +24,17 @@ public class GenericTweenToPosition : MonoBehaviour
 
     private IEnumerator MultipleCameraPositions()
     {
-        for (int i = 0; i < cameraPositions.Length; i++)
+        float percentage = 1;
+        while (percentage > 0)
         {
-            transform.position = Vector3.Lerp(transform.position, cameraPositions[i].transform.position, tweenSpeed * Time.deltaTime);
-            Debug.DrawLine(transform.position, cameraPositions[i].transform.position);
-            yield return new WaitForSeconds(2f);
+            percentage += 0.01f;
+            for (int i = 0; i < cameraPositions.Length-1; i++)
+            {
+                transform.position = Vector3.Lerp(transform.position, cameraPositions[i].transform.position, percentage * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, cameraPositions[i].transform.rotation, percentage * Time.deltaTime);
+                Debug.DrawLine(transform.position, cameraPositions[i].transform.position);
+                yield return new WaitForSeconds(2f);
+            }
         }
     }
 }

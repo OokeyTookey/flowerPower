@@ -9,21 +9,29 @@ public class AnnaPlayerMovement : MonoBehaviour
     Rigidbody RB;
     Collider playerCollider;
     Vector3 tempDirection;
+    Vector3 movementClamp;
     float moveXAxis;
     float moveYAxis;
 
+    [HideInInspector]
     public Vector3 direction;
-    public float angle;
+
+    [Header("//------ Sunny main values ------")]
     public float range;
     public float speed;
     public float maxSpeed;
-    public float maxJumpForce;
-    public float angleForce;
     public float slerpSpeed;
-    public float tempD;
+    public float walkMax;
+
+    [Space]
+
+    [Header("//------ Others & Jump ------")]
+    public float maxJumpForce;
+    public LayerMask groundLayer;
+
+    [Space]
 
     public GameObject firepoint;
-    public LayerMask groundLayer;
 
     void Start()
     {
@@ -48,9 +56,13 @@ public class AnnaPlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * slerpSpeed);
         }
 
-        // ---- Clamping the speed so player is limited & making gravity stronger so the player falls faster.
-        RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
-        if (RB.velocity.y < 0) //Checks if he is falling.   
+        // ---- Clamping the speed
+        float vx = Mathf.Clamp(RB.velocity.x, -walkMax, walkMax);
+        float vz = Mathf.Clamp(RB.velocity.z, -walkMax, walkMax);
+        RB.velocity = new Vector3(vx, RB.velocity.y, vz);
+
+
+        if (RB.velocity.y < 0) //Checks if he is falling and double gravity  
         {
             RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
         }
@@ -60,8 +72,6 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            // ---- Makes the player up
-            Debug.Log("lets do the jump");
             RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
         }
     }
@@ -70,6 +80,6 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         //CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
         return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
-            playerCollider.bounds.min.y, playerCollider.bounds.center.z), 3f /*<- Radius size*/, groundLayer);
+            playerCollider.bounds.min.y, playerCollider.bounds.center.z), 1f /*<- Radius size*/, groundLayer);
     }
 }

@@ -14,10 +14,7 @@ public class SunflowerSeedProjectile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, Quaternion.identity);
             spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, transform.rotation);
-
-            //Player position +  offset value on one of the axis. instan there, then transform.forward in that directio. 
         }
     }
 }
