@@ -6,17 +6,21 @@ public class ColourFade : MonoBehaviour
 {
     Renderer[] rends;
     public List<Color> OriginalColors;
-   
+
     private void Start()
     {
         rends = this.GetComponentsInChildren<MeshRenderer>(); //Accesses all the meshrenderers in the children
         int f = 0; //Acts as an index to remember the colour location
-
+ 
         for (int i = 0; i < rends.Length; i++)
         {
             for (int j = 0; j < rends[i].materials.Length; j++)
             {
                 OriginalColors.Add(rends[i].materials[j].color); //Adds the childrens materials.color
+
+                /*var tempColor = rends[i].materials[j].color;
+                tempColor.a = 0;
+                rends[i].materials[j].color = tempColor;*/
                 f++;
             }
         }
@@ -37,6 +41,7 @@ public class ColourFade : MonoBehaviour
         while (percentage < 1)
         {
             percentage += 0.01f;
+
             int t = 0;
             for (int i = 0; i < rends.Length; i++)
             {
@@ -44,7 +49,6 @@ public class ColourFade : MonoBehaviour
                 {
                     float greyscale = OriginalColors[t].grayscale;
                     rends[i].materials[j].color = Color.Lerp(OriginalColors[t], new Color(greyscale, greyscale, greyscale), percentage);
-                    //rends[i].materials[j].color = Color.Lerp(new Color(greyscale, greyscale, greyscale), OriginalColors[t], percentage);
                     t++;
                 }
             }
