@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7915326762243101500}
   - component: {fileID: 1585399085401656926}
   - component: {fileID: 3059205760453255279}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4708,7 +4708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2369699327793006557}
   - component: {fileID: 2369699327793006556}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4782,7 +4782,7 @@ GameObject:
   - component: {fileID: 2691748197608194783}
   - component: {fileID: 6491298095688835841}
   - component: {fileID: 8701981357613619391}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SunflowerSeedProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4995,4 +4995,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  fireRate: 0
+  ThisLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
