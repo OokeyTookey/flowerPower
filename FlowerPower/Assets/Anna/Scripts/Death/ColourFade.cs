@@ -17,10 +17,6 @@ public class ColourFade : MonoBehaviour
             for (int j = 0; j < rends[i].materials.Length; j++)
             {
                 OriginalColors.Add(rends[i].materials[j].color); //Adds the childrens materials.color
-
-                /*var tempColor = rends[i].materials[j].color;
-                tempColor.a = 0;
-                rends[i].materials[j].color = tempColor;*/
                 f++;
             }
         }
