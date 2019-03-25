@@ -8,6 +8,12 @@ public class AStarGridAnna : MonoBehaviour
    public List<AStarNodesAnna> grid = new List<AStarNodesAnna>();
     public int gridSize;
 
+    //GET NEIBOURS
+    //x value is calcuated by minusing the index position
+    //LIST.REVERSE WILL REVERSE LIST
+
+
+
     void Start()
     {
         for (int z = 0; z < gridSize; z++)
