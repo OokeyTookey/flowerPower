@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
-
     public float cooldown;
     public float cost;
     public bool skillUnlocked;
@@ -14,7 +13,6 @@ public class Skills : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
