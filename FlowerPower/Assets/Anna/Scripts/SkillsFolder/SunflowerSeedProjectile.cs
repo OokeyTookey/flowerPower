@@ -12,4 +12,12 @@ public class SunflowerSeedProjectile : Skills
     {
         spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, transform.rotation);
     }
+
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+        spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, transform.rotation);
+        }
+    }
 }

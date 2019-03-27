@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KarimThornsSkill : MonoBehaviour
+public class KarimThornsSkill : Skills
 {
-    public GameObject thorns; //?  ?
+    public GameObject thorns;
     public float thornsActiveTime;
     public bool thornsActive;
 

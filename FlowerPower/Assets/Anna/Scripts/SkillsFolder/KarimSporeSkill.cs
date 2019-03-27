@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KarimSporeSkill : MonoBehaviour
+public class KarimSporeSkill : Skills
 {
     public AnnaPlayerMovement playerMovement;
     public Enemy enemy;
@@ -20,7 +20,7 @@ public class KarimSporeSkill : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         sporeDuration = 10;
         enemy = FindObjectOfType<Enemy>();
@@ -28,7 +28,7 @@ public class KarimSporeSkill : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         /*if (Input.GetKeyDown(KeyCode.G))
         {
