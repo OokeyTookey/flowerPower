@@ -1733,7 +1733,7 @@ PrefabInstance:
     - target: {fileID: 8167912621935056612, guid: 8cedbca0d8c3bbd49a340943f571a37e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.23
+      value: 47.43
       objectReference: {fileID: 0}
     - target: {fileID: 8167912621935056612, guid: 8cedbca0d8c3bbd49a340943f571a37e,
         type: 3}
@@ -1799,10 +1799,39 @@ PrefabInstance:
       propertyPath: firepoint
       value: 
       objectReference: {fileID: 2098657289}
+    - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: multiplier
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: distractedDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: sporeDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: sporeActiveDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 691260176, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
       propertyPath: firepoint
       value: 
       objectReference: {fileID: 2098657289}
+    - target: {fileID: 691260174, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: thornsActiveDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 691260174, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: thornsActiveTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632627098722069797, guid: 8cedbca0d8c3bbd49a340943f571a37e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.56
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
 --- !u!1 &1183975658
@@ -2499,6 +2528,36 @@ Transform:
   m_Father: {fileID: 1902827647}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1808858993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808858994}
+  m_Layer: 0
+  m_Name: StateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1808858994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808858993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.960625, y: -6.671562, z: 55.73168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1829824442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2962,18 +3021,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  angle: 0
   range: 0
   speed: 100
   maxSpeed: 10
-  maxJumpForce: 10
-  angleForce: 0
   slerpSpeed: 0
-  tempD: 0
-  firepoint: {fileID: 0}
+  walkMax: 0
+  maxJumpForce: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  firepoint: {fileID: 0}
 --- !u!1 &2098657289 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4632627098722069796, guid: 8cedbca0d8c3bbd49a340943f571a37e,
@@ -5330,9 +5387,9 @@ MonoBehaviour:
   cooldown: 0
   cost: 0
   skillUnlocked: 0
-  thorns: {fileID: 8980948104005358963}
   thornsActiveTime: 0
   thornsActive: 0
+  thornsActiveDuration: 0
 --- !u!54 &8980948104005358967
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5375,15 +5432,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  angle: 0
   range: 0
   speed: 100
   maxSpeed: 10
-  maxJumpForce: 10
-  angleForce: 0
   slerpSpeed: 0
-  tempD: 0
-  firepoint: {fileID: 0}
+  walkMax: 0
+  maxJumpForce: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  firepoint: {fileID: 0}
