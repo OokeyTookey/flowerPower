@@ -2,37 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SporesSkill : MonoBehaviour
+public class SporesSkill : Skills
 {
     public AnnaPlayerMovement playerMovement;
+    private Enemy enemy;
     public GameObject spores;
+    public GameObject intSpore;
+    public GameObject firepoint;
+
+    public float sporeActiveDuration;
     public float throwForce;
+    public float sporeDuration;
+    public float distractedDuration;
+    public int multiplier;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
-
-
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            LaunchSpores();
-        }
-
-
+        RunFunction();
     }
 
     public void LaunchSpores()
     {
-        GameObject intSpore = Instantiate(spores, playerMovement.transform.position , playerMovement.transform.rotation);
-        intSpore.GetComponent<Rigidbody>().AddForce(transform.right * throwForce );
+        intSpore = Instantiate(spores, firepoint.transform.position, playerMovement.transform.rotation);
+        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
+
+       
+        //enemy.distractedTimer = distractedDuration;
+        
+
+
         Debug.Log(throwForce);
-    } 
+    }
+    public void DestroySpore()
+    {
+        if (sporeActiveDuration <= 0)
+        {
+            sporeActiveDuration = sporeDuration;
+            Destroy(intSpore);
+        }
+    }
+
+    public void RunFunction()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            LaunchSpores();
+
+        }
+        if (intSpore !=null)
+        {
+            sporeActiveDuration -= Time.deltaTime;
+        }
+
+        DestroySpore();
+        
+
+
+    }
+
+   
 }

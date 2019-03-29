@@ -4,45 +4,52 @@ using UnityEngine;
 
 
 
-public class ThornsSkill : MonoBehaviour
+public class ThornsSkill : Skills
 {
-    public GameObject thorns;
+
     public float thornsActiveTime;
     public bool thornsActive;
-
+    public float thornsActiveDuration;
+   
     // Start is called before the first frame update
     void Start()
     {
+        thornsActive = false;
         
-        thorns.SetActive(false);
-        
-        thornsActiveTime = 2;
-       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))
-        {
-            thornsActive = true;
-        }
-
-        ThornsActive();
+        RunFunction();
     }
 
     public void ThornsActive()
     {
         if (thornsActive)
         {
-            thorns.SetActive(true);
             thornsActiveTime -= Time.deltaTime;
+            Debug.Log(thornsActiveTime);
         }
-        if (thornsActive && thornsActiveTime <=0)
+        if (thornsActive && thornsActiveTime <= 0)
         {
             thornsActive = false;
-            thorns.SetActive(false);
-            thornsActiveTime = 2;
+            thornsActiveTime = thornsActiveDuration;
+            
         }
     }
+
+    public void RunFunction()
+    {
+        if (Input.GetKey(KeyCode.Q))
+        {
+            thornsActive = true;
+        }
+        ThornsActive();
+    }
 }
+
+
+
+
+

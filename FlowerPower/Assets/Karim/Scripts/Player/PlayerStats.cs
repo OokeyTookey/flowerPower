@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
+    public Health playerHealth;
     public int maxHealth;
     public int currentHealth;
     public float invincibleTime;
@@ -17,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerHealth = FindObjectOfType<Health>();
         maxHealth = 6;
         currentHealth = maxHealth;
         invincibleTime = 2;
@@ -35,6 +37,7 @@ public class PlayerStats : MonoBehaviour
             if (currentHealth > 0)
             {
                 currentHealth--;
+                playerHealth.LoseHealth();
                 Debug.Log(currentHealth + "/" + maxHealth);
             }
           
@@ -46,6 +49,7 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H) && currentHealth <= maxHealth)
         {
             currentHealth++;
+            playerHealth.GainHeath();
             Debug.Log(currentHealth + "/" + maxHealth);
         }
 
