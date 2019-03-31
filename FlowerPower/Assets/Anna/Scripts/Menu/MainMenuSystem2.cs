@@ -10,10 +10,9 @@ public class MainMenuSystem2 : MonoBehaviour
     private int index;
     bool stopLooping;
 
-    public float speed;
-
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             index++;
@@ -22,8 +21,6 @@ public class MainMenuSystem2 : MonoBehaviour
             {
                 index = 0; //First index in the array (Looping effect)
             }
-            stopLooping = false;
-
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -33,16 +30,13 @@ public class MainMenuSystem2 : MonoBehaviour
             {
                 index = menuCameraPositions.Length-1; //Last index in the array (Looping effect)
             }
-            stopLooping = false;
         }
 
         
         for (int i = 0; i < menuCameraPositions.Length; i++)
         {
             transform.position = Vector3.Lerp(transform.position, menuCameraPositions[index].transform.position, percentage * Time.deltaTime);
-                transform.rotation = Quaternion.Slerp(transform.rotation, menuCameraPositions[index].transform.rotation, percentage * Time.deltaTime);
-
-            
+            transform.rotation = Quaternion.Slerp(transform.rotation, menuCameraPositions[index].transform.rotation, percentage * Time.deltaTime);
         }
     }
 }
