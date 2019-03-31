@@ -85,12 +85,14 @@ public class AnnaPlayerMovement : MonoBehaviour
 
 
     //-------------------------------------------------- GOO CODE *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
+    //-------------------------------------------------- *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
+    //-------------------------------------------------- *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Goo"))
         {
-            speed = speed / 2;
+            speed = speed / 3;
         }
     }
 
@@ -98,7 +100,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goo"))
         {
-            speed = speed * 2;
+            speed = speed * 3;
         }
     }
 }
