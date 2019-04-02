@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class ThornsSkill : Skills
+public class ThornsSkill : MonoBehaviour
 {
 
     public float thornsActiveTime;
@@ -29,7 +29,7 @@ public class ThornsSkill : Skills
         if (thornsActive)
         {
             thornsActiveTime -= Time.deltaTime;
-            Debug.Log(thornsActiveTime);
+            //Debug.Log(thornsActiveTime);
         }
         if (thornsActive && thornsActiveTime <= 0)
         {
@@ -39,12 +39,20 @@ public class ThornsSkill : Skills
         }
     }
 
-    public void RunFunction()
+    /*public void RunFunction()
     {
         if (Input.GetKey(KeyCode.Q))
         {
             thornsActive = true;
         }
+        ThornsActive();
+    }*/
+
+    public void RunFunction()
+    {
+        
+            thornsActive = true;
+        
         ThornsActive();
     }
 }

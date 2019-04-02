@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainMenuSystem : MonoBehaviour
 {
-    public float speed;
+    /*public float speed;
     private MainMenuSystem thisObject;
 
     private void Start()
@@ -18,5 +18,5 @@ public class MainMenuSystem : MonoBehaviour
             thisObject.enabled = false;
             Debug.Log("do a thing");
         }
-    }
+    }*/
 }

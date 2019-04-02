@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SunflowerSeedProjectile : Skills
+public class SunflowerSeedProjectile : MonoBehaviour
 {
     public GameObject sunFlowerSeedPrefab;
-    public GameObject projectileSpawnLocation;
+    public GameObject playerLocation;
     GameObject spawnedProjectile;
+    int offset;
+
+    private void Start()
+    {
+        offset = 1;
+    }
 
     public void RunFunction()
     {
-        spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, transform.rotation);
-    }
-
-    public void Update()
-    {
-        if (Input.GetKey(KeyCode.Mouse1))
-        {
-        spawnedProjectile = Instantiate(sunFlowerSeedPrefab, projectileSpawnLocation.transform.position, transform.rotation);
-        }
+        spawnedProjectile = Instantiate(sunFlowerSeedPrefab, new Vector3(playerLocation.transform.position.x, 
+                                                                         playerLocation.transform.position.y + offset, 
+                                                                 playerLocation.transform.position.z), playerLocation.transform.rotation);
     }
 }

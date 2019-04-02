@@ -27,6 +27,7 @@ public class AnnaPlayerMovement : MonoBehaviour
 
     [Header("//------ Others & Jump ------")]
     public float maxJumpForce;
+    public float maxJumpForwardForce;
     public LayerMask groundLayer;
 
     [Space]
@@ -63,17 +64,17 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         if (RB.velocity.y < 0) //Checks if he is falling and double gravity  
         {
-            RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
+             RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
         }
-    }
 
-    void Update()
-    {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
+            //RB.AddForce(transform.forward * maxJumpForwardForce, ForceMode.Impulse);
+
+            /*Vector3 jumpDirection = transform.forward + transform.up;
+            RB.AddForce(jumpDirection * maxJumpForce, ForceMode.Impulse);*/
         }
-        Debug.Log(speed);
     }
 
     private bool IsGrounded()

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class KarimThornsSkill : Skills
 {
-    public GameObject thorns;
-    public float thornsActiveTime;
-    public bool thornsActive;
+    [HideInInspector] public GameObject thorns;
+    [HideInInspector] public float thornsActiveTime;
+    [HideInInspector] public bool thornsActive;
 
     public void Start()
     {
