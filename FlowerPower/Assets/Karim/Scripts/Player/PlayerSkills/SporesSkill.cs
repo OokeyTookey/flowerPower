@@ -15,11 +15,11 @@ public class SporesSkill : MonoBehaviour
     public float sporeDuration;
     public float distractedDuration;
     public int multiplier;
-    int offset;
+    int firePointOffset;
 
     void Start()
     {
-        offset = 1;
+        firePointOffset = 1;
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
     }
 
@@ -27,7 +27,7 @@ public class SporesSkill : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(10, 11);
         intSpore = Instantiate(sporesPrefab, new Vector3(playerLocation.transform.position.x,
-                   playerLocation.transform.position.y + offset, playerLocation.transform.position.z), 
+                   playerLocation.transform.position.y + firePointOffset, playerLocation.transform.position.z), 
                                                                                 playerMovement.transform.rotation);
 
         intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);

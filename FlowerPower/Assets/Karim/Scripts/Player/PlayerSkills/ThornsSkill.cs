@@ -7,7 +7,7 @@ public class ThornsSkill : MonoBehaviour
     public float thornsActiveTime;
     public bool thornsActive;
     public float thornsActiveDuration;
-   
+
     void Start()
     {
         thornsActive = false;
@@ -15,21 +15,25 @@ public class ThornsSkill : MonoBehaviour
 
     void Update()
     {
-        thornsActiveTime -= Time.deltaTime;
+        RunFunction();
     }
 
     public void ThornsActive()
     {
+        if (thornsActive)
+        {
+            thornsActiveTime -= Time.deltaTime;
+        }
+
         if (thornsActive && thornsActiveTime <= 0)
         {
-            thornsActiveTime = thornsActiveDuration;
             thornsActive = false;
+            thornsActiveTime = thornsActiveDuration;
         }
     }
 
     public void RunFunction()
     {
-        thornsActive = true;    
         ThornsActive();
     }
 }

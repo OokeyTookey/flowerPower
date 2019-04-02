@@ -56,9 +56,9 @@ public class PlayerManager : MonoBehaviour
         thornsSkill = GetComponent<ThornsSkill>();
         sunflowerSeedSkill = GetComponent<SunflowerSeedProjectile>();
 
-        SeedUNLOCKED = false;
+        /*SeedUNLOCKED = false;
         thornsUNLOCKED = false;
-        sporesUNLOCKED = false;
+        sporesUNLOCKED = false;*/
 
         healOverTimer = healOverTimeDelay;
     }
@@ -96,7 +96,9 @@ public class PlayerManager : MonoBehaviour
                 if (cooldownTimerThorns > thornsCooldown)
                 {
                     playerStats.TakeDamage();
+                    thornsSkill.thornsActive = true;
                     thornsSkill.RunFunction();
+
                     Debug.Log("<color=red> Thorns Skill:</color> <b>Active</b>");
                     cooldownTimerThorns = 0;
                 }

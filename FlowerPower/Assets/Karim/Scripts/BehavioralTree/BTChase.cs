@@ -10,13 +10,13 @@ public class BTChase : BTNode
         if (!EBT.PlayerInRange() || (EBT.EnemyOnPlayer() && EBT.thornsSkill.thornsActive || EBT.stunned || EBT.enemyHealth < 0))// Checking if close
         {
             Debug.Log("Chase Failed");
-            //Debug.Log("Enemy on Player" +EBT.EnemyOnPlayer());
+            Debug.Log("Enemy on Player" +EBT.EnemyOnPlayer());
             return Result.failure;
         }
         else if (EBT.PlayerInRange() && !EBT.knockedBack)
         {
-            //Debug.Log("Player in Range");
-            //Debug.Log("Enemy on Player" + EBT.EnemyOnPlayer());
+            Debug.Log("Player in Range");
+            Debug.Log("Enemy on Player" + EBT.EnemyOnPlayer());
 
             EBT.transform.LookAt(EBT.player.transform);
             Vector3 enemyPosition = (EBT.player.gameObject.transform.position - EBT.transform.position).normalized;
