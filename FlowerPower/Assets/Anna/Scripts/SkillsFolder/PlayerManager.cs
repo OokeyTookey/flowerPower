@@ -142,6 +142,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (playerStats.currentHealth < playerStats.maxHealth && healOverTimer <= 0)
             {
+                playerStats.currentHealth++;
                 playerStats.GainHealth();
                 healOverTimer = healOverTimeDelay;
             }

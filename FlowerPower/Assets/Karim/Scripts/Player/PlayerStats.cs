@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-
     public bool invincible;
     public float invincibleLength;
     [HideInInspector] public int maxHealth;

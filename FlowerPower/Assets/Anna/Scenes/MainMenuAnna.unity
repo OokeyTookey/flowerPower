@@ -8216,12 +8216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92686ef14fe76cc499ff238923f1b651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
-  cost: 0
-  skillUnlocked: 0
   sunFlowerSeedPrefab: {fileID: 7668105684571776866, guid: 24abb9e5860033f4cba733f09434bf39,
     type: 3}
-  projectileSpawnLocation: {fileID: 6928145914714443487}
+  playerLocation: {fileID: 0}
 --- !u!114 &5851755418100197681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8241,10 +8238,10 @@ MonoBehaviour:
   slerpSpeed: 10
   walkMax: 0
   maxJumpForce: 10
+  maxJumpForwardForce: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  firepoint: {fileID: 6928145914714443487}
 --- !u!54 &5851755418100197682
 Rigidbody:
   m_ObjectHideFlags: 0

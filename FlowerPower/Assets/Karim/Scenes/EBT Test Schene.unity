@@ -506,6 +506,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &1542772502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8167912621934758596, guid: 8cedbca0d8c3bbd49a340943f571a37e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727245296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1542772510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8167912621934758602, guid: 8cedbca0d8c3bbd49a340943f571a37e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727245296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542772502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4ce2b44e0dacc499a70bced1c1404e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1542772515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542772502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357ac13ea2863e3408ba0b1347216bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gooSpeedDivider: 0
+  SeedUNLOCKED: 0
+  sunflowerCooldown: 2
+  thornsUNLOCKED: 0
+  thornsCooldown: 2
+  sporesUNLOCKED: 0
+  sporeCooldown: 2
+  healOverTimeDelay: 0
 --- !u!1001 &1727245296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -617,7 +655,26 @@ PrefabInstance:
       propertyPath: multiplier
       value: 50
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1542772510}
+    - target: {fileID: 8167912621934758603, guid: 8cedbca0d8c3bbd49a340943f571a37e,
+        type: 3}
+      propertyPath: playerLocation
+      value: 
+      objectReference: {fileID: 1542772502}
+    - target: {fileID: 691260172, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: playerLocation
+      value: 
+      objectReference: {fileID: 1542772502}
+    - target: {fileID: 691260172, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+      propertyPath: sunFlowerSeedPrefab
+      value: 
+      objectReference: {fileID: 7668105684571776866, guid: 24abb9e5860033f4cba733f09434bf39,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 691260172, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
 --- !u!1 &1965029636
 GameObject:
