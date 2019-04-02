@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SporesSkill : MonoBehaviour
 {
+
     public AnnaPlayerMovement playerMovement;
     private Enemy enemy;
     public GameObject sporesPrefab;
@@ -23,11 +24,18 @@ public class SporesSkill : MonoBehaviour
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
     }
 
+    private void Update()
+    {
+        sporeActiveDuration -= Time.deltaTime;
+
+
+    }
+
     public void LaunchSpores()
     {
         Physics.IgnoreLayerCollision(10, 11);
         intSpore = Instantiate(sporesPrefab, new Vector3(playerLocation.transform.position.x,
-                   playerLocation.transform.position.y + firePointOffset, playerLocation.transform.position.z), 
+                   playerLocation.transform.position.y + firePointOffset, playerLocation.transform.position.z),
                                                                                 playerMovement.transform.rotation);
 
         intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
@@ -35,19 +43,14 @@ public class SporesSkill : MonoBehaviour
 
     public void DestroySpore()
     {
-        if (sporeActiveDuration <= 0)
-        {
-            sporeActiveDuration = sporeDuration;
-            Destroy(intSpore);
-        }
+        Destroy(intSpore, 5);
     }
 
     public void RunFunction()
     {
         LaunchSpores();
-        if (intSpore != null)
-        {
-            sporeActiveDuration -= Time.deltaTime;
-        }
+        DestroySpore();
+        sporeActiveDuration = sporeDuration;
+
     }
 }

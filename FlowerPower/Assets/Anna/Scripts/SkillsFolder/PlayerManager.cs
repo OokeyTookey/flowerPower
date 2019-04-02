@@ -12,6 +12,9 @@ using UnityEngine;
 
     //- CLEANUP SCRIPTS
 
+    //&&&&- Animation petals, check drive and bones??
+    //&&&&- Check rosie texture
+
 
 public class PlayerManager : MonoBehaviour
 {
@@ -110,6 +113,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (Input.GetButton("Fire3")) //Right mouse button, E & INSERT CONTROLLER SUPPORT HERE
             {
+                Debug.Log("<color=red> FIRE SKILL SPORE</color>");
                 if (cooldownTimerSpores > sporeCooldown)
                 {
                     playerStats.TakeDamage();

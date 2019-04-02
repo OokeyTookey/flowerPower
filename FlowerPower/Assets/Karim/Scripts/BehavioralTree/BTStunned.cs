@@ -6,7 +6,7 @@ public class BTStunned : BTNode
 {
     public override Result Execute(EnemyBehaviorTree EBT)
     {
-        if (EBT.stunnedCounter == 2 || EBT.enemyHealth < 0)
+        if (!EBT.stunned)
         {
             Debug.Log("Stunned failed");
             return Result.failure;

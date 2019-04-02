@@ -17,6 +17,7 @@ public class BTChase : BTNode
         {
             Debug.Log("Player in Range");
             Debug.Log("Enemy on Player" + EBT.EnemyOnPlayer());
+            EBT.speed = 2;
 
             EBT.transform.LookAt(EBT.player.transform);
             Vector3 enemyPosition = (EBT.player.gameObject.transform.position - EBT.transform.position).normalized;
