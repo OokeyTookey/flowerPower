@@ -29,7 +29,6 @@ public class ThornsSkill : Skills
         if (thornsActive)
         {
             thornsActiveTime -= Time.deltaTime;
-            Debug.Log(thornsActiveTime);
         }
         if (thornsActive && thornsActiveTime <= 0)
         {

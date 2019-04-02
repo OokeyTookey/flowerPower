@@ -5,32 +5,45 @@ using UnityEngine;
 public class SporesSkill : Skills
 {
     public AnnaPlayerMovement playerMovement;
+    public EnemyBehaviorTree EBT;
     private Enemy enemy;
     public GameObject spores;
     public GameObject intSpore;
     public GameObject firepoint;
 
     public float sporeActiveDuration;
-    public float throwForce;
     public float sporeDuration;
+
+    public float throwForce;
     public float distractedDuration;
     public int multiplier;
 
     void Start()
     {
+        EBT = FindObjectOfType<EnemyBehaviorTree>();
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
+        sporeActiveDuration = sporeDuration;
+      
     }
 
     void Update()
     {
         RunFunction();
+
+        sporeActiveDuration -= Time.deltaTime;
     }
 
     public void LaunchSpores()
     {
+        sporeActiveDuration = sporeDuration;
         intSpore = Instantiate(spores, firepoint.transform.position, playerMovement.transform.rotation);
-        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
+        if(intSpore !=null)
+        {
 
+        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
+        }
+        sporeActiveDuration = sporeDuration;
+      
        
         //enemy.distractedTimer = distractedDuration;
         
@@ -40,10 +53,11 @@ public class SporesSkill : Skills
     }
     public void DestroySpore()
     {
-        if (sporeActiveDuration <= 0)
+        if (intSpore !=null && sporeActiveDuration <= 0)
         {
-            sporeActiveDuration = sporeDuration;
             Destroy(intSpore);
+           
+            
         }
     }
 
@@ -51,16 +65,14 @@ public class SporesSkill : Skills
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
+            
             LaunchSpores();
+            
+        }
 
-        }
-        if (intSpore !=null)
-        {
-            sporeActiveDuration -= Time.deltaTime;
-        }
 
         DestroySpore();
-        
+
 
 
     }
