@@ -6,6 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(ThornsSkill))]
 [RequireComponent(typeof(SunflowerSeedProjectile))]
 
+//ANNA TO DO:
+    //- Access mesh render and make flicker green when healing.
+    //- Do the same for damage, make red.
+
+    //- CLEANUP SCRIPTS
+
+
 public class PlayerManager : MonoBehaviour
 {
     PlayerStats playerStats;
@@ -37,6 +44,9 @@ public class PlayerManager : MonoBehaviour
     float cooldownTimerSpores;
     SporesSkill sporeSkill;
 
+    float healOverTimer;
+    public float healOverTimeDelay;
+
     void Start()
     {
         playerStats = FindObjectOfType<PlayerStats>();
@@ -49,10 +59,14 @@ public class PlayerManager : MonoBehaviour
         SeedUNLOCKED = false;
         thornsUNLOCKED = false;
         sporesUNLOCKED = false;
+
+        healOverTimer = healOverTimeDelay;
     }
 
     void Update()
     {
+        healOverTimer -= Time.deltaTime;
+
         //---------------------------------------------------- Skills -------------------------------------------------------
 
         cooldownTimerSeed += Time.deltaTime;
@@ -120,12 +134,16 @@ public class PlayerManager : MonoBehaviour
         {
             playerMovement.speed = playerMovement.speed / gooSpeedDivider;
         }
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
         if (other.gameObject.CompareTag("Water"))
         {
-            if (playerStats.currentHealth < playerStats.maxHealth)
+            if (playerStats.currentHealth < playerStats.maxHealth && healOverTimer <= 0)
             {
-                playerStats.currentHealth++;
+                playerStats.GainHealth();
+                healOverTimer = healOverTimeDelay;
             }
         }
     }

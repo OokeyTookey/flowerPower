@@ -201,7 +201,7 @@ Transform:
   - {fileID: 200868258}
   - {fileID: 450826814}
   m_Father: {fileID: 1087424325}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &103114310
 PrefabInstance:
@@ -2461,7 +2461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1087424325}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &549168278
 MonoBehaviour:
@@ -5012,7 +5012,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2094608532}
   - {fileID: 549168277}
   - {fileID: 1758070186}
   - {fileID: 76538274}
@@ -8781,7 +8780,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1087424325}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1773463342 stripped
 GameObject:
@@ -10758,148 +10757,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d7f4cf520cf54ea4984a34c4e4bc5ef1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da04581a62f2cdc42b62e08a38c22f03, type: 3}
---- !u!1 &2094608530
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2094608532}
-  - component: {fileID: 2094608535}
-  - component: {fileID: 2094608536}
-  - component: {fileID: 2094608534}
-  - component: {fileID: 2094608533}
-  - component: {fileID: 2094608531}
-  - component: {fileID: 2094608537}
-  m_Layer: 0
-  m_Name: SKILL CONTROLLER
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2094608531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094608530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92686ef14fe76cc499ff238923f1b651, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sunFlowerSeedPrefab: {fileID: 7668105684571776866, guid: 24abb9e5860033f4cba733f09434bf39,
-    type: 3}
-  playerLocation: {fileID: 5851755418940901762}
---- !u!4 &2094608532
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094608530}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1087424325}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2094608533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094608530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf8991592174c64192f4537b7206511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thornsActiveTime: 2
-  thornsActive: 0
-  thornsActiveDuration: 2
---- !u!114 &2094608534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094608530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85ed12fe2bb0f5c4aae52bd11a99c5b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  sporesPrefab: {fileID: 8371886518265626414, guid: cf41283b73618704c94a3644c2b4421f,
-    type: 3}
-  intSpore: {fileID: 8371886518265626414, guid: cf41283b73618704c94a3644c2b4421f,
-    type: 3}
-  playerLocation: {fileID: 5851755418940901762}
-  sporeActiveDuration: 3
-  throwForce: 10
-  sporeDuration: 3
-  distractedDuration: 3
-  multiplier: 10
---- !u!114 &2094608535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094608530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 357ac13ea2863e3408ba0b1347216bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SeedUNLOCKED: 0
-  sunflowerCooldown: 2
-  thornsUNLOCKED: 0
-  thornsCooldown: 2
-  sporesUNLOCKED: 0
-  sporeCooldown: 2
---- !u!114 &2094608536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094608530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a30557d7f554b4784865f06ce49afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincible: 0
-  invincibleLength: 0
-  maxHealth: 0
-  currentHealth: 3
---- !u!114 &2094608537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094608530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0663d5a4c5e7a2f40a5601aae070416c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthPetals:
-  - {fileID: 5851755418940901784}
-  - {fileID: 5851755418940901786}
-  - {fileID: 5851755418940901788}
-  - {fileID: 5851755418940901790}
-  - {fileID: 5851755418940901776}
-  - {fileID: 5851755418940901778}
 --- !u!1 &2101281659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: da04581a62f2cdc42b62e08a38c22f03,
@@ -11724,10 +11581,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5851755418941330850}
-  - component: {fileID: 5851755418948336200}
+  - component: {fileID: 5851755418940901777}
+  - component: {fileID: 5851755418940901765}
+  - component: {fileID: 5851755418940901772}
+  - component: {fileID: 5851755418940901771}
+  - component: {fileID: 5851755418940901769}
+  - component: {fileID: 5851755418940901767}
   - component: {fileID: 5851755418940901775}
   - component: {fileID: 5851755418940901763}
-  - component: {fileID: 5851755418940901765}
+  - component: {fileID: 5851755418948336200}
+  - component: {fileID: 5851755418940901773}
   m_Layer: 10
   m_Name: SunnyPlayer
   m_TagString: Player
@@ -11790,7 +11653,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  gooSpeedDivider: 3
 --- !u!1 &5851755418940901766
 GameObject:
   m_ObjectHideFlags: 0
@@ -11809,6 +11671,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5851755418940901767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851755418940901762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92686ef14fe76cc499ff238923f1b651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunFlowerSeedPrefab: {fileID: 7668105684571776866, guid: 24abb9e5860033f4cba733f09434bf39,
+    type: 3}
+  playerLocation: {fileID: 5851755418940901762}
 --- !u!1 &5851755418940901768
 GameObject:
   m_ObjectHideFlags: 0
@@ -11827,6 +11704,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5851755418940901769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851755418940901762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8991592174c64192f4537b7206511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thornsActiveTime: 2
+  thornsActive: 0
+  thornsActiveDuration: 2
 --- !u!1 &5851755418940901770
 GameObject:
   m_ObjectHideFlags: 0
@@ -11845,6 +11737,68 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5851755418940901771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851755418940901762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ed12fe2bb0f5c4aae52bd11a99c5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  sporesPrefab: {fileID: 8371886518265626414, guid: cf41283b73618704c94a3644c2b4421f,
+    type: 3}
+  intSpore: {fileID: 8371886518265626414, guid: cf41283b73618704c94a3644c2b4421f,
+    type: 3}
+  playerLocation: {fileID: 5851755418940901762}
+  sporeActiveDuration: 3
+  throwForce: 10
+  sporeDuration: 3
+  distractedDuration: 3
+  multiplier: 10
+--- !u!114 &5851755418940901772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851755418940901762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357ac13ea2863e3408ba0b1347216bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gooSpeedDivider: 3
+  SeedUNLOCKED: 0
+  sunflowerCooldown: 2
+  thornsUNLOCKED: 0
+  thornsCooldown: 2
+  sporesUNLOCKED: 0
+  sporeCooldown: 2
+  healOverTimeDelay: 2
+--- !u!114 &5851755418940901773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851755418940901762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0663d5a4c5e7a2f40a5601aae070416c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPetals:
+  - {fileID: 5851755418940901784}
+  - {fileID: 5851755418940901786}
+  - {fileID: 5851755418940901788}
+  - {fileID: 5851755418940901790}
+  - {fileID: 5851755418940901776}
+  - {fileID: 5851755418940901778}
 --- !u!1 &5851755418940901774
 GameObject:
   m_ObjectHideFlags: 0
@@ -11897,6 +11851,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5851755418940901777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851755418940901762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a30557d7f554b4784865f06ce49afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincible: 0
+  invincibleLength: 0
+  maxHealth: 0
+  currentHealth: 0
 --- !u!1 &5851755418940901778
 GameObject:
   m_ObjectHideFlags: 0
