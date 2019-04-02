@@ -6,8 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(ThornsSkill))]
 [RequireComponent(typeof(SunflowerSeedProjectile))]
 
-public class SkillController : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
+    PlayerStats playerStats;
 
     [Header("//------ Sunflower Skill ------------")]
     public bool SeedUNLOCKED;
@@ -33,9 +34,11 @@ public class SkillController : MonoBehaviour
 
     void Start()
     {
-        sporeSkill = this.GetComponent<SporesSkill>();
-        thornsSkill = this.GetComponent<ThornsSkill>();
-        sunflowerSeedSkill = this.GetComponent<SunflowerSeedProjectile>();
+        playerStats = GetComponent<PlayerStats>();
+
+        sporeSkill = GetComponent<SporesSkill>();
+        thornsSkill = GetComponent<ThornsSkill>();
+        sunflowerSeedSkill = GetComponent<SunflowerSeedProjectile>();
 
         SeedUNLOCKED = false;
         thornsUNLOCKED = false;
@@ -44,6 +47,8 @@ public class SkillController : MonoBehaviour
 
     void Update()
     {
+        //---------------------------------------------------- Skills -------------------------------------------------------
+
         cooldownTimerSeed += Time.deltaTime;
         cooldownTimerThorns += Time.deltaTime;
         cooldownTimerSpores += Time.deltaTime;
@@ -55,6 +60,7 @@ public class SkillController : MonoBehaviour
             {
                 if (cooldownTimerSeed > sunflowerCooldown) //If timer is greater than cooldown cost
                 {
+                    playerStats.TakeDamage();
                     sunflowerSeedSkill.RunFunction();
                     Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");
                     cooldownTimerSeed = 0;
@@ -69,6 +75,7 @@ public class SkillController : MonoBehaviour
             {
                 if (cooldownTimerThorns > thornsCooldown)
                 {
+                    playerStats.TakeDamage();
                     thornsSkill.RunFunction();
                     Debug.Log("<color=red> Thorns Skill:</color> <b>Active</b>");
                     cooldownTimerThorns = 0;
@@ -83,11 +90,21 @@ public class SkillController : MonoBehaviour
             {
                 if (cooldownTimerSpores > sporeCooldown)
                 {
+                    playerStats.TakeDamage();
                     sporeSkill.RunFunction();
                     Debug.Log("<color=green> Sports Skill:</color><b> Active</b>");
                     cooldownTimerSpores = 0;
                 }
             }
         }
+
+        //---------------------------------------------------- Health -------------------------------------------------------
+
+        if (playerStats.currentHealth <= 0)
+        {
+            Debug.Log("DEATH");
+        }
+
+        Debug.Log(playerStats.currentHealth);
     }
 }

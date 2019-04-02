@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnnaCheckpoints : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    private static AnnaCheckpoints instance;
-    private void Awake()
+    private static GameManager instance;
+    public Vector3 lastCheckpointLocation;
+
+    private void Awake() //Singleton
     {
         if (instance == null)
         {

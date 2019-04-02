@@ -6,12 +6,14 @@ using UnityEngine;
 
 public class AnnaPlayerMovement : MonoBehaviour
 {
-    Rigidbody RB;
-    Collider playerCollider;
-    Vector3 tempDirection;
-    Vector3 movementClamp;
-    float moveXAxis;
-    float moveYAxis;
+    private Rigidbody RB;
+    private Collider playerCollider;
+    private Vector3 tempDirection;
+    private Vector3 movementClamp;
+    private float moveXAxis;
+    private float moveYAxis;
+
+    private GameManager gameManager;
 
     [HideInInspector]
     public Vector3 direction;
@@ -38,6 +40,8 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         RB = this.GetComponent<Rigidbody>();
         playerCollider = this.GetComponent<Collider>();
+        gameManager = FindObjectOfType<GameManager>();
+        transform.position = gameManager.lastCheckpointLocation;
     }
 
     private void FixedUpdate()

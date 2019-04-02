@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
-    public Health playerHealth;
-    public int maxHealth;
-    public int currentHealth;
-    public float invincibleTime;
+    private Health playerHealth;
+    [HideInInspector]public int maxHealth;
+    [SerializeField] public int currentHealth;
+    float invincibleTimer;
+    public float invincibleLength;
     public bool invincible;
 
    
@@ -21,7 +22,7 @@ public class PlayerStats : MonoBehaviour
         playerHealth = FindObjectOfType<Health>();
         maxHealth = 6;
         currentHealth = maxHealth;
-        invincibleTime = 2;
+        invincibleTimer = 2;
         invincible = false;
     }
 
@@ -32,7 +33,8 @@ public class PlayerStats : MonoBehaviour
         {
             currentHealth = 6;
         }
-        if (Input.GetKeyDown(KeyCode.T) && currentHealth <= maxHealth)
+
+        /*if (Input.GetKeyDown(KeyCode.T) && currentHealth <= maxHealth)
         {
             if (currentHealth > 0)
             {
@@ -45,7 +47,8 @@ public class PlayerStats : MonoBehaviour
             {
                 currentHealth = 0;
             }
-        }
+        }*/
+
         if (Input.GetKeyDown(KeyCode.H) && currentHealth <= maxHealth)
         {
             currentHealth++;
@@ -53,18 +56,19 @@ public class PlayerStats : MonoBehaviour
             Debug.Log(currentHealth + "/" + maxHealth);
         }
 
-        invincibleTime -= Time.deltaTime;
-        if(invincibleTime <= 0)
+        invincibleTimer -= Time.deltaTime;
+        if(invincibleTimer <= 0)
         {
             invincible = false;
         }
 
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage()
     {
-        currentHealth -= amount;
+        currentHealth --;
+        playerHealth.LoseHealth(); //Access the health class and removed a petal in the array
         invincible = true;
-        invincibleTime = 2;
+        invincibleTimer = 2;
     }
 }

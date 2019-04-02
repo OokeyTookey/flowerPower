@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public GameObject[] healthPetals;
 
 
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
 
 
     // Start is called before the first frame update
