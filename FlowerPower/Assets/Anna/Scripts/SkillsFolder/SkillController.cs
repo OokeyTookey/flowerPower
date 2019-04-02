@@ -41,7 +41,7 @@ public class SkillController : MonoBehaviour
             Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");
         }
 
-        /*//---- Thorns Skill
+        //---- Thorns Skill
         if (Input.GetButton("Fire2")) //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
         {
             thornsSkill.RunFunction();
@@ -53,6 +53,6 @@ public class SkillController : MonoBehaviour
         {
             sporeSkill.RunFunction();
             Debug.Log("<color=green> Sports Skill:</color><b> Active</b>");
-        }*/
+        }
     }
 }

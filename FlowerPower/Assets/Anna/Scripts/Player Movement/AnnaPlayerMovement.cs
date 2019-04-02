@@ -73,6 +73,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         {
             RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
         }
+        Debug.Log(speed);
     }
 
     private bool IsGrounded()
@@ -80,5 +81,26 @@ public class AnnaPlayerMovement : MonoBehaviour
         //CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
         return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
             playerCollider.bounds.min.y, playerCollider.bounds.center.z), 1f /*<- Radius size*/, groundLayer);
+    }
+
+
+    //-------------------------------------------------- GOO CODE *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
+    //-------------------------------------------------- *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
+    //-------------------------------------------------- *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Goo"))
+        {
+            speed = speed / 3;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Goo"))
+        {
+            speed = speed * 3;
+        }
     }
 }
