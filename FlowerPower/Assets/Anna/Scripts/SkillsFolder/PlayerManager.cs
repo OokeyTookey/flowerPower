@@ -9,6 +9,11 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     PlayerStats playerStats;
+    AnnaPlayerMovement playerMovement;
+
+    [Space]
+    [Header("//------ Player Reactions ------")]
+    public float gooSpeedDivider;
 
     [Header("//------ Sunflower Skill ------------")]
     public bool SeedUNLOCKED;
@@ -34,7 +39,8 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        playerStats = GetComponent<PlayerStats>();
+        playerStats = FindObjectOfType<PlayerStats>();
+        playerMovement = FindObjectOfType<AnnaPlayerMovement>();
 
         sporeSkill = GetComponent<SporesSkill>();
         thornsSkill = GetComponent<ThornsSkill>();
@@ -106,5 +112,29 @@ public class PlayerManager : MonoBehaviour
         }
 
         Debug.Log(playerStats.currentHealth);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Goo"))
+        {
+            playerMovement.speed = playerMovement.speed / gooSpeedDivider;
+        }
+
+        if (other.gameObject.CompareTag("Water"))
+        {
+            if (playerStats.currentHealth < playerStats.maxHealth)
+            {
+                playerStats.currentHealth++;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Goo"))
+        {
+            playerMovement.speed = playerMovement.speed * gooSpeedDivider;
+        }
     }
 }

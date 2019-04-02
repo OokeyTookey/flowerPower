@@ -5,18 +5,14 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
-    private Health playerHealth;
-    [HideInInspector]public int maxHealth;
-    [SerializeField] public int currentHealth;
-    float invincibleTimer;
-    public float invincibleLength;
     public bool invincible;
+    public float invincibleLength;
+    [HideInInspector] public int maxHealth;
+    [SerializeField] public int currentHealth;
 
-   
+    private Health playerHealth;
+    private float invincibleTimer;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         playerHealth = FindObjectOfType<Health>();
@@ -26,49 +22,49 @@ public class PlayerStats : MonoBehaviour
         invincible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(currentHealth > maxHealth)
+        invincibleTimer -= Time.deltaTime;
+
+        if (currentHealth > maxHealth)
         {
             currentHealth = 6;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.T) && currentHealth <= maxHealth)
+        if (currentHealth <= 0)
         {
-            if (currentHealth > 0)
-            {
-                currentHealth--;
-                playerHealth.LoseHealth();
-                Debug.Log(currentHealth + "/" + maxHealth);
-            }
-          
-            if (currentHealth <= 0)
-            {
-                currentHealth = 0;
-            }
-        }*/
+            currentHealth = 0;
+        }
 
-        if (Input.GetKeyDown(KeyCode.H) && currentHealth <= maxHealth)
+        if (invincibleTimer <= 0)
+        {
+            invincible = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.H)) //TESTING PURPOSES TO HEAL
+        {
+            GainHealth();
+        }
+    }
+
+    public void TakeDamage()
+    {
+        if (currentHealth > 0)
+        {
+            currentHealth--;
+            playerHealth.LoseHealth(); //Access the health class and removed a petal in the array
+            invincible = true;
+            invincibleTimer = 2;
+        }
+    }
+
+    public void GainHealth()
+    {
+        if (currentHealth < maxHealth)
         {
             currentHealth++;
             playerHealth.GainHeath();
             Debug.Log(currentHealth + "/" + maxHealth);
         }
-
-        invincibleTimer -= Time.deltaTime;
-        if(invincibleTimer <= 0)
-        {
-            invincible = false;
-        }
-
-    }
-
-    public void TakeDamage()
-    {
-        currentHealth --;
-        playerHealth.LoseHealth(); //Access the health class and removed a petal in the array
-        invincible = true;
-        invincibleTimer = 2;
     }
 }
