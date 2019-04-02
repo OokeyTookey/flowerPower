@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public GameObject[] healthPetals;
 
 
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
 
 
     // Start is called before the first frame update
@@ -35,9 +35,13 @@ public class Health : MonoBehaviour
         //player.currentHealth = 4
         //6 - 4 = 2 so you only disable 2 pellets
 
-        for (int i = 0; i <playerStats.maxHealth-  playerStats.currentHealth; i++)
+        for (int i = 0; i < playerStats.maxHealth -  playerStats.currentHealth; i++)
         {
+            if (playerStats.currentHealth >= 0)
+            {
             healthPetals[i].SetActive(false);
+
+            }
         }
     }
 

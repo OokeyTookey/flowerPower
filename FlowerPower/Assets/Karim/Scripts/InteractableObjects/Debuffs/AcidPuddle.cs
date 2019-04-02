@@ -26,7 +26,7 @@ public class AcidPuddle : MonoBehaviour
         {
             if (playerStats.currentHealth > 0 && playerStats.invincible == false)
             {
-                playerStats.TakeDamage(1);
+                playerStats.TakeDamage();
                 Debug.Log(playerStats.currentHealth);
             }
 
@@ -38,7 +38,7 @@ public class AcidPuddle : MonoBehaviour
         {
             if (playerStats.currentHealth > 0 && playerStats.invincible == false)
             {
-                playerStats.TakeDamage(1);
+                playerStats.TakeDamage();
                 Debug.Log(playerStats.currentHealth);
             }
 

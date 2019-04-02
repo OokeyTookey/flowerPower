@@ -2,80 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SporesSkill : Skills
+public class SporesSkill : MonoBehaviour
 {
     public AnnaPlayerMovement playerMovement;
-    public EnemyBehaviorTree EBT;
     private Enemy enemy;
-    public GameObject spores;
+    public GameObject sporesPrefab;
     public GameObject intSpore;
-    public GameObject firepoint;
+    public GameObject playerLocation;
 
     public float sporeActiveDuration;
-    public float sporeDuration;
-
     public float throwForce;
+    public float sporeDuration;
     public float distractedDuration;
     public int multiplier;
+    int offset;
 
     void Start()
     {
-        EBT = FindObjectOfType<EnemyBehaviorTree>();
+        offset = 1;
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
-        sporeActiveDuration = sporeDuration;
-      
-    }
-
-    void Update()
-    {
-        RunFunction();
-
-        sporeActiveDuration -= Time.deltaTime;
     }
 
     public void LaunchSpores()
     {
-        sporeActiveDuration = sporeDuration;
-        intSpore = Instantiate(spores, firepoint.transform.position, playerMovement.transform.rotation);
-        if(intSpore !=null)
-        {
+        Physics.IgnoreLayerCollision(10, 11);
+        intSpore = Instantiate(sporesPrefab, new Vector3(playerLocation.transform.position.x,
+                   playerLocation.transform.position.y + offset, playerLocation.transform.position.z), 
+                                                                                playerMovement.transform.rotation);
 
         intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
-        }
-        sporeActiveDuration = sporeDuration;
-      
-       
-        //enemy.distractedTimer = distractedDuration;
-        
-
-
-        Debug.Log(throwForce);
     }
+
     public void DestroySpore()
     {
-        if (intSpore !=null && sporeActiveDuration <= 0)
+        if (sporeActiveDuration <= 0)
         {
+            sporeActiveDuration = sporeDuration;
             Destroy(intSpore);
-           
-            
         }
     }
 
     public void RunFunction()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        LaunchSpores();
+        if (intSpore != null)
         {
-            
-            LaunchSpores();
-            
+            sporeActiveDuration -= Time.deltaTime;
         }
-
-
-        DestroySpore();
-
-
-
     }
-
-   
 }

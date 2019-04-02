@@ -9,7 +9,6 @@ public class MainMenuSystem2 : MonoBehaviour
     public GameObject[] menuPanels;
 
     private int index;
-    private bool doOnce;
 
     //Start game
     //Load game?!?!?!?!
@@ -23,10 +22,14 @@ public class MainMenuSystem2 : MonoBehaviour
 
     void Update()
     {
-        var horizontalInput = Input.GetAxis("Horizontal");
+        //----------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------------ NAVIGATION ----------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------
+
+
         menuPanels[index].SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A)) 
         {
             menuPanels[index].SetActive(false);
             index--;
@@ -53,5 +56,7 @@ public class MainMenuSystem2 : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, menuCameraPositions[index].transform.position, percentage * Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, menuCameraPositions[index].transform.rotation, percentage * Time.deltaTime);
         }
+
+        
     }
 }

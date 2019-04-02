@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class RotateAroundPoint : MonoBehaviour
 {
-    //In order to use this script you must attach an empty game object to the scene.
-    //Place the empty game object where you want to rotate around.
-    //Make the camera a child on this object.
     public float speed;
 
     void Update()
