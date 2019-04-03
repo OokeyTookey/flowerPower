@@ -9,6 +9,7 @@ using UnityEngine;
 //ANNA TO DO:
     //- Access mesh render and make flicker green when healing.
     //- Do the same for damage, make red.
+    //- Animations for differe petals + making them disapear. 
 
     //- CLEANUP SCRIPTS
 
@@ -16,10 +17,13 @@ using UnityEngine;
     //&&&&- Check rosie texture
 
 
+
 public class PlayerManager : MonoBehaviour
 {
     PlayerStats playerStats;
     AnnaPlayerMovement playerMovement;
+    public GameObject mainCamera;
+    Animator mainCameraAnimator;
 
     [Space]
     [Header("//------ Player Reactions ------")]
@@ -64,6 +68,7 @@ public class PlayerManager : MonoBehaviour
         sporesUNLOCKED = false;*/
 
         healOverTimer = healOverTimeDelay;
+        mainCameraAnimator = mainCamera.GetComponent<Animator>();
     }
 
     void Update()
@@ -83,6 +88,7 @@ public class PlayerManager : MonoBehaviour
             {
                 if (cooldownTimerSeed > sunflowerCooldown) //If timer is greater than cooldown cost
                 {
+
                     playerStats.TakeDamage();
                     sunflowerSeedSkill.RunFunction();
                     Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");

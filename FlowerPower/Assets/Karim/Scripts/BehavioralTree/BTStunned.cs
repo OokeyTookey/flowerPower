@@ -13,7 +13,7 @@ public class BTStunned : BTNode
         }
         else
         {
-            Debug.Log("Stunned");
+    
             EBT.speed = 0;
             EBT.rb.constraints = RigidbodyConstraints.FreezeRotation;
            
