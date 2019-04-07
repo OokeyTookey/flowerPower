@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
         if (sporeSkill.intSpore != null)
         {
             distances = Vector3.Distance(transform.position, sporeSkill.intSpore.transform.position);
-            Debug.Log(distances);
+            //Debug.Log(distances);
             if (distances < 10 && distractedTimer > 0)
             {
                 distracted = true;
@@ -172,28 +172,13 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*
-        if (other.tag == "Player")
-        {
-            insidePlayer = true;
-        }
-        */
+       
         if (other.tag == "Player" && !thornSkill.thornsActive)
         {
             DealDamage();
             knockback = false;
         }
-        /*
-        else if (other.tag == "Player" && thornSkill.thornsActive && !knockback && insidePlayer)
-        {
-
-            knockback = true;
-            GetKnockedBack();
-
-            stunned = true;
-            GetStunned();
-        }
-        */
+       
     }
     
     private void OnTriggerStay(Collider other)

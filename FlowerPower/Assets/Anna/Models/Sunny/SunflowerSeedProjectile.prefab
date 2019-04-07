@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214906359108305445}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.1792073, y: -0.825826, z: -0.14394163}
+  m_LocalPosition: {x: -2.1792073, y: 1.17, z: 1.24}
   m_LocalScale: {x: 2.9071457, y: 2.9071457, z: 2.9071457}
   m_Children: []
   m_Father: {fileID: 1748713867795813253}
@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214906359108305445}
   serializedVersion: 6
-  lengthInSec: 1
+  lengthInSec: 33.78
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.9984999, b: 0.3254717, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4740,8 +4740,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.83542955, b: 0, a: 1}
-  m_Intensity: 0.3
-  m_Range: 3
+  m_Intensity: 0.2
+  m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4797,8 +4797,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7668105684571776866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 3.74, z: 0.966}
-  m_LocalScale: {x: 0.57100683, y: 0.57100683, z: 0.57100683}
+  m_LocalPosition: {x: 0.07, y: 3.74, z: 0.97381}
+  m_LocalScale: {x: 0.10014566, y: 0.10014566, z: 0.10014566}
   m_Children:
   - {fileID: 2369699327793006557}
   - {fileID: 7915326762243101500}
@@ -4994,7 +4994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5170fcf9500a7e541892206f441f6624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 10
   ThisLayer:
     serializedVersion: 2
     m_Bits: 2048

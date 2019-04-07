@@ -2,49 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SporesSkill : Skills
+public class SporesSkill : MonoBehaviour
 {
+
     public AnnaPlayerMovement playerMovement;
-    public Enemy enemy;
-    public GameObject spores;
+    private Enemy enemy;
+    public GameObject sporesPrefab;
     public GameObject intSpore;
-    public GameObject firepoint;
-    
+    public GameObject playerLocation;
+
+    public float sporeActiveDuration;
     public float throwForce;
     public float sporeDuration;
     public float distractedDuration;
+    public int multiplier;
+    int firePointOffset;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        sporeDuration = 10;
-        enemy = FindObjectOfType<Enemy>();
+        firePointOffset = 1;
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            LaunchSpores();
-        }
-        sporeDuration -= Time.deltaTime;
+        sporeActiveDuration -= Time.deltaTime;
+
+
     }
 
     public void LaunchSpores()
     {
-        intSpore = Instantiate(spores, firepoint.transform.position , playerMovement.transform.rotation);
-        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce );
-        enemy.distractedTimer = 10;
+        Physics.IgnoreLayerCollision(10, 11);
+        intSpore = Instantiate(sporesPrefab, new Vector3(playerLocation.transform.position.x,
+                   playerLocation.transform.position.y + firePointOffset, playerLocation.transform.position.z),
+                                                                                playerMovement.transform.rotation);
 
-        Destroy(intSpore, 10);
+        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
+    }
 
+    public void DestroySpore()
+    {
+        Destroy(intSpore, 5);
+    }
 
-        Debug.Log(throwForce);
-    } 
+    public void RunFunction()
+    {
+        LaunchSpores();
+        DestroySpore();
+        sporeActiveDuration = sporeDuration;
 
-
+    }
 }
