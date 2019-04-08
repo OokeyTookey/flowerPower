@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
-    public float cooldown;
     public float cost;
+    public float cooldown;
     public bool skillUnlocked;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }
