@@ -1,29 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SporesSkill))]
 [RequireComponent(typeof(ThornsSkill))]
 [RequireComponent(typeof(SunflowerSeedProjectile))]
 
 //ANNA TO DO:
+    //- CLEANUP SCRIPTS
+
     //- Access mesh render and make flicker green when healing.
     //- Do the same for damage, make red.
-    //- Animations for differe petals + making them disapear. 
+    //- WHEN THE PLAYER LOOSES HEALTH MAKE PETAL FALL.
+    //- GROW PETAL WHEN PLAYER GAINS HEALTH.
+    // SAVE AND LOAD FOR CHECK POINTS (PLAYER STATE)
 
-    //- CLEANUP SCRIPTS
 
     //&&&&- Animation petals, check drive and bones??
     //&&&&- Check rosie texture
 
+
+    //Mark LO ->
+    // controlling thinga wiht buttons or triggers in game. Simple game. 
 
 
 public class PlayerManager : MonoBehaviour
 {
     PlayerStats playerStats;
     AnnaPlayerMovement playerMovement;
+    public Animator UITransitionAnimator;
     public GameObject mainCamera;
     Animator mainCameraAnimator;
+    TransitionController transitionController;
 
     [Space]
     [Header("//------ Player Reactions ------")]
@@ -63,12 +72,9 @@ public class PlayerManager : MonoBehaviour
         thornsSkill = GetComponent<ThornsSkill>();
         sunflowerSeedSkill = GetComponent<SunflowerSeedProjectile>();
 
-        /*SeedUNLOCKED = false;
-        thornsUNLOCKED = false;
-        sporesUNLOCKED = false;*/
-
         healOverTimer = healOverTimeDelay;
         mainCameraAnimator = mainCamera.GetComponent<Animator>();
+        transitionController = GetComponent<TransitionController>();
     }
 
     void Update()
@@ -82,60 +88,39 @@ public class PlayerManager : MonoBehaviour
         cooldownTimerSpores += Time.deltaTime;
 
         //---- Sunflower Skill
-        if (SeedUNLOCKED == true)
+        if (SeedUNLOCKED && Input.GetButton("Fire1") && cooldownTimerSeed > sunflowerCooldown)
         {
-            if (Input.GetButton("Fire1")) //Left mouse button, Left Control & INSERT CONTROLLER SUPPORT HERE
-            {
-                if (cooldownTimerSeed > sunflowerCooldown) //If timer is greater than cooldown cost
-                {
-
-                    playerStats.TakeDamage();
-                    sunflowerSeedSkill.RunFunction();
-                    Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");
-                    cooldownTimerSeed = 0;
-                }
-            }
-        }
+            playerStats.TakeDamage();
+            sunflowerSeedSkill.RunFunction();
+            Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");
+            cooldownTimerSeed = 0;
+        } 
 
         //---- Thorns Skill
-        if (thornsUNLOCKED == true)
+        if (thornsUNLOCKED && Input.GetButton("Fire2") && cooldownTimerThorns > thornsCooldown)  //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
         {
-            if (Input.GetButton("Fire2")) //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
-            {
-                if (cooldownTimerThorns > thornsCooldown)
-                {
-                    playerStats.TakeDamage();
-                    thornsSkill.thornsActive = true;
-                    thornsSkill.RunFunction();
-
-                    Debug.Log("<color=red> Thorns Skill:</color> <b>Active</b>");
-                    cooldownTimerThorns = 0;
-                }
-            }
+            playerStats.TakeDamage();
+            thornsSkill.thornsActive = true;
+            thornsSkill.RunFunction();
+            Debug.Log("<color=red> Thorns Skill:</color> <b>Active</b>");
+            cooldownTimerThorns = 0;
         }
 
         //---- Spores Skill
-        if (sporesUNLOCKED == true)
+        if (sporesUNLOCKED == true && Input.GetButton("Fire3") && cooldownTimerSpores > sporeCooldown)
         {
-            if (Input.GetButton("Fire3")) //Right mouse button, E & INSERT CONTROLLER SUPPORT HERE
-            {
-                Debug.Log("<color=red> FIRE SKILL SPORE</color>");
-                if (cooldownTimerSpores > sporeCooldown)
-                {
-                    playerStats.TakeDamage();
-                    sporeSkill.RunFunction();
-                    Debug.Log("<color=green> Sports Skill:</color><b> Active</b>");
-                    cooldownTimerSpores = 0;
-                }
-            }
+            playerStats.TakeDamage();
+            sporeSkill.RunFunction();
+            Debug.Log("<color=green> Sports Skill:</color><b> Active</b>");
+            cooldownTimerSpores = 0;
         }
 
         //---------------------------------------------------- Health -------------------------------------------------------
 
-        if (playerStats.currentHealth <= 0)
+       /* if (playerStats.currentHealth <= 0)
         {
-            Debug.Log("DEATH");
-        }
+            Time.timeScale = 0;
+        }*/
 
         Debug.Log(playerStats.currentHealth);
     }
@@ -144,7 +129,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goo"))
         {
-            playerMovement.speed = playerMovement.speed / gooSpeedDivider;
+            playerMovement.speed /= gooSpeedDivider;
         }
     }
 
@@ -165,7 +150,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goo"))
         {
-            playerMovement.speed = playerMovement.speed * gooSpeedDivider;
+            playerMovement.speed *= gooSpeedDivider;
         }
     }
+   /* public IEnumerator DeathScene()
+    {
+        UITransitionAnimator.SetTrigger("end");
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("GameOver");
+    }*/
 }
