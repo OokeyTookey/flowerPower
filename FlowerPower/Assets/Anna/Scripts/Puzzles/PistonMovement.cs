@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class PistonMovement : MonoBehaviour
 {
     int index;
     public GameObject[] platformPositions;
-
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, platformPositions[index].transform.position, Time.deltaTime); //Moves towards the temp current waypoint
