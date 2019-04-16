@@ -14,6 +14,8 @@ public class DialogueController : MonoBehaviour
     public float typingSpeed;
     public string[] dialogueArray;
     public TextMeshProUGUI textOnScreen; //Might need to change this too normal UI
+    public GameObject sunnyProfile;
+    public GameObject rosieProfile;
 
     void Start()
     {
@@ -22,6 +24,18 @@ public class DialogueController : MonoBehaviour
 
     private void Update()
     {
+        if (dialogueArray[index].Contains("Sunny:"))
+        {
+            sunnyProfile.SetActive(true);
+            rosieProfile.SetActive(false);
+        }
+
+        if (dialogueArray[index].Contains("Rosie:"))
+        {
+            sunnyProfile.SetActive(false);
+            rosieProfile.SetActive(true);
+        }
+
         if (textOnScreen.text == dialogueArray[index]) //If the whole sentence has been printed
         {
             finishedSentence = true;
