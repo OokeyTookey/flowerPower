@@ -27,8 +27,8 @@ public class AnnaPlayerMovement : MonoBehaviour
     [Space]
 
     [Header("//------ Jump related ------")]
+    public float clampJumpForce;
     public float maxJumpForce;
-    public float maxJumpForwardForce;
     public LayerMask groundLayer;
 
     void Start()
@@ -64,15 +64,20 @@ public class AnnaPlayerMovement : MonoBehaviour
         if (RB.velocity.y < 0) //Checks if he is falling and double gravity  
         {
             RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
-        }
+        }      
+    }
 
+    public void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
+            //RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
             //RB.AddForce(transform.forward * maxJumpForwardForce, ForceMode.Impulse);
 
-            /*Vector3 jumpDirection = transform.forward + transform.up;
-            RB.AddForce(jumpDirection * maxJumpForce, ForceMode.Impulse);*/
+            //Vector3 jumpDirection = transform.forward + transform.up;
+            Vector3 jumpDirection = transform.up * maxJumpForce;
+            Vector3 clampedMagnitude = Vector3.ClampMagnitude(jumpDirection, clampJumpForce);
+            RB.AddForce(clampedMagnitude, ForceMode.Impulse);
         }
     }
 
@@ -80,6 +85,6 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         //CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
         return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
-            playerCollider.bounds.min.y, playerCollider.bounds.center.z), 1f /*<- Radius size*/, groundLayer);
+            playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size*/, groundLayer);
     }
 }

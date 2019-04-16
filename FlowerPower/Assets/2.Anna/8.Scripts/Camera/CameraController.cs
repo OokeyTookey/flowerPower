@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraTweenToPlayerLocation : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     public Rigidbody playerReference;
 
@@ -20,6 +20,5 @@ public class CameraTweenToPlayerLocation : MonoBehaviour
     {
         cameraOffset = playerReference.position + startPositionCamera;
         transform.position = Vector3.Lerp(transform.position, cameraOffset, 0.1f);
-        //Debug.DrawLine(playerReference.position, cameraOffset);
     }
 }
