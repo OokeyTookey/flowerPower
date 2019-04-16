@@ -8,7 +8,6 @@ public class TransitionController : MonoBehaviour
     public Animator transitionAnimator;
     PlayerStats playerStats;
     public string sceneName;
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.N)) //Testing purposes
