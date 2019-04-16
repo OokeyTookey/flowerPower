@@ -24,19 +24,28 @@ public class DialogueController : MonoBehaviour
 
     private void Update()
     {
+        //---------------------------------------------------- ICONs / Text Componants -------------------------------------------------------
+
         if (dialogueArray[index].Contains("Sunny:"))
         {
             sunnyProfile.SetActive(true);
             rosieProfile.SetActive(false);
         }
 
-        if (dialogueArray[index].Contains("Rosie:"))
+        else if (dialogueArray[index].Contains("Rosie:"))
         {
             sunnyProfile.SetActive(false);
             rosieProfile.SetActive(true);
         }
 
-        if (textOnScreen.text == dialogueArray[index]) //If the whole sentence has been printed
+        else
+        {
+            sunnyProfile.SetActive(false);
+            rosieProfile.SetActive(false);
+        }
+
+        //Checks if the entire sentence has been printed, if so, set the bool to true.
+        if (textOnScreen.text == dialogueArray[index]) 
         {
             finishedSentence = true;
         } 

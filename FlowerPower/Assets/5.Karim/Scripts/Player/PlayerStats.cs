@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    Renderer[] rends;
+    public List<Color> OriginalColors;
+
     public bool invincible;
     public float invincibleLength;
     [HideInInspector] public int maxHealth;
@@ -19,6 +22,18 @@ public class PlayerStats : MonoBehaviour
         currentHealth = maxHealth;
         invincibleTimer = 2;
         invincible = false;
+
+        int f = 0; //Acts as an index to remember the colour location
+        rends = this.GetComponentsInChildren<MeshRenderer>(); //Accesses all the meshrenderers in the children
+
+        for (int i = 0; i < rends.Length; i++)
+        {
+            for (int j = 0; j < rends[i].materials.Length; j++)
+            {
+                OriginalColors.Add(rends[i].materials[j].color); //Adds the childrens materials.color
+                f++;
+            }
+        }
     }
 
     void Update()
@@ -54,6 +69,7 @@ public class PlayerStats : MonoBehaviour
             playerHealth.LoseHealth(); //Access the health class and removed a petal in the array
             invincible = true;
             invincibleTimer = 2;
+            StartCoroutine(ColourFlash(new Color(1,0,0,1)));
         }
     }
 
@@ -64,6 +80,34 @@ public class PlayerStats : MonoBehaviour
             currentHealth++;
             playerHealth.GainHeath();
             Debug.Log(currentHealth + "/" + maxHealth);
+            StartCoroutine(ColourFlash(new Color(0, 1, 0, 1)));
         }
+    }
+
+    IEnumerator ColourFlash(Color color)
+    {
+        int t = 0;
+        for (int i = 0; i < rends.Length; i++)
+        {
+            for (int j = 0; j < rends[i].materials.Length; j++)
+            {
+                float greyscale = OriginalColors[t].grayscale;
+                rends[i].materials[j].color = color;
+                t++;
+            }
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        t = 0;
+        for (int i = 0; i < rends.Length; i++)
+        {
+            for (int j = 0; j < rends[i].materials.Length; j++)
+            {
+                rends[i].materials[j].color = OriginalColors[t];
+                t++;
+            }
+        }
+
     }
 }
