@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class PistonMovement : MonoBehaviour
 {
+    //Create parents and get childrens
+    
     int index;
     public GameObject[] platformPositions;
+    public bool puzzle1Complete;
+
+    [Header("//------ Puzzle 1 ------")]
+    public GameObject puzzle1Pison1;
+    public GameObject puzzle1Piston2;
+    public GameObject puzzle1Piston3;
+
+    [Space]
+
+    [Header("//------ Puzzle 2 ------")]
+    public GameObject puzzle2Pison1;
+    public GameObject puzzle2Piston2;
+    public GameObject puzzle2Piston3;
+
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, platformPositions[index].transform.position, Time.deltaTime); //Moves towards the temp current waypoint
