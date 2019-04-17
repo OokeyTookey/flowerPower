@@ -91,7 +91,6 @@ public class PlayerStats : MonoBehaviour
         {
             for (int j = 0; j < rends[i].materials.Length; j++)
             {
-                float greyscale = OriginalColors[t].grayscale;
                 rends[i].materials[j].color = color;
                 t++;
             }

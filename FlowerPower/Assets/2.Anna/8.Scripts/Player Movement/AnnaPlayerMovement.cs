@@ -4,6 +4,8 @@
 
 public class AnnaPlayerMovement : MonoBehaviour
 {
+    public Animator animation;
+
     private GameManager gameManager;
     private PlayerStats playerStats;
 
@@ -31,11 +33,15 @@ public class AnnaPlayerMovement : MonoBehaviour
     public float maxJumpForce;
     public LayerMask groundLayer;
 
+    [HideInInspector]public bool invertControls;
+
     void Start()
     {
         RB = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         gameManager = FindObjectOfType<GameManager>();
+        //animation.SetBool("Walk", true);
+
         // transform.position = gameManager.lastCheckpointLocation;
     }
 
@@ -46,7 +52,13 @@ public class AnnaPlayerMovement : MonoBehaviour
         moveYAxis = Input.GetAxis("Vertical");
 
         // ---- Calcuate the direction using the input then add force.
-        direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
+
+        if (invertControls)
+        {
+            direction = (moveYAxis * Vector3.right + -moveXAxis * Vector3.forward).normalized;
+        }
+        else direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
+
         RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object 
         //FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
 
@@ -71,10 +83,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            //RB.AddForce(transform.up * maxJumpForce, ForceMode.Impulse);
-            //RB.AddForce(transform.forward * maxJumpForwardForce, ForceMode.Impulse);
-
-            //Vector3 jumpDirection = transform.forward + transform.up;
+            //play jump animation
             Vector3 jumpDirection = transform.up * maxJumpForce;
             Vector3 clampedMagnitude = Vector3.ClampMagnitude(jumpDirection, clampJumpForce);
             RB.AddForce(clampedMagnitude, ForceMode.Impulse);
