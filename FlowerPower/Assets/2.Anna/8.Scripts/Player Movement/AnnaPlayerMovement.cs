@@ -52,11 +52,7 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         // ---- Calcuate the direction using the input then add force.
 
-        if (invertControls)
-        {
-            direction = (moveYAxis * Vector3.right + -moveXAxis * Vector3.forward).normalized;
-        }
-        else direction = (-moveYAxis * Vector3.right + moveXAxis * Vector3.forward).normalized;
+        direction = (moveYAxis * Camera.main.transform. + moveXAxis * Camera.main.transform.right).normalized;
 
         RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object 
         //FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   

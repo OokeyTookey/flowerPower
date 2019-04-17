@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
 
     private Health playerHealth;
     private float invincibleTimer;
+        List<Material> materialsL;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class PlayerStats : MonoBehaviour
         invincible = false;
 
         int f = 0; //Acts as an index to remember the colour location
-        rends = this.GetComponentsInChildren<MeshRenderer>(); //Accesses all the meshrenderers in the children
+        rends = this.GetComponentsInChildren<SkinnedMeshRenderer>(); //Accesses all the meshrenderers in the children
 
         for (int i = 0; i < rends.Length; i++)
         {
@@ -69,7 +70,7 @@ public class PlayerStats : MonoBehaviour
             playerHealth.LoseHealth(); //Access the health class and removed a petal in the array
             invincible = true;
             invincibleTimer = 2;
-            StartCoroutine(ColourFlash(new Color(1,0,0,1)));
+            StartCoroutine(ColourFlash(Color.red));
         }
     }
 
@@ -80,12 +81,13 @@ public class PlayerStats : MonoBehaviour
             currentHealth++;
             playerHealth.GainHeath();
             Debug.Log(currentHealth + "/" + maxHealth);
-            StartCoroutine(ColourFlash(new Color(0, 1, 0, 1)));
+            StartCoroutine(ColourFlash(Color.green));
         }
     }
 
     IEnumerator ColourFlash(Color color)
     {
+        
         int t = 0;
         for (int i = 0; i < rends.Length; i++)
         {

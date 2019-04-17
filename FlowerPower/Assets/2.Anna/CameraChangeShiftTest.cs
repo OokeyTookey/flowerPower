@@ -50,7 +50,7 @@ public class CameraChangeShiftTest : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             swapCameraNewPer = true;
-            playerMovement.invertControls = true;
+            //playerMovement.invertControls = true;
         }
     }
 

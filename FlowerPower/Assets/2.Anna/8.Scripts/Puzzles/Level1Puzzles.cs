@@ -4,49 +4,37 @@ using UnityEngine;
 
 public class Level1Puzzles : MonoBehaviour
 {
-    /*int index;
-    public GameObject button1;
-    public GameObject piston1;
-    public Transform piston1startPos;
-    public Transform piston1endPos;
+    //public GameObject button1;
+   // public GameObject button2;
+    bool puzzle1Complete;
+    //bool puzzle2Complete;
 
-    public GameObject button2;
-    public GameObject piston2;
-    public Transform piston2startPos;
-    public Transform piston2endPos;
-
-    public GameObject[] platformPositions;
+    public GameObject[] pistons;
+    Transform [] endPos;
+   // public 
+    Transform[] startPos;
     public float speed;
 
     void Start()
     {
-        
+        for (int i = 0; i < pistons.Length; i++)
+        {
+            startPos[i].transform.position = pistons[i].transform.position;
+        }
     }
 
     void Update()
     {
-        if (!button1)
+        if (!puzzle1Complete)
         {
-            //MovePiston(piston1, piston1startPos, piston1endPos);
-        }
-
-        if (button1)
-        {
-            piston1.transform.position = piston1startPos.position;
-        }
-
-        if (button2)
-        {
-            piston2.transform.position = piston2startPos.position;
-        }
-
-        if (!button2)
-        {
-            MovePiston(piston2, piston2startPos, piston2endPos);
+            for (int i = 0; i < pistons.Length; i++)
+            {
+                MovePiston(pistons[i], startPos[i], endPos[i]);
+            }
         }
     }
 
-    void MovePiston(GameObject moveGameObject, GameObject[] transformPos)
+    void MovePiston(GameObject moveGameObject, Transform startPos,Transform endPos)
     { 
         moveGameObject.transform.position = Vector3.MoveTowards(moveGameObject.transform.position, endPos.position, Time.deltaTime * speed); //Moves towards the temp current waypoint
 
@@ -54,5 +42,5 @@ public class Level1Puzzles : MonoBehaviour
         {
             moveGameObject.transform.position = Vector3.MoveTowards(moveGameObject.transform.position, startPos.position, Time.deltaTime * speed); //Moves towards the temp current waypoint
         }   
-    }*/
+    }
 }
