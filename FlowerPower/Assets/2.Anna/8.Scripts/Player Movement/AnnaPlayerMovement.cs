@@ -51,8 +51,8 @@ public class AnnaPlayerMovement : MonoBehaviour
         moveYAxis = Input.GetAxis("Vertical");
 
         // ---- Calcuate the direction using the input then add force.
-
-        direction = (moveYAxis * Camera.main.transform. + moveXAxis * Camera.main.transform.right).normalized;
+        ///Camera.main.transform.position.y = 0;
+        direction = (moveYAxis * new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z)  + moveXAxis * Camera.main.transform.right).normalized;
 
         RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object 
         //FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
