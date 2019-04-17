@@ -22,7 +22,7 @@ public class SunflowerSeedMovement : MonoBehaviour
         transform.position += transform.forward * (speed * Time.deltaTime); //Moves projectile
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         speed = 0;
         Destroy(this.gameObject);

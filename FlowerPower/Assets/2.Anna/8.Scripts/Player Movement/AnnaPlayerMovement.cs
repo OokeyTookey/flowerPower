@@ -4,7 +4,7 @@
 
 public class AnnaPlayerMovement : MonoBehaviour
 {
-    public Animator animation;
+    //public Animator animation;
 
     private GameManager gameManager;
     private PlayerStats playerStats;
@@ -40,7 +40,6 @@ public class AnnaPlayerMovement : MonoBehaviour
         RB = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         gameManager = FindObjectOfType<GameManager>();
-        //animation.SetBool("Walk", true);
 
         // transform.position = gameManager.lastCheckpointLocation;
     }
