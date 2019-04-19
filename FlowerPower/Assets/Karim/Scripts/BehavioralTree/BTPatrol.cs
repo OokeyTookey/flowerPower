@@ -5,10 +5,12 @@ using UnityEngine;
 public class BTPatrol : BTNode
 
 {
+  
+    
 
     public override Result Execute(EnemyBehaviorTree EBT)
     {
-        if (EBT.PlayerInRange() || EBT.SporeInRange() || EBT.stunned || EBT.enemyHealth < 0)
+        if (EBT.PlayerInRange() || EBT.SporeInRange())
         {
             Debug.Log("Patrol failed");
             EBT.SporeInRange(); 
@@ -31,7 +33,7 @@ public class BTPatrol : BTNode
                 if (EBT.waitTimeCounter <= 0)
                 {
                     //Debug.Log("Wait time is finished.");
-                    EBT.randomPatrolSpot = Random.Range(0, EBT.patrolSpot.Length);
+                    EBT.randomPatrolSpot = Random.Range(0,EBT.patrolSpot.Length);
                     EBT.waitTimeCounter = EBT.waitTimeDuration;
                 }
 
@@ -41,6 +43,7 @@ public class BTPatrol : BTNode
                     EBT.waitTimeCounter -= Time.deltaTime;
 
                 }
+                return Result.running;
             }
         }
         Debug.Log("Patrol success");

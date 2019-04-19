@@ -4,9 +4,23 @@ using UnityEngine;
 
 public class BTStunned : BTNode
 {
+    
+
     public override Result Execute(EnemyBehaviorTree EBT)
     {
-        if (EBT.stunnedCounter == 2 || EBT.enemyHealth < 0)
+        if (EBT.stunned)
+        {
+            EBT.stunnedCounter -= Time.deltaTime;
+        }
+        if (EBT.stunnedCounter <= 0)
+        {
+            EBT.stunned = false;
+            EBT.rb.constraints = RigidbodyConstraints.None;
+            EBT.speed = 5;
+            EBT.stunnedCounter = EBT.stunnedDuration;
+        }
+
+        if (EBT.stunnedCounter == EBT.stunnedDuration)
         {
             Debug.Log("Stunned failed");
             return Result.failure;
@@ -17,6 +31,7 @@ public class BTStunned : BTNode
             EBT.speed = 0;
             EBT.rb.constraints = RigidbodyConstraints.FreezeRotation;
            
+            
         }
         return Result.success;
     }

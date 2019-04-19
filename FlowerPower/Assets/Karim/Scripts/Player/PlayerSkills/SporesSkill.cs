@@ -22,12 +22,15 @@ public class SporesSkill : MonoBehaviour
         offset = 1;
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
     }
-
+    private void Update()
+    {
+        RunFunction();
+    }
     public void LaunchSpores()
     {
         Physics.IgnoreLayerCollision(10, 11);
         intSpore = Instantiate(sporesPrefab, new Vector3(playerLocation.transform.position.x,
-                   playerLocation.transform.position.y + offset, playerLocation.transform.position.z), 
+                   playerLocation.transform.position.y + offset, playerLocation.transform.position.z),
                                                                                 playerMovement.transform.rotation);
 
         intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
@@ -44,7 +47,11 @@ public class SporesSkill : MonoBehaviour
 
     public void RunFunction()
     {
-        LaunchSpores();
+
+        if (Input.GetKey(KeyCode.G))
+        {
+            LaunchSpores();
+        }
         if (intSpore != null)
         {
             sporeActiveDuration -= Time.deltaTime;

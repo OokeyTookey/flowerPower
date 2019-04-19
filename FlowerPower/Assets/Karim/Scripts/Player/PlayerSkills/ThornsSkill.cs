@@ -39,22 +39,22 @@ public class ThornsSkill : MonoBehaviour
         }
     }
 
-    /*public void RunFunction()
+    public void RunFunction()
     {
         if (Input.GetKey(KeyCode.Q))
         {
             thornsActive = true;
         }
         ThornsActive();
-    }*/
-
-    public void RunFunction()
-    {
-        
-            thornsActive = true;
-        
-        ThornsActive();
     }
+
+    //public void RunFunction()
+    //{
+        
+    //        thornsActive = true;
+        
+    //    ThornsActive();
+    //}
 }
 
 

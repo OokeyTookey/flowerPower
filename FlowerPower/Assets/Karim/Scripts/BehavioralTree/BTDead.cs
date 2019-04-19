@@ -16,6 +16,7 @@ public class BTDead : BTNode
         {
             Debug.Log("Enemy Dead");
             EBT.speed = 0;
+            return Result.running;
 
         }
         return Result.success;
