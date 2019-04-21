@@ -1,42 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public class Piston
-{
-    int index;
-    public float speed;
-    [HideInInspector] public Vector3 startPos;
-    [HideInInspector] public Vector3 direction;
-    [HideInInspector]public GameObject gameObject;
-    [HideInInspector] public Vector3 targetPos;
-    [HideInInspector] public bool goToEnd = true;
-}
-
-
 public class Level1Puzzles : MonoBehaviour
 {
 
     public bool puzzle1Complete;
-     public bool puzzle2Complete;
-     public Piston[] pistons1;
+    public bool puzzle2Complete;
+    public GameObject[] pistons1;
 
-    public GameObject piston;
     public GameObject endPos;
     public GameObject startPos;
     public float speed;
 
-     void Start()
-     {
-        /*for (int i = 0; i < pistons1.Length; i++)
-        {
-           pistons1[i].startPos = startPos.transform.position;
-        }*/
+    public GameObject button1;
+    public GameObject button2;
 
-        //piston.transform.position = Vector3.MoveTowards(transform.position, endPos.transform.position, speed * Time.deltaTime); //Moves towards the temp current waypoint
-
-    }
 
     void Update()
      {
@@ -59,7 +37,6 @@ public class Level1Puzzles : MonoBehaviour
         {
             currentPosition = endPos;
             piston.transform.position = Vector3.MoveTowards(piston.transform.position, currentPosition, speed *Time.deltaTime); //Moves towards the temp current waypoint
-
         }
     }
 }
