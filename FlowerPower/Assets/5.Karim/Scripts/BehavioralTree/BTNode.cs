@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BTNode : MonoBehaviour
+public class BTNode 
 {
     public List<BTNode> childNode = new List<BTNode>();
 
