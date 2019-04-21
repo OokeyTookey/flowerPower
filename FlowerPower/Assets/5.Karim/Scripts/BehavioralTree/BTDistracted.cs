@@ -6,7 +6,7 @@ public class BTDistracted : BTNode
 {
     public override Result Execute(EnemyBehaviorTree EBT)
     {
-        if (!EBT.SporeInRange() || EBT.stunned || EBT.enemyHealth < 0)
+        if (!EBT.SporeInRange())
         {
             Debug.Log("Distracted Failed");
             return Result.failure;
@@ -36,7 +36,7 @@ public class BTDistracted : BTNode
                 EBT.speed = 2;
             }
 
-
+            return Result.running;
 
 
         }

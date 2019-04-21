@@ -293,6 +293,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1055059059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8167912621934758596, guid: 8cedbca0d8c3bbd49a340943f571a37e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727245296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1111973910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4632627098722069796, guid: 8cedbca0d8c3bbd49a340943f571a37e,
@@ -373,7 +379,8 @@ GameObject:
   - component: {fileID: 1316993741}
   - component: {fileID: 1316993740}
   - component: {fileID: 1316993745}
-  m_Layer: 13
+  - component: {fileID: 1316993746}
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,23 +406,23 @@ MonoBehaviour:
   - {fileID: 157514228}
   - {fileID: 1234205295}
   - {fileID: 1148953298}
+  randomPatrolSpot: 0
   rb: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   root: {fileID: 0}
   healthCheck: {fileID: 0}
-  randomPatrolSpot: 0
   enemyHealth: 3
   playerInRange: 10.32
   sporeInRange: 13.03
-  enemyOnPlayer: 2.41
-  speed: 2
-  waitTimeDuration: 0
-  waitTimeCounter: 5
-  knockbackForce: 7.74
+  enemyOnPlayer: 1.55
+  knockbackForce: 4.17
   knockbackDuration: 2
   knockbackCounter: 2
+  speed: 2
   stunnedDuration: 5
   stunnedCounter: 5
+  waitTimeDuration: 2
+  waitTimeCounter: 2
   knockedBack: 0
   stunned: 0
 --- !u!65 &1316993741
@@ -427,7 +434,7 @@ BoxCollider:
   m_GameObject: {fileID: 1316993739}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -506,6 +513,10 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+<<<<<<< HEAD:FlowerPower/Assets/Karim/Scenes/EBT Test Schene.unity
+--- !u!135 &1316993746
+SphereCollider:
+=======
 --- !u!1 &1542772502 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8167912621934758596, guid: 8cedbca0d8c3bbd49a340943f571a37e,
@@ -526,10 +537,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1542772515
 MonoBehaviour:
+>>>>>>> 7b7854018d2c96d8615443cb8771614bdab10024:FlowerPower/Assets/5.Karim/Scenes/EBT Test Schene.unity
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:FlowerPower/Assets/Karim/Scenes/EBT Test Schene.unity
+  m_GameObject: {fileID: 1316993739}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+=======
   m_GameObject: {fileID: 1542772502}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -544,6 +565,7 @@ MonoBehaviour:
   sporesUNLOCKED: 1
   sporeCooldown: 2
   healOverTimeDelay: 0
+>>>>>>> 7b7854018d2c96d8615443cb8771614bdab10024:FlowerPower/Assets/5.Karim/Scenes/EBT Test Schene.unity
 --- !u!1001 &1727245296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -656,6 +678,11 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+<<<<<<< HEAD:FlowerPower/Assets/Karim/Scenes/EBT Test Schene.unity
+      propertyPath: sporesPrefab
+      value: 
+      objectReference: {fileID: 7458742022038972173, guid: 6d3824fce1f4eeb4d89716a2dcc282f6,
+=======
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1542772510}
@@ -668,11 +695,16 @@ PrefabInstance:
       propertyPath: intSpore
       value: 
       objectReference: {fileID: 8371886518265626414, guid: cf41283b73618704c94a3644c2b4421f,
+>>>>>>> 7b7854018d2c96d8615443cb8771614bdab10024:FlowerPower/Assets/5.Karim/Scenes/EBT Test Schene.unity
         type: 3}
     - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
       propertyPath: playerLocation
       value: 
+<<<<<<< HEAD:FlowerPower/Assets/Karim/Scenes/EBT Test Schene.unity
+      objectReference: {fileID: 1055059059}
+=======
       objectReference: {fileID: 1542772502}
+>>>>>>> 7b7854018d2c96d8615443cb8771614bdab10024:FlowerPower/Assets/5.Karim/Scenes/EBT Test Schene.unity
     - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
       propertyPath: sporeActiveDuration
       value: 5
@@ -681,6 +713,9 @@ PrefabInstance:
       propertyPath: distractedDuration
       value: 5
       objectReference: {fileID: 0}
+<<<<<<< HEAD:FlowerPower/Assets/Karim/Scenes/EBT Test Schene.unity
+    m_RemovedComponents: []
+=======
     - target: {fileID: 8167912621934758603, guid: 8cedbca0d8c3bbd49a340943f571a37e,
         type: 3}
       propertyPath: playerLocation
@@ -697,6 +732,7 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents:
     - {fileID: 691260172, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
+>>>>>>> 7b7854018d2c96d8615443cb8771614bdab10024:FlowerPower/Assets/5.Karim/Scenes/EBT Test Schene.unity
   m_SourcePrefab: {fileID: 100100000, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
 --- !u!1 &1965029636
 GameObject:
@@ -784,7 +820,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965029636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.02762, y: 6.692177, z: 42.441162}
+  m_LocalPosition: {x: 41.02762, y: 6.692177, z: 42.4}
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
