@@ -13,10 +13,10 @@ public class BTStunned : BTNode
         }
         else
         {
-    
+
             EBT.speed = 0;
             EBT.rb.constraints = RigidbodyConstraints.FreezeRotation;
-           
+
         }
         return Result.success;
     }

@@ -9,7 +9,8 @@ public class Selector : BTNode
     {
         for (int i = 0; i < childNode.Count; i++)
         {
-            BTNode.Result nodeResult = childNode[i].Execute(EBT);
+
+            Result nodeResult = childNode[i].Execute(EBT);
             if (nodeResult == Result.success)
             {
                 //currentResult = Result.success;

@@ -10,6 +10,7 @@ public class EnemyBehaviorTree : MonoBehaviour
     public ThornsSkill thornsSkill;
 
     public Transform[] patrolSpot;
+    public int randomPatrolSpot;
     public Rigidbody rb;
 
     public Vector3 direction;
@@ -17,23 +18,20 @@ public class EnemyBehaviorTree : MonoBehaviour
     public BTNode root;
     public BTNode healthCheck;
     
-    public int randomPatrolSpot;
+  
     public int enemyHealth;
 
     public float playerInRange;
     public float sporeInRange;
     public float enemyOnPlayer;
-
-    public float speed;
-    public float waitTimeDuration;
-    public float waitTimeCounter;
-
     public float knockbackForce;
     public float knockbackDuration;
     public float knockbackCounter;
-
+    public float speed;
     public float stunnedDuration;
     public float stunnedCounter;
+    public float waitTimeDuration;
+    public float waitTimeCounter;
 
     public bool knockedBack;
     public bool stunned;
@@ -63,26 +61,9 @@ public class EnemyBehaviorTree : MonoBehaviour
             enemyHealth--;
         }
 
-        if (knockedBack)
-        {
-            knockbackCounter -= Time.deltaTime;
-        }
-        if(knockbackCounter <= 0)
-        {
-            knockedBack = false;
-            knockbackCounter = knockbackDuration;
-        }
-        if (stunnedCounter <= 0)
-        {
-            stunned = false;
-            rb.constraints = RigidbodyConstraints.None;
-            speed = 5;
-            stunnedCounter = stunnedDuration;
-        }
-        if (stunned)
-        {
-            stunnedCounter -= Time.deltaTime;
-        }
+       
+       
+        
     }
    
     void AddChildrenNodes()
@@ -93,21 +74,17 @@ public class EnemyBehaviorTree : MonoBehaviour
         root.childNode.Add(actions);
         //root.childrenNodes.Add(Idle()); To be added later
 
-        actions.childNode.Add(new BTPatrol());
-        actions.childNode.Add(new BTDistracted());
-        actions.childNode.Add(new BTChase()); 
+        actions.childNode.Add(new BTDead());
         actions.childNode.Add(new BTKnockback());      
         actions.childNode.Add(new BTStunned());
-        actions.childNode.Add(new BTDead());
+        actions.childNode.Add(new BTDistracted());
+        actions.childNode.Add(new BTChase()); 
+        actions.childNode.Add(new BTPatrol());
     }
 
     public bool PlayerInRange()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= playerInRange)
-        {
-            return true;
-        }
-        return false;
+        return Vector3.Distance(transform.position, player.transform.position) <= playerInRange ;
     }
 
     public bool SporeInRange()
@@ -124,10 +101,7 @@ public class EnemyBehaviorTree : MonoBehaviour
 
     public bool EnemyOnPlayer()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= enemyOnPlayer)
-        {
-            return true;
-        }
-        return false;
+        return Vector3.Distance(transform.position, player.transform.position) <= enemyOnPlayer;
+       
     }
 }

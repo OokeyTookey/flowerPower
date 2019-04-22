@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SporesSkill : MonoBehaviour
 {
-
     public AnnaPlayerMovement playerMovement;
     private Enemy enemy;
     public GameObject sporesPrefab;
@@ -43,7 +42,7 @@ public class SporesSkill : MonoBehaviour
 
     public void DestroySpore()
     {
-        Destroy(intSpore, 5);
+        Destroy(intSpore, 40);
     }
 
     public void RunFunction()

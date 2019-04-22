@@ -7,7 +7,7 @@ public class BTChase : BTNode
 
     public override Result Execute(EnemyBehaviorTree EBT)
     {
-        if (!EBT.PlayerInRange() || (EBT.EnemyOnPlayer() && EBT.thornsSkill.thornsActive || EBT.stunned || EBT.enemyHealth < 0))// Checking if close
+        if (!EBT.PlayerInRange() || (EBT.EnemyOnPlayer() && EBT.thornsSkill.thornsActive))// Checking if close
         {
             Debug.Log("Chase Failed");
             Debug.Log("Enemy on Player" +EBT.EnemyOnPlayer());
@@ -25,6 +25,7 @@ public class BTChase : BTNode
             Debug.Log("Chasing Player");
             EBT.transform.position += Distance * EBT.speed * Time.deltaTime;
 
+            return Result.running;
         }
         Debug.Log("Chase Succeed");
         return Result.success;
