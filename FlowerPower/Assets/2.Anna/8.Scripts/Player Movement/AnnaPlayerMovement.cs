@@ -17,6 +17,8 @@ public class AnnaPlayerMovement : MonoBehaviour
     private Vector3 tempDirection;
     private Vector3 movementClamp;
 
+    public Animator anim;
+
     [HideInInspector] public Vector3 direction;
 
     [Header("//------ Sunny main values ------")]
@@ -40,6 +42,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         RB = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         gameManager = FindObjectOfType<GameManager>();
+        anim = this.GetComponent<Animator>();
 
         // transform.position = gameManager.lastCheckpointLocation;
     }
@@ -71,11 +74,20 @@ public class AnnaPlayerMovement : MonoBehaviour
         if (RB.velocity.y < 0) //Checks if he is falling and double gravity  
         {
             RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
-        }      
+        } 
+        if(moveXAxis == 0 && moveYAxis == 0)
+        {
+            anim.SetInteger("AnimatorX", 0);
+        }
+        if(moveXAxis != 0 || moveYAxis !=0)
+        {
+            anim.SetInteger("AnimatorX", 1);
+        }
     }
 
     public void Update()
     {
+       
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             //play jump animation

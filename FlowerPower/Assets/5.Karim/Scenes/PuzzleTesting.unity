@@ -684,7 +684,7 @@ GameObject:
   m_Layer: 0
   m_Name: ExtendablePlatformTarget
   m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -714,7 +714,7 @@ GameObject:
   m_Layer: 0
   m_Name: PatrolSpot1
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -805,11 +805,11 @@ PrefabInstance:
       objectReference: {fileID: 1802745360}
     - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
       propertyPath: sporeDuration
-      value: 3
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
       propertyPath: distractedDuration
-      value: 3
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 691260175, guid: 8cedbca0d8c3bbd49a340943f571a37e, type: 3}
       propertyPath: multiplier
@@ -920,7 +920,7 @@ GameObject:
   m_Layer: 0
   m_Name: PatrolSpot2
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1086,8 +1086,6 @@ MonoBehaviour:
   randomPatrolSpot: 0
   rb: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
-  root: {fileID: 0}
-  healthCheck: {fileID: 0}
   enemyHealth: 4
   playerInRange: 2.4
   sporeInRange: 8.01
