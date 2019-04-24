@@ -23,7 +23,6 @@ public class SunnyCameraFollow : MonoBehaviour
     void Start()
     {
         startPositionCamera = mainCamera.transform.position - transform.position;
-        //Vector3 opositePosition = flipPosition.transform.position - transform.position;
     }
 
     void FixedUpdate()
