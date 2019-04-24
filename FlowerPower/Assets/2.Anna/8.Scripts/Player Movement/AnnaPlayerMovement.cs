@@ -54,15 +54,23 @@ public class AnnaPlayerMovement : MonoBehaviour
         ///Camera.main.transform.position.y = 0;
         direction = (moveYAxis * new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z)  + moveXAxis * Camera.main.transform.right).normalized;
 
-        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object 
-        //FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
-
         // ---- if there is some input then rotate the object.
         if (direction.magnitude != 0)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * slerpSpeed);
+          
         }
 
+        if (direction.magnitude == 0)
+        {
+            Vector3 RBVelo = RB.velocity;
+            RBVelo.x = 0;
+            RBVelo.y = 0;
+            RBVelo.z = 0;
+        }
+
+        RB.AddForce(direction * speed, ForceMode.Acceleration); //Adds a continuous force, utilizing the mass of the object 
+        //FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
         // ---- Clamping the speed
         float vx = Mathf.Clamp(RB.velocity.x, -walkMax, walkMax);
         float vz = Mathf.Clamp(RB.velocity.z, -walkMax, walkMax);
@@ -71,6 +79,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         if (RB.velocity.y < 0) //Checks if he is falling and double gravity  
         {
             RB.velocity += (Physics.gravity * 2) * Time.fixedDeltaTime; //Doubles gravity when the player goes down.
+           
         }      
     }
 

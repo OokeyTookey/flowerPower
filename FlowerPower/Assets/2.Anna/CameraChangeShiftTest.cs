@@ -30,22 +30,20 @@ public class CameraChangeShiftTest : MonoBehaviour
     {
         if (swapCameraNewPer)
         {
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, desiredLocation.transform.position, 5 * Time.deltaTime);
-            mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, desiredLocation.transform.rotation, 5 * Time.deltaTime);
-            swapCameraOldPer = false;
+            SwapCameraAngle(mainCamera, desiredLocation);
+            //swapCameraOldPer = false;
         }
 
         if (swapCameraOldPer)
         {
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, startingPosition.transform.position, 5 * Time.deltaTime);
-            mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, startingPosition.transform.rotation, 5 * Time.deltaTime);
-            swapCameraNewPer = false;
+            SwapCameraAngle(mainCamera, startingPosition);     
+           // swapCameraNewPer = false;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        Vector3 cameraOffset = playerReference.transform.position + startingCameraPosition;
+        //Vector3 cameraOffset = playerReference.transform.position + startingCameraPosition;
 
         if (other.CompareTag("Player"))
         {
@@ -58,8 +56,14 @@ public class CameraChangeShiftTest : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            swapCameraOldPer = true;
+            //swapCameraOldPer = true;
             //playerMovement.invertControls = false;
         }
+    }
+
+    public void SwapCameraAngle(GameObject mainCamera, GameObject desiredLocation)
+    {
+        //mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, desiredLocation.transform.position, 5 * Time.deltaTime);
+        //mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, desiredLocation.transform.rotation, 5 * Time.deltaTime);
     }
 }
