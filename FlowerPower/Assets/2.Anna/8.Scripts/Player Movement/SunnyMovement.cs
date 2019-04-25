@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-
-public class AnnaPlayerMovement : MonoBehaviour
+public class SunnyMovement : MonoBehaviour
 {
     //public Animator animation;
 
@@ -35,7 +35,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     bool grounded;
 
-    [HideInInspector]public bool invertControls;
+    [HideInInspector] public bool invertControls;
 
     void Start()
     {
@@ -54,34 +54,34 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         // ---- Calcuate the direction using the input then add force.
         ///Camera.main.transform.position.y = 0;
-        direction = (moveYAxis * new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z)  + moveXAxis * Camera.main.transform.right).normalized;
+        direction = (moveYAxis * new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z) + moveXAxis * Camera.main.transform.right).normalized;
 
         // ---- if there is some input then rotate the object.
         if (direction.magnitude != 0)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * slerpSpeed);
-          
+
         }
         var velovcity = direction * speed;
         velovcity.y = RB.velocity.y;
-        RB.velocity=velovcity; //Adds a continuous force, utilizing the mass of the object 
+        RB.velocity = velovcity; //Adds a continuous force, utilizing the mass of the object 
         //FORCEMODE.ACCELERATION has 4 alt options: Acceleration, Force, Impulse, and VelocityChange                                                   
         // ---- Clamping the speed
         float vx = Mathf.Clamp(RB.velocity.x, -walkMax, walkMax);
         float vz = Mathf.Clamp(RB.velocity.z, -walkMax, walkMax);
         //RB.velocity = new Vector3(vx, RB.velocity.y, vz);
 
-        if (RB.velocity.y < -.1f )  //Checks if he is falling and double gravity  
+        if (RB.velocity.y < -.1f)  //Checks if he is falling and double gravity  
         {
-            
-            RB.velocity += (Physics.gravity * pullDownForce) ; //Doubles gravity when the player goes down. 
-        }      
+
+            RB.velocity += (Physics.gravity * pullDownForce); //Doubles gravity when the player goes down. 
+        }
     }
-    
+
     public void Update()
     {
 
-        if (Input.GetButtonDown("Jump") && IsGrounded() && (grounded)) 
+        if (Input.GetButtonDown("Jump") && IsGrounded() && (grounded))
         {
             //play jump animation
             Vector3 jumpDirection = transform.up * maxJumpForce;
@@ -96,13 +96,13 @@ public class AnnaPlayerMovement : MonoBehaviour
         return true;
         ////CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
         //return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
-          // playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size*/, groundLayer);
+        // playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size*/, groundLayer);
     }
-    int counter=0;
+    int counter = 0;
     private void OnCollisionEnter(Collision collision)
     {
         counter++;
-        if( Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
+        if (Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
              playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size*/, groundLayer))
             grounded = true;
 

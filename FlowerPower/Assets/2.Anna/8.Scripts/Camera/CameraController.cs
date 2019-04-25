@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Rigidbody playerReference;
+   /* public Rigidbody playerReference;
 
     [SerializeField]
     Vector3 startPositionCamera;
@@ -45,4 +45,3 @@ public class CameraController : MonoBehaviour
         cameraOffset = playerReference.position + startPositionCamera;
         transform.position = Vector3.Lerp(transform.position, cameraOffset, 0.1f);
     }*/
-}

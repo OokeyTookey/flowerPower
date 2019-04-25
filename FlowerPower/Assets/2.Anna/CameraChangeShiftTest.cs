@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraChangeShiftTest : MonoBehaviour
-{
-    private Vector3 currentCameraPosition;
+{ }
+  /*  private Vector3 currentCameraPosition;
 
     private Vector3 startingCameraPosition;
 
@@ -67,3 +67,4 @@ public class CameraChangeShiftTest : MonoBehaviour
         //mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, desiredLocation.transform.rotation, 5 * Time.deltaTime);
     }
 }
+*/
