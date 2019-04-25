@@ -73,7 +73,6 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         if (RB.velocity.y < -.1f )  //Checks if he is falling and double gravity  
         {
-            
             RB.velocity += (Physics.gravity * pullDownForce) ; //Doubles gravity when the player goes down. 
         }      
     }
@@ -81,7 +80,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     public void Update()
     {
 
-        if (Input.GetButtonDown("Jump") && IsGrounded() && (grounded)) 
+        if (Input.GetButtonDown("Jump") && IsGrounded()) 
         {
             //play jump animation
             Vector3 jumpDirection = transform.up * maxJumpForce;
@@ -93,17 +92,17 @@ public class AnnaPlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return true;
-        ////CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
-        //return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
-          // playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size*/, groundLayer);
+        
+        //CheckCapsule: Will return true if the box colliders/overlaps a specific layer or object.
+        return Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
+           playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size*/, groundLayer);
     }
-    int counter=0;
-    private void OnCollisionEnter(Collision collision)
+   // int counter=0;
+    /*private void OnCollisionEnter(Collision collision)
     {
         counter++;
         if( Physics.CheckCapsule(playerCollider.bounds.center, new Vector3(playerCollider.bounds.center.x,
-             playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size*/, groundLayer))
+             playerCollider.bounds.min.y, playerCollider.bounds.center.z), .1f /*<- Radius size, groundLayer))
             grounded = true;
 
     }
@@ -116,5 +115,5 @@ public class AnnaPlayerMovement : MonoBehaviour
             grounded = false;
             counter = 0;
         }
-    }
+    }*/
 }
