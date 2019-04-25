@@ -7124,6 +7124,7 @@ GameObject:
   - component: {fileID: 772832984}
   - component: {fileID: 772832983}
   - component: {fileID: 772832982}
+  - component: {fileID: 772832987}
   m_Layer: 0
   m_Name: GooPool (4)
   m_TagString: Goo
@@ -7154,11 +7155,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 772832981}
   m_Material: {fileID: 13400000, guid: 7a53b080fd6f67040b75d866a42bdaf2, type: 2}
   m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.3913463
-  m_Height: 31.911005
+  m_Enabled: 0
+  m_Radius: 0.6511073
+  m_Height: 59.55647
   m_Direction: 1
-  m_Center: {x: 0.0071683046, y: -0, z: 0.029351242}
+  m_Center: {x: 0.27706066, y: -0, z: 0.029351287}
 --- !u!23 &772832984
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7218,6 +7219,20 @@ Transform:
   m_Father: {fileID: 1164690028}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &772832987
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772832981}
+  m_Material: {fileID: 13400000, guid: 7a53b080fd6f67040b75d866a42bdaf2, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &774313314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17929,6 +17944,7 @@ GameObject:
   - component: {fileID: 1829414503}
   - component: {fileID: 1829414507}
   - component: {fileID: 1829414506}
+  - component: {fileID: 1829414508}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -18007,7 +18023,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829414502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7a3b6b313bd6a948b705b897396cab0, type: 3}
   m_Name: 
@@ -18033,6 +18049,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1829414508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829414502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e820c2e910a21a4381eab01365ebcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReference: {fileID: 9131334556180002915}
+  startPositionCamera: {x: 0, y: 0, z: 0}
 --- !u!1 &1832767251
 GameObject:
   m_ObjectHideFlags: 0
@@ -20453,6 +20483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e820c2e910a21a4381eab01365ebcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerReference: {fileID: 0}
+  startPositionCamera: {x: 0, y: 0, z: 0}
 --- !u!81 &2118082048
 AudioListener:
   m_ObjectHideFlags: 0
