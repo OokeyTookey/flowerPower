@@ -20,6 +20,11 @@ public class CameraController : MonoBehaviour
     {
         cameraOffset = playerReference.position + startPositionCamera;
         transform.position = Vector3.Lerp(transform.position, cameraOffset, 0.1f);
+
+        /*if (cameraOffset )
+        {
+
+        }*/
     }
 
 
