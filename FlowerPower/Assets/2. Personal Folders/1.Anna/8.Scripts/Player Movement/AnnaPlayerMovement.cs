@@ -6,7 +6,7 @@ public class AnnaPlayerMovement : MonoBehaviour
 {
     [HideInInspector] public Vector3 direction; //Look & movement direction. Used for EVERYTHING (Basically)
 
-    private float moveXAxis; //Needed for input .
+    private float moveXAxis; //Needed for input.
     private float moveYAxis; //Needed for input 2.0.
 
     private Rigidbody RB; //For player rigidbody.
