@@ -153,6 +153,12 @@ public class PlayerManager : MonoBehaviour
             playerMovement.speed *= gooSpeedDivider;
         }
     }
+
+    public void SavePlayer()
+    {
+        //SaveNLoad.SaveData(this);
+    }
+
    /* public IEnumerator DeathScene()
     {
         UITransitionAnimator.SetTrigger("end");

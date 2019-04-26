@@ -14,21 +14,24 @@ public class PlayerDataSave
     public bool sporeSkillUnlocked;
     public bool thornsSkillUnlocked;
 
-    //Will need to save the different puzzle elements. 
 
-    public PlayerDataSave(PlayerStats playerStats, AnnaPlayerMovement PlayerMovement, PlayerManager playerManager) //Constructor - We need to date data from the following scripts.
+    public PlayerDataSave(PlayerStats playerStats, AnnaPlayerMovement playerMovement, PlayerManager playerManager) //Constructor - We need to date data from the following scripts.
     {
         currentHealth = playerStats.currentHealth; //Sets the players current health.
 
         playerPosition = new float[3]; //Stores player position in an array of floats
         playerRotation = new float[3]; //Stores player rotation in an array of floats
 
-        playerPosition[0] = PlayerMovement.transform.position.x;
-        playerPosition[1] = PlayerMovement.transform.position.y;
-        playerPosition[2] = PlayerMovement.transform.position.z;
+        playerPosition[0] = playerMovement.transform.position.x;
+        playerPosition[1] = playerMovement.transform.position.y;
+        playerPosition[2] = playerMovement.transform.position.z;
 
-        playerRotation[0] = PlayerMovement.transform.rotation.x;
-        playerRotation[1] = PlayerMovement.transform.rotation.y;
-        playerRotation[2] = PlayerMovement.transform.rotation.z;
+        playerRotation[0] = playerMovement.transform.rotation.x;
+        playerRotation[1] = playerMovement.transform.rotation.y;
+        playerRotation[2] = playerMovement.transform.rotation.z;
+
+        sunFlowerSkillUnlocked = playerManager.SeedUNLOCKED;
+        thornsSkillUnlocked = playerManager.thornsUNLOCKED;
+        sporeSkillUnlocked = playerManager.sporesUNLOCKED;
     }
 }
