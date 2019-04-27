@@ -15,14 +15,13 @@ public class SaveNLoad : MonoBehaviour
 
     public PlayerDataSave playerData;
 
-     //public string whichSave;
     string dataPath;
     private void Start()
     {
-        PlayerDataSave playerData = new PlayerDataSave(playerStats, playerMovement, playerManager);
+        playerData = new PlayerDataSave();
     }
 
-private void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -31,13 +30,14 @@ private void Update()
             {
                 Directory.CreateDirectory(folderName); //Creates a directory with the folder name.
             }
-
-            SaveData(playerData, dataPath);
+            playerData.StoreData(playerStats, playerMovement, playerManager); //Assigns varialbes & stats
+            SaveData(playerData, dataPath); //Saves it to file.
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            LoadData(dataPath);
+            PlayerDataSave loadedData = LoadData(dataPath);
+            playerData.LoadData(loadedData, playerStats, playerMovement, playerManager);
 
             /*string[] filePaths = GetAllSaveFiles();
             playerData = LoadData(filePaths[whichSave]);*/
@@ -52,7 +52,7 @@ private void Update()
     }*/
 
 
-     void SaveData(PlayerDataSave playerData, string dataPath)
+    void SaveData(PlayerDataSave playerData, string dataPath)
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
 
@@ -61,20 +61,17 @@ private void Update()
             binaryFormatter.Serialize(fileStream, playerData);
             //using automatically closes filestream when it reaches the end of the method. Otherwise do: fileStream.Close();
         }
-
-        Debug.Log("saved... theoretically");
+        Debug.Log("Saved!");
     }
 
-     PlayerDataSave LoadData(string dataPath)
+    PlayerDataSave LoadData(string dataPath)
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
 
         using (FileStream fileStream = File.Open(dataPath, FileMode.Open))
         {
-        Debug.Log("loaded... theoretically");
+            Debug.Log("Loaded Save!");
             return (PlayerDataSave)binaryFormatter.Deserialize(fileStream);
         }
-
-
     }
 }
