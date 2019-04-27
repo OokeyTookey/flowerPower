@@ -5,7 +5,6 @@ using System.IO;
 
 public class SaveNLoad : MonoBehaviour
 {
-    //save slots
     const string folderName = "playerSaveSlots";
     const string fileExtension = ".Save";
 
