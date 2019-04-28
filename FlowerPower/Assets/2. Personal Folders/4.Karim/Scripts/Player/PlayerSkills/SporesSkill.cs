@@ -17,7 +17,6 @@ public class SporesSkill : MonoBehaviour
     public float distractedDuration;
     public int multiplier;
     int firePointOffset;
-
     void Start()
     {
         firePointOffset = 1;
@@ -28,8 +27,6 @@ public class SporesSkill : MonoBehaviour
     private void Update()
     {
         sporeActiveDuration -= Time.deltaTime;
-
-
     }
 
     public void LaunchSpores()

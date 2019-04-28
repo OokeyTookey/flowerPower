@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
         cooldownTimerSpores += Time.deltaTime;
 
         //---- Sunflower Skill
-        if (SeedUNLOCKED && Input.GetButton("Fire1") && cooldownTimerSeed > sunflowerCooldown)
+        if (SeedUNLOCKED && Input.GetButtonDown("Fire1") && cooldownTimerSeed > sunflowerCooldown)
         {
             playerStats.TakeDamage();
             sunflowerSeedSkill.RunFunction();
@@ -97,7 +97,7 @@ public class PlayerManager : MonoBehaviour
         } 
 
         //---- Thorns Skill
-        if (thornsUNLOCKED && Input.GetButton("Fire2") && cooldownTimerThorns > thornsCooldown)  //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
+        if (thornsUNLOCKED && Input.GetButtonDown("Fire2") && cooldownTimerThorns > thornsCooldown)  //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
         {
             playerStats.TakeDamage();
             thornsSkill.thornsActive = true;
@@ -107,7 +107,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         //---- Spores Skill
-        if (sporesUNLOCKED == true && Input.GetButton("Fire3") && cooldownTimerSpores > sporeCooldown)
+        if (sporesUNLOCKED == true && Input.GetButtonDown("Fire3") && cooldownTimerSpores > sporeCooldown)
         {
             playerStats.TakeDamage();
             sporeSkill.RunFunction();
