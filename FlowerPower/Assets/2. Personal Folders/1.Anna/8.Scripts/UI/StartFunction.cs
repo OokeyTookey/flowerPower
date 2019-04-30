@@ -14,7 +14,7 @@ public class StartFunction : MonoBehaviour
         {
             Debug.Log("OIOIOI PAUSE SCENE");
             startPanelAnimation.SetInteger("StartPanel", 1);
-           // Time.timeScale = 0; //Stop the time
+            Time.timeScale = 0; //Stop the time
         }
     }
 

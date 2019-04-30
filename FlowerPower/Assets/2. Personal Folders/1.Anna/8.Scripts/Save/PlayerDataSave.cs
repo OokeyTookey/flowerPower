@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerDataSave
 {
     public int currentHealth;
-    public float[] playerPosition;
+    public float[] playerPosition; //MAKE VECTOR 3
     public float[] playerRotation;
 
     public bool sunFlowerSkillUnlocked;
