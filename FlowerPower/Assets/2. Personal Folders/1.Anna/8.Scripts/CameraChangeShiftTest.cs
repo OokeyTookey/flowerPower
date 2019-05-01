@@ -9,61 +9,49 @@ public class CameraChangeShiftTest : MonoBehaviour
     public float zoomSpeed;
 
     Vector3 shift;
+    Vector3 startingShift;
     Vector3 currentPosition;
     Quaternion currentRotation;
     AnnaPlayerMovement playerMovement;
     RaycastHit hit;
 
-    //zoom in based on the closeness of the player to the wall
-    //Access the distance between the wall and plauer
-    //get the difference and move that close
-
     private void Start()
     {
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
         shift = transform.position - playerMovement.transform.position;
+        startingShift = transform.position - playerMovement.transform.position;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-      /*  var directionToCamera = (transform.position- playerMovement.transform.position).normalized;
-        Ray rayFromPlayer = new Ray(playerMovement.transform.position, directionToCamera);
+        //1-calculate new position
+        currentPosition = playerMovement.transform.position + shift;
 
-        if (Physics.Raycast(rayFromPlayer, out hit, LayerMask.GetMask("Wall")))
+        //2- check if you need to correct the new position
+        var directionToCamera = (currentPosition - playerMovement.transform.position);
+        Ray rayFromPlayer = new Ray(playerMovement.transform.position, directionToCamera.normalized);
+
+        if (Physics.Raycast(rayFromPlayer, out hit, startingShift.magnitude,LayerMask.GetMask("Wall")))
         {
             Debug.DrawRay(playerMovement.transform.position, directionToCamera, Color.green);
-            Debug.Log("collision");
-
-            //var distanceBetween = Vector3.Distance(transform.position, hit.point);
+            currentPosition = hit.point;
         }
-        else Debug.Log("no collsion");*/
-      
-        currentPosition = playerMovement.transform.position + shift;
+
+        //3-smooth movement to the new position
+        //transform.position = currentPosition;
         transform.position = Vector3.Lerp(transform.position, currentPosition, followPlayerSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, currentRotation, followRotationSpeed* Time.deltaTime);
-        //- ((playerMovement.GetComponent<Rigidbody>().velocity.magnitude>0.01f)?playerMovement.GetComponent<Rigidbody>().velocity.normalized:Vector3.zero );
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P)) //Swap to trigger
         {
             SwapCameraAngle();
         }
     }
+
 
     public void SwapCameraAngle()
     {
         shift.x *= -1;
         currentRotation = Quaternion.Euler(0, 180, 0) * transform.rotation;
     }
-
-    /*IEnumerator LerpToPoint(Vector3 point)
-    {
-        var initialPosition=this.transform.position;
-        float t = 0;
-        while (t < 1)
-        {
-        transform.position = Vector3.Lerp(initialPosition, point, t);
-            yield return null;
-            t += 0.01f;
-        }
-    }*/
 }
