@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerDataSave
 {
     public int currentHealth;
-    public float[] playerPosition; //MAKE VECTOR 3
+    public float[] playerPosition; //VECTOR 3 IS NO SERIALIZABLE
     public float[] playerRotation;
 
     public bool sunFlowerSkillUnlocked;
@@ -17,10 +17,9 @@ public class PlayerDataSave
     public void StoreData(PlayerStats playerStats, AnnaPlayerMovement playerMovement, PlayerManager playerManager)
     {
         currentHealth = playerStats.currentHealth; //Sets the players current health.
-
+        
         playerPosition = new float[3]; //Stores player position in an array of floats
         playerRotation = new float[4]; //Quaternion has 4 elements. 
-
 
         playerPosition[0] = playerMovement.transform.position.x;
         playerPosition[1] = playerMovement.transform.position.y;

@@ -16,6 +16,11 @@ public class TransitionController : MonoBehaviour
         }
     }
 
+    public void ButtonPressLoadTransition()
+    {
+        StartCoroutine(LoadScene());
+    }
+
     public IEnumerator LoadScene()
     {
         transitionAnimator.SetTrigger("end");

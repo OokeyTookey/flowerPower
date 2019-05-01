@@ -24,8 +24,13 @@ public class Button : MonoBehaviour
     void Update()
     {
         Debug.Log(PlayerInRange());
-        PressButton();
-        if(buttonPressed)
+
+        if (PlayerInRange() && Input.GetKeyDown(KeyCode.M))
+        {
+            buttonPressed = true;
+        }
+        if (buttonPressed)
+
         MoveInteractable();
         
     }
@@ -35,13 +40,6 @@ public class Button : MonoBehaviour
         return Vector3.Distance(transform.position, player.transform.position) <= playerInRange;
     }
 
-    public void PressButton()
-    {
-        if (PlayerInRange() && Input.GetKeyDown(KeyCode.M))
-        {
-            buttonPressed = true;
-        }
-    }
     public void MoveInteractable()
     {
         interactable.transform.position = Vector3.MoveTowards(interactable.transform.position, targetPosition.transform.position, interactableSpeed * Time.deltaTime);
