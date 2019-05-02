@@ -60,12 +60,6 @@ public class AnnaPlayerMovement : MonoBehaviour
             RB.velocity = new Vector3(0, jumpForce, 0); //Adds jump force. 
         }
 
-        if (Input.GetButton("Run"))
-        {
-            speed = speedySpeed;
-        }
-        else speed = originalSpeed;
-
         RB.velocity += fakeGravity * Time.deltaTime; //Constantly adds gravity to sunny. 
     }
 
