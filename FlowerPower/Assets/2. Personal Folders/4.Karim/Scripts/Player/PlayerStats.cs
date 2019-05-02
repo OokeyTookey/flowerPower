@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour
     private float invincibleTimer;
         List<Material> materialsL;
 
+    bool colourFlashOneHealth;
+
     void Start()
     {
         playerHealth = FindObjectOfType<Health>();
@@ -34,6 +36,14 @@ public class PlayerStats : MonoBehaviour
                 OriginalColors.Add(rends[i].materials[j].color); //Adds the childrens materials.color
                 f++;
             }
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (currentHealth <= 1)
+        {
+            StopCoroutine("ColourFlash");
+            OneHealth();
         }
     }
 
@@ -70,7 +80,7 @@ public class PlayerStats : MonoBehaviour
             playerHealth.LoseHealth(); //Access the health class and removed a petal in the array
             invincible = true;
             invincibleTimer = 2;
-            StartCoroutine(ColourFlash(Color.red));
+            StartCoroutine(ColourFlash(Color.red, 0.1f));
         }
     }
 
@@ -81,13 +91,21 @@ public class PlayerStats : MonoBehaviour
             currentHealth++;
             playerHealth.GainHeath();
             Debug.Log(currentHealth + "/" + maxHealth);
-            StartCoroutine(ColourFlash(Color.green));
+            StartCoroutine(ColourFlash(Color.green, 0.1f));
         }
     }
 
-    IEnumerator ColourFlash(Color color)
+    public void OneHealth()
     {
-        
+        if (currentHealth == 1 && !colourFlashOneHealth)
+        {
+            StartCoroutine(ColourFlash(Color.red, .2f));
+            colourFlashOneHealth = true;
+        }
+    }
+
+    IEnumerator ColourFlash(Color color, float delay)
+    {
         int t = 0;
         for (int i = 0; i < rends.Length; i++)
         {
@@ -98,7 +116,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(delay);
 
         t = 0;
         for (int i = 0; i < rends.Length; i++)
@@ -110,5 +128,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
+        yield return new WaitForSeconds(5);
+        colourFlashOneHealth = false;
     }
 }

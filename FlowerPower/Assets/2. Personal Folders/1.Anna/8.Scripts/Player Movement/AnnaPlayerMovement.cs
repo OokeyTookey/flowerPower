@@ -14,7 +14,9 @@ public class AnnaPlayerMovement : MonoBehaviour
 
     [Header("//------ Sunny main values ------")]
     public float speed; //Player walk speed
+    public float speedySpeed; //speedy walk speed
     public float rotationSlerpSpeed; //Rotation speed
+    float originalSpeed;
 
     [Space]
 
@@ -26,6 +28,7 @@ public class AnnaPlayerMovement : MonoBehaviour
 
     void Start()
     {
+        originalSpeed = speed;
         RB = GetComponent<Rigidbody>(); 
         playerCollider = GetComponent<Collider>();
     }
@@ -56,6 +59,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         {
             RB.velocity = new Vector3(0, jumpForce, 0); //Adds jump force. 
         }
+
         RB.velocity += fakeGravity * Time.deltaTime; //Constantly adds gravity to sunny. 
     }
 
