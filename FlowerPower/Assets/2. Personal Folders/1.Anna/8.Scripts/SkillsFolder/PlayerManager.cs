@@ -114,15 +114,6 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("<color=green> Sports Skill:</color><b> Active</b>");
             cooldownTimerSpores = 0;
         }
-
-        //---------------------------------------------------- Health -------------------------------------------------------
-
-       /* if (playerStats.currentHealth <= 0)
-        {
-            Time.timeScale = 0;
-        }*/
-
-        Debug.Log(playerStats.currentHealth);
     }
 
     void OnTriggerEnter(Collider other)
