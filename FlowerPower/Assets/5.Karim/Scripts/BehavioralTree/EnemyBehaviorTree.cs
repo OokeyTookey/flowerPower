@@ -6,6 +6,7 @@ public class EnemyBehaviorTree : MonoBehaviour
 {
 
     public AnnaPlayerMovement player;
+    public Puzzle4 puzzle4;
     public SporesSkill sporeSkill;
     public ThornsSkill thornsSkill;
 
@@ -43,6 +44,7 @@ public class EnemyBehaviorTree : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<AnnaPlayerMovement>();
+        puzzle4 = FindObjectOfType<Puzzle4>();
         sporeSkill = FindObjectOfType<SporesSkill>();
         thornsSkill = FindObjectOfType<ThornsSkill>();
         rb = GetComponent<Rigidbody>();

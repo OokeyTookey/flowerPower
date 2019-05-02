@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
     AnnaPlayerMovement playerMovement;
     public Animator UITransitionAnimator;
     public GameObject mainCamera;
+    
     Animator mainCameraAnimator;
     TransitionController transitionController;
 
@@ -153,10 +154,12 @@ public class PlayerManager : MonoBehaviour
             playerMovement.speed *= gooSpeedDivider;
         }
     }
-   /* public IEnumerator DeathScene()
-    {
-        UITransitionAnimator.SetTrigger("end");
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("GameOver");
-    }*/
+
+    
+    /* public IEnumerator DeathScene()
+     {
+         UITransitionAnimator.SetTrigger("end");
+         yield return new WaitForSeconds(1.5f);
+         SceneManager.LoadScene("GameOver");
+     }*/
 }
