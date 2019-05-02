@@ -1339,10 +1339,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1824238998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e092c34aac880478d9ac5238cc7d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: fd8a32b5078324a489542f08c19bbe83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableSpeed: 3
+  playerInRange: 0
+  interactableSpeed: 1
   buttonPressed: 0
   interactable: {fileID: 1839034363}
   targetPosition: {fileID: 1703042442}
@@ -1452,7 +1453,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!1 &1900307839
 GameObject:
@@ -1647,6 +1648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNumber: 4
+  portalOpen: 0
 --- !u!136 &2134795511
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -23,27 +23,38 @@ public class Button : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerInRange());
-        PressButton();
-        if(buttonPressed)
-        MoveInteractable();
-        
+        //Debug.Log(PlayerInRange());
+        //PressButton();
+        if (buttonPressed)
+            MoveInteractable();
+
     }
 
-   public bool PlayerInRange()
-    {
-        return Vector3.Distance(transform.position, player.transform.position) <= playerInRange;
-    }
+    //public bool PlayerInRange()
+    //{
+    //    return Vector3.Distance(transform.position, player.transform.position) <= playerInRange;
+    //}
 
-    public void PressButton()
-    {
-        if (PlayerInRange() && Input.GetKeyDown(KeyCode.M))
-        {
-            buttonPressed = true;
-        }
-    }
+    //public void PressButton()
+    //{
+    //    if (PlayerInRange() && Input.GetKeyDown(KeyCode.M))
+    //    {
+    //        buttonPressed = true;
+    //    }
+    //}
     public void MoveInteractable()
     {
         interactable.transform.position = Vector3.MoveTowards(interactable.transform.position, targetPosition.transform.position, interactableSpeed * Time.deltaTime);
+        if (interactable.transform.position == targetPosition.transform.position)
+        {
+            interactableSpeed = 0;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if ((other.CompareTag("Player") && Input.GetKey(KeyCode.X) || other.CompareTag("Bullet")))
+        {
+            buttonPressed = true;
+        }
     }
 }
