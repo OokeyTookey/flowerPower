@@ -8,21 +8,21 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SunflowerSeedProjectile))]
 
 //ANNA TO DO:
-    //- CLEANUP SCRIPTS
+//- CLEANUP SCRIPTS
 
-    //- Access mesh render and make flicker green when healing.
-    //- Do the same for damage, make red.
-    //- WHEN THE PLAYER LOOSES HEALTH MAKE PETAL FALL.
-    //- GROW PETAL WHEN PLAYER GAINS HEALTH.
-    // SAVE AND LOAD FOR CHECK POINTS (PLAYER STATE)
-
-
-    //&&&&- Animation petals, check drive and bones??
-    //&&&&- Check rosie texture
+//- Access mesh render and make flicker green when healing.
+//- Do the same for damage, make red.
+//- WHEN THE PLAYER LOOSES HEALTH MAKE PETAL FALL.
+//- GROW PETAL WHEN PLAYER GAINS HEALTH.
+// SAVE AND LOAD FOR CHECK POINTS (PLAYER STATE)
 
 
-    //Mark LO ->
-    // controlling thinga wiht buttons or triggers in game. Simple game. 
+//&&&&- Animation petals, check drive and bones??
+//&&&&- Check rosie texture
+
+
+//Mark LO ->
+// controlling thinga wiht buttons or triggers in game. Simple game. 
 
 
 public class PlayerManager : MonoBehaviour
@@ -31,7 +31,6 @@ public class PlayerManager : MonoBehaviour
     AnnaPlayerMovement playerMovement;
     public Animator UITransitionAnimator;
     public GameObject mainCamera;
-    
     Animator mainCameraAnimator;
     TransitionController transitionController;
 
@@ -89,16 +88,16 @@ public class PlayerManager : MonoBehaviour
         cooldownTimerSpores += Time.deltaTime;
 
         //---- Sunflower Skill
-        if (SeedUNLOCKED && Input.GetButton("Fire1") && cooldownTimerSeed > sunflowerCooldown)
+        if (SeedUNLOCKED && Input.GetButtonDown("Fire1") && cooldownTimerSeed > sunflowerCooldown)
         {
             playerStats.TakeDamage();
             sunflowerSeedSkill.RunFunction();
             Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");
             cooldownTimerSeed = 0;
-        } 
+        }
 
         //---- Thorns Skill
-        if (thornsUNLOCKED && Input.GetButton("Fire2") && cooldownTimerThorns > thornsCooldown)  //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
+        if (thornsUNLOCKED && Input.GetButtonDown("Fire2") && cooldownTimerThorns > thornsCooldown)  //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
         {
             playerStats.TakeDamage();
             thornsSkill.thornsActive = true;
@@ -108,22 +107,13 @@ public class PlayerManager : MonoBehaviour
         }
 
         //---- Spores Skill
-        if (sporesUNLOCKED == true && Input.GetButton("Fire3") && cooldownTimerSpores > sporeCooldown)
+        if (sporesUNLOCKED == true && Input.GetButtonDown("Fire3") && cooldownTimerSpores > sporeCooldown)
         {
             playerStats.TakeDamage();
             sporeSkill.RunFunction();
             Debug.Log("<color=green> Sports Skill:</color><b> Active</b>");
             cooldownTimerSpores = 0;
         }
-
-        //---------------------------------------------------- Health -------------------------------------------------------
-
-       /* if (playerStats.currentHealth <= 0)
-        {
-            Time.timeScale = 0;
-        }*/
-
-        Debug.Log(playerStats.currentHealth);
     }
 
     void OnTriggerEnter(Collider other)
@@ -155,7 +145,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    
+    public void SavePlayer()
+    {
+        //SaveNLoad.SaveData(this);
+    }
+
     /* public IEnumerator DeathScene()
      {
          UITransitionAnimator.SetTrigger("end");
