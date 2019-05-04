@@ -52,7 +52,7 @@ public class Button : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if ((other.CompareTag("Player") && Input.GetKey(KeyCode.X) || other.CompareTag("Bullet")))
+        if ((other.CompareTag("Player") && Input.GetButtonDown("Interact") || other.CompareTag("Bullet")))
         {
             buttonPressed = true;
         }
