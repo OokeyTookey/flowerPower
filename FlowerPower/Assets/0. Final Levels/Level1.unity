@@ -509,6 +509,68 @@ Transform:
   m_Father: {fileID: 957050710}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &55723692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 55723693}
+  - component: {fileID: 55723694}
+  m_Layer: 5
+  m_Name: ControlsTextBox2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &55723693
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55723692}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 117406597}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -316.5, y: -380}
+  m_SizeDelta: {x: 538.34753, y: 126.9035}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &55723694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55723692}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a75aaad82c40fb4fab878ab256b2689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  typingSpeed: 0.01
+  dialogueArray:
+  - 'Rosie: Gosh, that was the biggest critter I ever laid eyes on!'
+  - 'Rosie: I took a heck of a fall, too...'
+  - 'Rosie: I wonder if there''s any water around?'
+  textBox: {fileID: 112294253}
+  sunnyProfile: {fileID: 1224206041}
+  rosieProfile: {fileID: 1040110200}
+  panel: {fileID: 0}
+  sunnyTextLocation: {fileID: 1653825489}
+  rosieTextLocation: {fileID: 790492705}
+  centerTextLocation: {fileID: 2147271509}
+  lerpSpeedText: 0.1
 --- !u!1 &85972345
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,12 +782,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1647531591}
-  m_RootOrder: 6
+  m_Father: {fileID: 598729308}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -338.50043, y: -391.00198}
+  m_AnchoredPosition: {x: -21.999207, y: -11.002777}
   m_SizeDelta: {x: 639.49, y: 227.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &112294253
@@ -880,6 +942,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1128747298}
+  - {fileID: 55723693}
   m_Father: {fileID: 2007289285}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9876,7 +9939,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 112294252}
   m_Father: {fileID: 1647531591}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9929,24 +9993,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598729307}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a75aaad82c40fb4fab878ab256b2689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPanel: {fileID: 598729307}
-  typingSpeed: 0.08
+  index: 0
+  typingSpeed: 0.01
   dialogueArray:
-  - 'Sunny: Gosh, that was the biggest critter I ever laid eyes on!'
-  - 'Sunny: I took a heck of a fall, too...'
-  - 'Sunny: I wonder if there''s any water around?'
+  - 
   textBox: {fileID: 112294253}
   sunnyProfile: {fileID: 1224206041}
   rosieProfile: {fileID: 1040110200}
+  panel: {fileID: 0}
   sunnyTextLocation: {fileID: 1653825489}
   rosieTextLocation: {fileID: 790492705}
   centerTextLocation: {fileID: 2147271509}
-  lerpSpeedText: 0.1
+  lerpSpeedText: 0.2
 --- !u!1 &598733677
 GameObject:
   m_ObjectHideFlags: 0
@@ -19095,7 +19158,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Find Water
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03f7df17ca419c74da6f32c25508b270, type: 2}
   m_sharedMaterial: {fileID: 21207839808173038, guid: 03f7df17ca419c74da6f32c25508b270,
@@ -19165,13 +19228,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -56.39758, w: 0}
   m_textInfo:
     textComponent: {fileID: 904632795}
-    characterCount: 10
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
@@ -21916,24 +21979,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128747297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a75aaad82c40fb4fab878ab256b2689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPanel: {fileID: 598729307}
+  index: 0
   typingSpeed: 0.01
   dialogueArray:
   - 'Sunny: Gosh, that was the biggest critter I ever laid eyes on!'
-  - 'Sunny: I took a heck of a fall, too...'
+  - 'Rosie: I took a heck of a fall, too...'
   - 'Sunny: I wonder if there''s any water around?'
   textBox: {fileID: 112294253}
   sunnyProfile: {fileID: 1224206041}
   rosieProfile: {fileID: 1040110200}
+  panel: {fileID: 0}
   sunnyTextLocation: {fileID: 1653825489}
   rosieTextLocation: {fileID: 790492705}
   centerTextLocation: {fileID: 2147271509}
-  lerpSpeedText: 0.1
+  lerpSpeedText: 20
 --- !u!1 &1154099288
 GameObject:
   m_ObjectHideFlags: 0
@@ -22024,6 +22088,38 @@ Transform:
   - {fileID: 641234155}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1168479496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168479497}
+  m_Layer: 0
+  m_Name: CollidersForTextPrompt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1168479497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168479496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1367743267}
+  - {fileID: 1856782713}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1169640288
 GameObject:
@@ -30077,8 +30173,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1367743267}
   - component: {fileID: 1367743266}
+  - component: {fileID: 1367743269}
+  - component: {fileID: 1367743268}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ColliderForFirstPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30095,8 +30193,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.90182, y: 3.921071, z: 2.2837572}
-  m_Center: {x: -0.11952925, y: 0.24265051, z: -0.6418786}
+  m_Size: {x: 10.90182, y: 3.921071, z: 12.182034}
+  m_Center: {x: -0.11952925, y: 0.24265051, z: 3.074457}
 --- !u!4 &1367743267
 Transform:
   m_ObjectHideFlags: 0
@@ -30104,13 +30202,46 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367743265}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.02, y: 1.85, z: 13.99}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.81, y: 1.85, z: -3.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1168479497}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367743268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367743265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40577afb781c4bb408c3e0188c8097a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sentences:
+  - "Sunny: Ugh\u2026 that was the biggest critter I ever laid eyes on."
+  - "Sunny: I took a heck of a fall, too. Starting to feel weak\u2026"
+  - 'Sunny: I feel like this fluid is draining me.'
+  - "Sunny: I need to find some water, at this rate I\u2019m going to wither!"
+--- !u!114 &1367743269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367743265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c5b172788576442ab031032eb3ce91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialougeController: {fileID: 598729311}
+  textBox: {fileID: 112294253}
+  objectiveTextBox: {fileID: 112294253}
+  objectivePanel: {fileID: 598729307}
 --- !u!1001 &1370021579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34411,7 +34542,6 @@ RectTransform:
   - {fileID: 790492705}
   - {fileID: 2147271509}
   - {fileID: 598729308}
-  - {fileID: 112294252}
   m_Father: {fileID: 2007289285}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34944,6 +35074,7 @@ GameObject:
   - component: {fileID: 1718123580}
   - component: {fileID: 1718123582}
   - component: {fileID: 1718123581}
+  - component: {fileID: 1718123583}
   m_Layer: 5
   m_Name: OBJECTTIVE
   m_TagString: Untagged
@@ -34969,7 +35100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 898, y: 193}
+  m_AnchoredPosition: {x: 837, y: 193}
   m_SizeDelta: {x: -1462.7, y: -1024.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718123581
@@ -35009,6 +35140,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718123579}
   m_CullTransparentMesh: 0
+--- !u!95 &1718123583
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718123579}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc511e0fabff5f84dbee178dc5496298, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1726214514
 GameObject:
   m_ObjectHideFlags: 0
@@ -36496,7 +36646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829414502}
   m_LocalRotation: {x: 0.30420113, y: -0.63832724, z: 0.30420116, w: 0.63832724}
-  m_LocalPosition: {x: 13.89, y: 9.17, z: 8.950009}
+  m_LocalPosition: {x: -4.5, y: 9.17, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 309480811}
@@ -36869,6 +37019,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854222497}
   m_CullTransparentMesh: 0
+--- !u!1 &1856782712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856782713}
+  - component: {fileID: 1856782715}
+  - component: {fileID: 1856782714}
+  - component: {fileID: 1856782716}
+  m_Layer: 0
+  m_Name: ColliderForSecondPuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856782713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856782712}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.82, y: 1.85, z: 12.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1168479497}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1856782714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856782712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c5b172788576442ab031032eb3ce91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialougeController: {fileID: 598729311}
+  textBox: {fileID: 112294253}
+  objectiveTextBox: {fileID: 112294253}
+  objectivePanel: {fileID: 598729307}
+--- !u!65 &1856782715
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856782712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.90182, y: 3.921071, z: 2.7580986}
+  m_Center: {x: -0.11952925, y: 0.24265051, z: 1.4064217}
+--- !u!114 &1856782716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856782712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40577afb781c4bb408c3e0188c8097a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sentences:
+  - 'Sunny: mark is big gay'
+  - 'Rosie: I KNOW'
+  - PEE PEE POO POO
+  - PEE PEE POO POO
+  - PEE PEE POO POO
 --- !u!1 &1866507635
 GameObject:
   m_ObjectHideFlags: 0
@@ -44504,12 +44734,12 @@ MonoBehaviour:
   UITransitionAnimator: {fileID: 0}
   mainCamera: {fileID: 1829414502}
   gooSpeedDivider: 2
-  SeedUNLOCKED: 1
-  sunflowerCooldown: 0.5
-  thornsUNLOCKED: 1
-  thornsCooldown: 0.5
+  SeedUNLOCKED: 0
+  sunflowerCooldown: 1
+  thornsUNLOCKED: 0
+  thornsCooldown: 1
   sporesUNLOCKED: 1
-  sporeCooldown: 0.5
+  sporeCooldown: 1
   healOverTimeDelay: 2
 --- !u!114 &9131334556180002920
 MonoBehaviour:
@@ -44723,7 +44953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9131334556180002912}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 8.07, y: 0.83399963, z: 8.96}
+  m_LocalPosition: {x: -10.32, y: 0.83399963, z: -0.09000948}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9131334556180030922}

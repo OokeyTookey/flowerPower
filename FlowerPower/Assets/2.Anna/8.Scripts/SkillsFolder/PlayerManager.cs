@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour
     public Animator UITransitionAnimator;
     public GameObject mainCamera;
     Animator mainCameraAnimator;
+    Animator anim;
     TransitionController transitionController;
 
     [Space]
@@ -67,6 +68,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerStats = FindObjectOfType<PlayerStats>();
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
+        anim = this.GetComponent<Animator>();
 
         sporeSkill = GetComponent<SporesSkill>();
         thornsSkill = GetComponent<ThornsSkill>();
@@ -90,6 +92,7 @@ public class PlayerManager : MonoBehaviour
         //---- Sunflower Skill
         if (SeedUNLOCKED && Input.GetButtonDown("Fire1") && cooldownTimerSeed > sunflowerCooldown)
         {
+            anim.SetInteger("AnimatorX", 4);
             playerStats.TakeDamage();
             sunflowerSeedSkill.RunFunction();
             Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");
@@ -99,6 +102,7 @@ public class PlayerManager : MonoBehaviour
         //---- Thorns Skill
         if (thornsUNLOCKED && Input.GetButtonDown("Fire2") && cooldownTimerThorns > thornsCooldown)  //Q, Left alt & INSERT CONTROLLER SUPPORT HERE
         {
+            anim.SetInteger("AnimatorX", 5);
             playerStats.TakeDamage();
             thornsSkill.thornsActive = true;
             thornsSkill.RunFunction();
