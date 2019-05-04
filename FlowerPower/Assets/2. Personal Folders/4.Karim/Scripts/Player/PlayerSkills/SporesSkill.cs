@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SporesSkill : MonoBehaviour
 {
+    //KARIM COME BACK AND OPTIMIZE!!
+    //KARIM COME BACK AND OPTIMIZE!!
+    //KARIM COME BACK AND OPTIMIZE!!
+    //KARIM COME BACK AND OPTIMIZE!!
+
     public AnnaPlayerMovement playerMovement;
     private Enemy enemy;
     public Animator anim;
@@ -15,7 +20,8 @@ public class SporesSkill : MonoBehaviour
     public float throwForce;
     public float sporeDuration;
     public float distractedDuration;
-    public int multiplier;
+    public int upMultiplier;
+    public int forwardMultiplier;
     int firePointOffset;
     void Start()
     {
@@ -37,12 +43,14 @@ public class SporesSkill : MonoBehaviour
                                                                                 playerMovement.transform.rotation);
        
 
-        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * multiplier);
+        intSpore.GetComponent<Rigidbody>().AddForce(transform.up  * throwForce * upMultiplier);
+        intSpore.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce * forwardMultiplier);
+       // intSpore.GetComponent<Rigidbody>().AddForce(transform.up +  transform.forward * throwForce * multiplier);
     }
 
     public void DestroySpore()
     {
-        Destroy(intSpore, 40);
+        Destroy(intSpore, 5); //Make it so that deletes last item. list???
     }
 
     public void RunFunction()
