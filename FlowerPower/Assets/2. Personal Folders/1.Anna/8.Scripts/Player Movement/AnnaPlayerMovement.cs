@@ -9,6 +9,8 @@ public class AnnaPlayerMovement : MonoBehaviour
     private float moveXAxis; //Needed for input.
     private float moveYAxis; //Needed for input 2.0.
 
+    public Animator anim;
+
     private Rigidbody RB; //For player rigidbody.
     private Collider playerCollider; //For player collider to check if grounded.
 
@@ -31,6 +33,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         originalSpeed = speed;
         RB = GetComponent<Rigidbody>(); 
         playerCollider = GetComponent<Collider>();
+        anim = this.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -45,7 +48,14 @@ public class AnnaPlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSlerpSpeed); 
         }
-
+        if(moveXAxis == 0 && moveYAxis == 0)
+        {
+            anim.SetInteger("AnimatorX", 0);
+        }
+        if(moveXAxis != 0 || moveYAxis !=0)
+        {
+            anim.SetInteger("AnimatorX",1);
+        }
         var moveWithVelo = direction * speed; //Creating new varible for player movement. 
         moveWithVelo.y = RB.velocity.y; //making sure we are not messing with the Y & it stays the same.
         RB.velocity = moveWithVelo; //Making the player move using velocity rather than add force! :D
@@ -57,6 +67,7 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            anim.SetInteger("AnimatorX", 7);
             RB.velocity = new Vector3(0, jumpForce, 0); //Adds jump force. 
         }
 

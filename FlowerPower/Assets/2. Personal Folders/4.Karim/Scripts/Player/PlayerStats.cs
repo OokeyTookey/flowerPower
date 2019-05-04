@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
 
     public bool invincible;
     public float invincibleLength;
+    public Animator anim;
     [HideInInspector] public int maxHealth;
     [SerializeField] public int currentHealth;
 
@@ -22,6 +23,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         playerHealth = FindObjectOfType<Health>();
+        anim = this.GetComponent<Animator>();
         maxHealth = 6;
         currentHealth = maxHealth;
         invincibleTimer = 2;
@@ -60,6 +62,7 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            anim.SetInteger("AnimatorX", 9);
         }
 
         if (invincibleTimer <= 0)
