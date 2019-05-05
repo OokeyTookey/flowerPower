@@ -17,6 +17,7 @@ public class CameraChangeShiftTest : MonoBehaviour
 
     private void Start()
     {
+        currentRotation = transform.rotation;
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
         shift = transform.position - playerMovement.transform.position;
         startingShift = transform.position - playerMovement.transform.position;
@@ -31,16 +32,15 @@ public class CameraChangeShiftTest : MonoBehaviour
         var directionToCamera = (currentPosition - playerMovement.transform.position);
         Ray rayFromPlayer = new Ray(playerMovement.transform.position, directionToCamera.normalized);
 
-        if (Physics.Raycast(rayFromPlayer, out hit, startingShift.magnitude,LayerMask.GetMask("Wall")))
+        if (Physics.Raycast(rayFromPlayer, out hit, startingShift.magnitude, LayerMask.GetMask("Wall")))
         {
             Debug.DrawRay(playerMovement.transform.position, directionToCamera, Color.green);
             currentPosition = hit.point;
         }
 
         //3-smooth movement to the new position
-        //transform.position = currentPosition;
         transform.position = Vector3.Lerp(transform.position, currentPosition, followPlayerSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.Slerp(transform.rotation, currentRotation, followRotationSpeed* Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, currentRotation, followRotationSpeed * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.P)) //Swap to trigger
         {
@@ -48,10 +48,9 @@ public class CameraChangeShiftTest : MonoBehaviour
         }
     }
 
-
     public void SwapCameraAngle()
-    {
-        shift.x *= -1;
-        currentRotation = Quaternion.Euler(0, 180, 0) * transform.rotation;
+    {   
+        shift = Quaternion.Euler(0, 90, 0) * shift;
+        currentRotation = Quaternion.Euler(0, 90, 0) * currentRotation;
     }
 }
