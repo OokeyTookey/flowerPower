@@ -5,20 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class TransitionController : MonoBehaviour
 {
+    public SceneFeeder sceneFeeder;
     public Animator transitionAnimator;
-    PlayerStats playerStats;
-    public string sceneName;
-    private void Update()
+    [HideInInspector]public string sceneName;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.N)) //Testing purposes
+        if (other.CompareTag("Player"))
         {
+            sceneName = null;
+            sceneName = sceneFeeder.scene;
             StartCoroutine(LoadScene());
         }
-    }
-
-    public void ButtonPressLoadTransition()
-    {
-        StartCoroutine(LoadScene());
     }
 
     public IEnumerator LoadScene()
