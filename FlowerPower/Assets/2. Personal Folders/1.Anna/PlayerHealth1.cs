@@ -9,7 +9,8 @@ public class PlayerHealth1 : MonoBehaviour
    public TextMeshProUGUI textBoxObjective;
    public TextMeshProUGUI textBoxTime;
    private bool startTimer;
-    public float timeTillDeath;
+   public float timeTillDeath;
+   [HideInInspector]public bool theyDidIt;
 
     private void Update()
     {
@@ -17,13 +18,17 @@ public class PlayerHealth1 : MonoBehaviour
         if (startTimer)
         {
             textBoxObjective.text = "Find Water";
-            textBoxTime.text = "Time Remaining: " +  (int)timeTillDeath;
+            textBoxTime.text = "Time Remaining: " + (int)timeTillDeath;
         }
 
-        if (timeTillDeath <= 0)
+        if (!theyDidIt)
         {
-            playerStats.TakeDamage();
+            if (timeTillDeath <= 0)
+            {
+                playerStats.TakeDamage();
+            }
         }
+        else textBoxTime.text = "";
     }
 
     private void OnTriggerEnter(Collider other)

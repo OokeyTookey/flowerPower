@@ -5,4 +5,5 @@ using UnityEngine;
 public class DialogueFeeder : MonoBehaviour
 {
     public string[] sentences;
+    public string objective;
 }

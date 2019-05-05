@@ -35,6 +35,11 @@ public class PlayerManager : MonoBehaviour
     Animator anim;
     TransitionController transitionController;
 
+    //Death Panel related ---
+    public GameObject deathPanel;
+    public Animator deathPanelAnim;
+
+
     [Space]
     [Header("//------ Player Reactions ------")]
     public float gooSpeedDivider;
@@ -118,6 +123,15 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("<color=green> Sports Skill:</color><b> Active</b>");
             cooldownTimerSpores = 0;
         }
+
+        //--------------------------------------
+
+        if (playerStats.currentHealth <= 0)
+        {
+            playerStats.currentHealth = 0;
+            anim.SetInteger("AnimatorX", 9);
+            deathPanelAnim.SetTrigger("Died");
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -153,11 +167,4 @@ public class PlayerManager : MonoBehaviour
     {
         //SaveNLoad.SaveData(this);
     }
-
-    /* public IEnumerator DeathScene()
-     {
-         UITransitionAnimator.SetTrigger("end");
-         yield return new WaitForSeconds(1.5f);
-         SceneManager.LoadScene("GameOver");
-     }*/
 }
