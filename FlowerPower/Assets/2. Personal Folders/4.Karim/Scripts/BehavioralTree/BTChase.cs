@@ -13,6 +13,7 @@ public class BTChase : BTNode
             Debug.Log("Enemy on Player" +EBT.EnemyOnPlayer());
             return Result.failure;
         }
+        // Check if the enemy is on the player to stop chasing
         else if (EBT.PlayerInRange() && !EBT.knockedBack)
         {
             Debug.Log("Player in Range");
@@ -28,7 +29,7 @@ public class BTChase : BTNode
             return Result.running;
         }
         Debug.Log("Chase Succeed");
-        return Result.success;
 
+        return Result.success;
     }
 }

@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    Renderer[] rends;
-    public List<Color> OriginalColors;
-
     public bool invincible;
     public float invincibleLength;
+
+    [HideInInspector]public Animator anim;
     [HideInInspector] public int maxHealth;
     [SerializeField] public int currentHealth;
 
     private Health playerHealth;
     private float invincibleTimer;
-        List<Material> materialsL;
 
-    bool colourFlashOneHealth;
+    //Colour flash related ---
+    public List<Color> OriginalColors;
+
+    private Renderer[] rends;
+    private List<Material> materialsL;
+    private bool colourFlashOneHealth;
+    private Coroutine flash;
 
     void Start()
     {
         playerHealth = FindObjectOfType<Health>();
+        anim = this.GetComponent<Animator>();
         maxHealth = 6;
         currentHealth = maxHealth;
         invincibleTimer = 2;
@@ -56,11 +61,6 @@ public class PlayerStats : MonoBehaviour
             currentHealth = 6;
         }
 
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-        }
-
         if (invincibleTimer <= 0)
         {
             invincible = false;
@@ -80,10 +80,12 @@ public class PlayerStats : MonoBehaviour
             playerHealth.LoseHealth(); //Access the health class and removed a petal in the array
             invincible = true;
             invincibleTimer = 2;
-            StartCoroutine(ColourFlash(Color.red, 0.1f));
+            if(flash!=null)
+            StopCoroutine(flash);
+
+            flash = StartCoroutine(ColourFlash(Color.red, 0.1f));
         }
     }
-
     public void GainHealth()
     {
         if (currentHealth < maxHealth)
@@ -91,7 +93,13 @@ public class PlayerStats : MonoBehaviour
             currentHealth++;
             playerHealth.GainHeath();
             Debug.Log(currentHealth + "/" + maxHealth);
-            StartCoroutine(ColourFlash(Color.green, 0.1f));
+
+            if (flash != null)
+            {
+                StopCoroutine(flash);
+            }
+
+            flash = StartCoroutine(ColourFlash(Color.green, 0.1f));
         }
     }
 
@@ -99,36 +107,44 @@ public class PlayerStats : MonoBehaviour
     {
         if (currentHealth == 1 && !colourFlashOneHealth)
         {
-            StartCoroutine(ColourFlash(Color.red, .2f));
+            if (flash != null)
+            {
+                StopCoroutine(flash);
+            }
+
+            flash = StartCoroutine(ColourFlash(Color.red, .2f, true));
             colourFlashOneHealth = true;
         }
     }
 
-    IEnumerator ColourFlash(Color color, float delay)
+    IEnumerator ColourFlash(Color color, float delay,bool forever = false)
     {
-        int t = 0;
-        for (int i = 0; i < rends.Length; i++)
+        do //Goes through once at least then checks
         {
-            for (int j = 0; j < rends[i].materials.Length; j++)
+            int t = 0;
+            for (int i = 0; i < rends.Length; i++)
             {
-                rends[i].materials[j].color = color;
-                t++;
+                for (int j = 0; j < rends[i].materials.Length; j++)
+                {
+                    rends[i].materials[j].color = color;
+                    t++;
+                }
             }
-        }
 
-        yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delay);
 
-        t = 0;
-        for (int i = 0; i < rends.Length; i++)
-        {
-            for (int j = 0; j < rends[i].materials.Length; j++)
+            t = 0;
+            for (int i = 0; i < rends.Length; i++)
             {
-                rends[i].materials[j].color = OriginalColors[t];
-                t++;
+                for (int j = 0; j < rends[i].materials.Length; j++)
+                {
+                    rends[i].materials[j].color = OriginalColors[t];
+                    t++;
+                }
             }
-        }
 
-        yield return new WaitForSeconds(5);
-        colourFlashOneHealth = false;
+            yield return new WaitForSeconds(delay);
+
+        } while (forever); //While checks at the begining
     }
 }

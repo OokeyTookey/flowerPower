@@ -8,76 +8,54 @@ public class DialogueController : MonoBehaviour
     //access panel, enable and disabe on certaint higns.
     //if "Sunny: " is in front, enable sunny speech icon
 
-    private int index;
+    [HideInInspector]public int index;
     private bool finishedSentence;
 
-    public GameObject textPanel;
     public float typingSpeed;
     public string[] dialogueArray;
 
     public TextMeshProUGUI textBox;
     public GameObject sunnyProfile;
     public GameObject rosieProfile;
+    public GameObject panel;
 
     public Transform sunnyTextLocation;
     public Transform rosieTextLocation;
     public Transform centerTextLocation;
     public float lerpSpeedText;
-    bool doOnce;
+
 
     private void Start()
     {
-        textPanel.SetActive(false);
-        sunnyProfile.SetActive(false);
-        rosieProfile.SetActive(false);
-    }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !doOnce)
-        {
+        panel = this.gameObject;
+        this.gameObject.SetActive(true);
         StartCoroutine(TypingLetters());
-        GetComponent<Collider>().enabled = false;
-
-        }
-        Debug.Log("I did a thign");
-    }*/
-
-
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && !doOnce)
-        {
-            textPanel.SetActive(true); //Change to play animation
-            StartCoroutine(TypingLetters());
-            doOnce = true;
-        }
-
         //---------------------------------------------------- ICONs / Text Componants -------------------------------------------------------
 
-        if (doOnce)
+        if (dialogueArray[index].Contains("Sunny:"))
         {
-            if (dialogueArray[index].Contains("Sunny:"))
-            {
-                textPanel.transform.position = Vector3.Lerp(transform.position, sunnyTextLocation.position, lerpSpeedText);
-                sunnyProfile.SetActive(true);
-                rosieProfile.SetActive(false);
-            }
-
-            else if (dialogueArray[index].Contains("Rosie:"))
-            {
-                sunnyProfile.SetActive(false);
-                rosieProfile.SetActive(true);
-                textPanel.transform.position = Vector3.Lerp(transform.position, rosieTextLocation.position, lerpSpeedText);
-            }
-
-            else
-            {
-                sunnyProfile.SetActive(false);
-                rosieProfile.SetActive(false);
-                textPanel.transform.position = Vector3.Lerp(transform.position, centerTextLocation.position, lerpSpeedText);
-            }
+            transform.position = Vector3.Lerp(transform.position, sunnyTextLocation.position, lerpSpeedText);
+            sunnyProfile.SetActive(true);
+            rosieProfile.SetActive(false);
         }
+
+        else if (dialogueArray[index].Contains("Rosie:"))
+        {
+            sunnyProfile.SetActive(false);
+            rosieProfile.SetActive(true);
+            transform.position = Vector3.Lerp(transform.position, rosieTextLocation.position, lerpSpeedText);
+        }
+
+        else
+        {
+            sunnyProfile.SetActive(false);
+            rosieProfile.SetActive(false);
+            transform.position = Vector3.Lerp(transform.position, centerTextLocation.position, lerpSpeedText);
+        }
+
 
         //Checks if the entire sentence has been printed, if so, set the bool to true.
         if (textBox.text == dialogueArray[index])
@@ -92,7 +70,7 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    IEnumerator TypingLetters()
+    public IEnumerator TypingLetters()
     {
         //Foreach will allow us to access a specfic variable type in statements. IE: Each letter in a sentence.
         foreach (var letter in dialogueArray[index].ToCharArray()) //ToCharArray copies the chars and put them into unicode (readable)
@@ -116,10 +94,7 @@ public class DialogueController : MonoBehaviour
             textBox.text = "";
             sunnyProfile.SetActive(false);
             rosieProfile.SetActive(false);
-            textPanel.SetActive(false);
-            doOnce = false;
-
-            //set NEW OBJECTIVE
+            this.gameObject.SetActive(false);
         }
     }
 }
