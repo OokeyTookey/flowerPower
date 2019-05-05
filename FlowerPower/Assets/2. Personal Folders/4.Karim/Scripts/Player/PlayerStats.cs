@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    Renderer[] rends;
-    public List<Color> OriginalColors;
-
     public bool invincible;
     public float invincibleLength;
-    public Animator anim;
+
+    [HideInInspector]public Animator anim;
     [HideInInspector] public int maxHealth;
     [SerializeField] public int currentHealth;
 
     private Health playerHealth;
     private float invincibleTimer;
-        List<Material> materialsL;
 
-    bool colourFlashOneHealth;
-    Coroutine flash;
+    //Colour flash related ---
+    public List<Color> OriginalColors;
+
+    private Renderer[] rends;
+    private List<Material> materialsL;
+    private bool colourFlashOneHealth;
+    private Coroutine flash;
 
     void Start()
     {
@@ -57,12 +59,6 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth > maxHealth)
         {
             currentHealth = 6;
-        }
-
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            anim.SetInteger("AnimatorX", 9);
         }
 
         if (invincibleTimer <= 0)
