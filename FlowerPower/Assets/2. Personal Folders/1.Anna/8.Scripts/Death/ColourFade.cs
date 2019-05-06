@@ -9,7 +9,7 @@ public class ColourFade : MonoBehaviour
 
     private void Start()
     {
-        rends = this.GetComponentsInChildren<MeshRenderer>(); //Accesses all the meshrenderers in the children
+        rends = this.GetComponentsInChildren<Renderer>(); //Accesses all the meshrenderers in the children
         int f = 0; //Acts as an index to remember the colour location
  
         for (int i = 0; i < rends.Length; i++)

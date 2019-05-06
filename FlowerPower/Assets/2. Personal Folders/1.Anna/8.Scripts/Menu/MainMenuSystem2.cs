@@ -16,7 +16,7 @@ public class MainMenuSystem2 : MonoBehaviour
     //Credits
     //Exit
 
-    //***OPTIMIZE TO USE KEYBOARD KEYS!!!!!! 
+    //***OPTIMIZE TO USE ?? KEYS!!!!!! 
     //-------------------------------------------------- *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
     //-------------------------------------------------- *** PLEASE COME BACK AND FIX THIS DISGUSTING CODE
 
@@ -55,8 +55,6 @@ public class MainMenuSystem2 : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, menuCameraPositions[index].transform.position, percentage * Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, menuCameraPositions[index].transform.rotation, percentage * Time.deltaTime);
-        }
-
-        
+        }      
     }
 }

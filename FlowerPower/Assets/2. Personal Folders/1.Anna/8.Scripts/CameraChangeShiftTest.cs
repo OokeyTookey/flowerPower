@@ -3,68 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraChangeShiftTest : MonoBehaviour
-{ }
-  /*  private Vector3 currentCameraPosition;
+{
+    public float followPlayerSpeed;
+    public float followRotationSpeed;
+    public float zoomSpeed;
 
-    private Vector3 startingCameraPosition;
-
-    public GameObject mainCamera;
-    public GameObject playerReference;
-    public GameObject desiredLocation;
-
-    GameObject startingPosition;
+    Vector3 shift;
+    Vector3 startingShift;
+    Vector3 currentPosition;
+    Quaternion currentRotation;
     AnnaPlayerMovement playerMovement;
-
-    bool swapCameraNewPer;
-    bool swapCameraOldPer;
+    RaycastHit hit;
 
     private void Start()
     {
+        currentRotation = transform.rotation;
         playerMovement = FindObjectOfType<AnnaPlayerMovement>();
-        startingCameraPosition = mainCamera.transform.position;
-
-        startingPosition = mainCamera;
+        shift = transform.position - playerMovement.transform.position;
+        startingShift = transform.position - playerMovement.transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (swapCameraNewPer)
+        //1-calculate new position
+        currentPosition = playerMovement.transform.position + shift;
+
+        //2- check if you need to correct the new position
+        var directionToCamera = (currentPosition - playerMovement.transform.position);
+        Ray rayFromPlayer = new Ray(playerMovement.transform.position, directionToCamera.normalized);
+
+        if (Physics.Raycast(rayFromPlayer, out hit, startingShift.magnitude, LayerMask.GetMask("Wall")))
         {
-            SwapCameraAngle(mainCamera, desiredLocation);
-            //swapCameraOldPer = false;
+            Debug.DrawRay(playerMovement.transform.position, directionToCamera, Color.green);
+            currentPosition = hit.point;
         }
 
-        if (swapCameraOldPer)
-        {
-            SwapCameraAngle(mainCamera, startingPosition);     
-           // swapCameraNewPer = false;
-        }
-    }
+        //3-smooth movement to the new position
+        transform.position = Vector3.Lerp(transform.position, currentPosition, followPlayerSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, currentRotation, followRotationSpeed * Time.deltaTime);
 
-    private void OnTriggerStay(Collider other)
-    {
-        //Vector3 cameraOffset = playerReference.transform.position + startingCameraPosition;
-
-        if (other.CompareTag("Player"))
+        if (Input.GetKeyDown(KeyCode.P)) //Swap to trigger
         {
-            swapCameraNewPer = true;
-            //playerMovement.invertControls = true;
+            SwapCameraAngle();
         }
     }
 
-   private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            //swapCameraOldPer = true;
-            //playerMovement.invertControls = false;
-        }
-    }
-
-    public void SwapCameraAngle(GameObject mainCamera, GameObject desiredLocation)
-    {
-        //mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, desiredLocation.transform.position, 5 * Time.deltaTime);
-        //mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, desiredLocation.transform.rotation, 5 * Time.deltaTime);
+    public void SwapCameraAngle()
+    {   
+        shift = Quaternion.Euler(0, 90, 0) * shift;
+        currentRotation = Quaternion.Euler(0, 90, 0) * currentRotation;
     }
 }
-*/

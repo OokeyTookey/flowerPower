@@ -16,7 +16,8 @@ public class BTDead : BTNode
         {
             Debug.Log("Enemy Dead");
             EBT.speed = 0;
-           
+            EBT.puzzle4.enemiesKilled++;
+            EBT.GetComponent<EnemyBehaviorTree>().enabled = false;
 
         }
         return Result.success;
