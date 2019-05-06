@@ -7,19 +7,17 @@ public class BTChase : BTNode
 
     public override Result Execute(EnemyBehaviorTree EBT)
     {
-        if (!EBT.PlayerInRange() || (EBT.EnemyOnPlayer() && EBT.thornsSkill.thornsActive))// Checking if close
+        // STOP CHASING --- Check if the enemy finished chasing the player 
+        if (EBT.PlayerInRange() && EBT.EnemyOnPlayer())
         {
-            Debug.Log("Chase Failed");
-            Debug.Log("Enemy on Player" +EBT.EnemyOnPlayer());
-            return Result.failure;
+            Debug.Log("Chase Succeed");
+            return Result.success;
         }
-        // Check if the enemy is on the player to stop chasing
-        else if (EBT.PlayerInRange() && !EBT.knockedBack)
+        // CHASE --- Check if the enemy is in range to start chasing the player
+        if (EBT.PlayerInRange())
         {
             Debug.Log("Player in Range");
             Debug.Log("Enemy on Player" + EBT.EnemyOnPlayer());
-            EBT.speed = 2;
-
             EBT.transform.LookAt(EBT.player.transform);
             Vector3 enemyPosition = (EBT.player.gameObject.transform.position - EBT.transform.position).normalized;
             Vector3 Distance = new Vector3(enemyPosition.x, 0, enemyPosition.z);
@@ -28,8 +26,6 @@ public class BTChase : BTNode
 
             return Result.running;
         }
-        Debug.Log("Chase Succeed");
-
-        return Result.success;
+        return Result.failure;
     }
 }
