@@ -75,7 +75,7 @@ public class PlayerManager : MonoBehaviour
         sunflowerSeedSkill = GetComponent<SunflowerSeedProjectile>();
 
         healOverTimer = healOverTimeDelay;
-        mainCameraAnimator = mainCamera.GetComponent<Animator>();
+        //mainCameraAnimator = mainCamera.GetComponent<Animator>();
         transitionController = GetComponent<TransitionController>();
     }
 

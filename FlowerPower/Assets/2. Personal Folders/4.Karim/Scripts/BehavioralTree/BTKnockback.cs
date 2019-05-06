@@ -18,20 +18,14 @@ public class BTKnockback : BTNode
             EBT.knockbackCounter = EBT.knockbackDuration;
         }
 
-        if ((EBT.EnemyOnPlayer() && !EBT.thornsSkill.thornsActive) || !EBT.EnemyOnPlayer())
-        {
-            Debug.Log("Knockback failed");
-            EBT.knockedBack = false;
-            return Result.failure;
-
-        }
+        
 
         else if (EBT.thornsSkill.thornsActive && EBT.EnemyOnPlayer())
         {
             EBT.knockedBack = true;
             EBT.stunned = true;
           
-            Debug.Log("Knocback Node Running");
+            Debug.Log("Knockback Node Running");
             EBT.rb.velocity = Vector3.zero;
             EBT.direction = EBT.transform.position - EBT.player.transform.position;
             EBT.direction.y = 0;
@@ -39,9 +33,10 @@ public class BTKnockback : BTNode
             EBT.rb.AddForce(EBT.direction.normalized * EBT.knockbackForce, ForceMode.Impulse);
            
            
-        }
         Debug.Log("Knockback success");
         return Result.success;
-
+        }
+        Debug.Log("Knockback failed");
+        return Result.failure;
     }
 }
