@@ -20,7 +20,7 @@ public class StartFunction : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenuAnna");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Resume()
