@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fan : MonoBehaviour
 {
     public int maxRayDistance;
+    public StopFanButton stopfanButton;
     public LayerMask rayMask;
     public GameObject fan;
     public Rigidbody rb;
@@ -13,14 +14,15 @@ public class Fan : MonoBehaviour
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
+        stopfanButton = FindObjectOfType<StopFanButton>();
     }
 
     private void Update()
     {
-        Ray ray = new Ray(transform.position, -Vector3.forward);
+        Ray ray = new Ray(transform.position, Vector3.right);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, maxRayDistance, rayMask))
+        if (Physics.Raycast(ray, out hit, maxRayDistance, rayMask) || stopfanButton.buttonPressed)
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             
@@ -28,7 +30,7 @@ public class Fan : MonoBehaviour
         else
         {
             Debug.DrawLine(ray.origin, ray.origin+ ray.direction * maxRayDistance, Color.green);
-            rb.AddForce(Vector3.forward * thrust);
+            rb.AddForce(Vector3.left * thrust);
         }
 
     }
