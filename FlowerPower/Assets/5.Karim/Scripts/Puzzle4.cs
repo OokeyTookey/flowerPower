@@ -27,6 +27,7 @@ public class Puzzle4 : MonoBehaviour
     {
         if(enemiesKilled == requiredKills)
         {
+            puzzleComplete = true;
             sceneChanger.portalOpen = true;
         }
     }

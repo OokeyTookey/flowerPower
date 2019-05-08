@@ -30,9 +30,10 @@ public class SunflowerSeedMovement : MonoBehaviour
         {
             EBT.enemyHealth -= 1;
             Destroy(collision.gameObject);
+            EBT.puzzle4.enemiesKilled++;
+            speed = 0;
+            Destroy(this.gameObject);
         }
 
-        speed = 0;
-        Destroy(this.gameObject);
     }
 }
