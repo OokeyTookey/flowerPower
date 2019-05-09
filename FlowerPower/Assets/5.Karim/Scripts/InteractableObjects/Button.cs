@@ -50,9 +50,11 @@ public class Button : MonoBehaviour
             interactableSpeed = 0;
         }
     }
+    public bool test=false;
     private void OnTriggerStay(Collider other)
     {
-        if ((other.CompareTag("Player") && Input.GetButtonDown("Interact") || other.CompareTag("Bullet")))
+        test = true;
+        if ((other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) || other.CompareTag("Bullet")))
         {
             buttonPressed = true;
         }
