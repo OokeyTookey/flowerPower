@@ -11,7 +11,6 @@ public class Button : MonoBehaviour
     public bool buttonPressed;
     public GameObject interactable;
     public GameObject targetPosition;
-    public GameObject targetPosition2;
 
 
     // Start is called before the first frame update
