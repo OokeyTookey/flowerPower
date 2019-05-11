@@ -8,11 +8,11 @@ public class BTDead : BTNode
     {
         if(EBT.enemyHealth > 0)
         {
-            
+            Debug.Log("Enemy Alivee");
             return Result.failure;
             
         }
-        else
+        else if (EBT.enemyHealth <= 0)
         {
             Debug.Log("Enemy Dead");
             EBT.speed = 0;

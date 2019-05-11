@@ -6,8 +6,13 @@ using UnityEngine;
 public class Puzzle4 : MonoBehaviour
 {
 
-   
-    public SceneChanger sceneChanger;
+
+    public GameObject interactable;
+    public GameObject interactable2;
+    public GameObject targetPosition;
+    public GameObject targetPosition2;
+    public float interactableSpeed;
+    public float interactableSpeed2;
     public bool puzzleComplete;
     public int enemiesKilled;
     public int requiredKills;
@@ -18,8 +23,7 @@ public class Puzzle4 : MonoBehaviour
     void Start()
     {
         
-        sceneChanger = FindObjectOfType<SceneChanger>();
-        sceneChanger.portalOpen = false;
+       
     }
 
     // Update is called once per frame
@@ -27,7 +31,18 @@ public class Puzzle4 : MonoBehaviour
     {
         if(enemiesKilled == requiredKills)
         {
-            sceneChanger.portalOpen = true;
+            puzzleComplete = true;
+            interactable.transform.position = Vector3.MoveTowards(interactable.transform.position, targetPosition.transform.position, interactableSpeed * Time.deltaTime);
+            if (interactable.transform.position == targetPosition.transform.position)
+            {
+                interactableSpeed = 0;
+            }
+            interactable2.transform.position = Vector3.MoveTowards(interactable2.transform.position, targetPosition2.transform.position, interactableSpeed * Time.deltaTime);
+            if (interactable2.transform.position == targetPosition2.transform.position)
+            {
+                interactableSpeed2 = 0;
+            }
+
         }
     }
 }
