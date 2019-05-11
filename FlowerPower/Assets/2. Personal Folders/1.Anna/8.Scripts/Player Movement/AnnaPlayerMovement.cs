@@ -65,9 +65,10 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         float jumpForce = 2 * jumpHeight / timeTillMaxHeight;
 
+        //- ----------- JUMP FUNCTION
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            anim.SetInteger("AnimatorX", 7);
+            anim.SetTrigger("jump");
             RB.velocity = new Vector3(0, jumpForce, 0); //Adds jump force. 
         }
 

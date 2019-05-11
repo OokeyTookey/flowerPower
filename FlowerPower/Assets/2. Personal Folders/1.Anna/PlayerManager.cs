@@ -84,7 +84,7 @@ public class PlayerManager : MonoBehaviour
         transitionController = GetComponent<TransitionController>();
     }
 
-    void Update()
+    void Update() //as game running
     {
         healOverTimer -= Time.deltaTime;
 
@@ -98,6 +98,8 @@ public class PlayerManager : MonoBehaviour
         if (SeedUNLOCKED && Input.GetButtonDown("Fire1") && cooldownTimerSeed > sunflowerCooldown)
         {
             anim.SetInteger("AnimatorX", 4);
+            //anim.SetTrigger("seedAnimation");
+
             playerStats.TakeDamage();
             sunflowerSeedSkill.RunFunction();
             Debug.Log("<color=blue> Sunflower Skill:</color> <b>Active</b>");
