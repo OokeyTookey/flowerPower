@@ -48,11 +48,13 @@ public class AnnaPlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSlerpSpeed); 
         }
-        if(moveXAxis == 0 && moveYAxis == 0)
+
+        if (moveXAxis == 0 && moveYAxis == 0)
         {
             anim.SetInteger("AnimatorX", 0);
         }
-        if(moveXAxis != 0 || moveYAxis !=0)
+
+        if (moveXAxis != 0 || moveYAxis !=0)
         {
             anim.SetInteger("AnimatorX",1);
         }
