@@ -42,7 +42,7 @@ public class CameraChangeShiftTest : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, currentPosition, followPlayerSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, currentRotation, followRotationSpeed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.P)) //Swap to trigger
+        if (Input.GetButtonDown("Rotate")) 
         {
             SwapCameraAngle();
         }

@@ -73,23 +73,28 @@ public class SaveNLoad : MonoBehaviour
     public void SaveFile1()
     {
         currentSaveSlot = "/save1";
-        UpdatePath();
+        SceneManager.LoadScene("Level1");
+        Debug.Log(dataPath);
+       
     }
 
     public void SaveFile2()
     {
         currentSaveSlot = "/save2";
         UpdatePath();
+        SceneManager.LoadScene("Level1");
     }
 
     public void SaveFile3()
     {
         currentSaveSlot = "/save3";
         UpdatePath();
+        SceneManager.LoadScene("Level1");
     }
 
     public void UpdatePath()
     {
         dataPath = Application.persistentDataPath + currentSaveSlot + fileExtension; //Being updated constantly, perhaps have a sepreate function which is called and saves this??
+        LoadData(dataPath);
     }
 }

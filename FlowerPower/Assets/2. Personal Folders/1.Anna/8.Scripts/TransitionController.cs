@@ -7,8 +7,19 @@ public class TransitionController : MonoBehaviour
 {
     public SceneFeeder sceneFeeder;
     public Animator transitionAnimator;
-    [HideInInspector]public string sceneName;
+    public string sceneName;
+    public bool menuScene;
+    float timer;
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (menuScene && timer >= 5)
+        {
+            StartCoroutine(LoadScene());
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

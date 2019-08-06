@@ -48,11 +48,13 @@ public class AnnaPlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSlerpSpeed); 
         }
-        if(moveXAxis == 0 && moveYAxis == 0)
+
+        if (moveXAxis == 0 && moveYAxis == 0)
         {
             anim.SetInteger("AnimatorX", 0);
         }
-        if(moveXAxis != 0 || moveYAxis !=0)
+
+        if (moveXAxis != 0 || moveYAxis !=0)
         {
             anim.SetInteger("AnimatorX",1);
         }
@@ -65,9 +67,10 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         float jumpForce = 2 * jumpHeight / timeTillMaxHeight;
 
+        //- ----------- JUMP FUNCTION
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            anim.SetInteger("AnimatorX", 7);
+            anim.SetTrigger("jump");
             RB.velocity = new Vector3(0, jumpForce, 0); //Adds jump force. 
         }
 
