@@ -16,7 +16,7 @@ public class UpdateUI : MonoBehaviour
 
     private void Start()
     {
-        healthRef = FindObjectOfType<Health>();
+       // healthRef = FindObjectOfType<Health>();
         playerStats = FindObjectOfType<PlayerStats>();
     }
 

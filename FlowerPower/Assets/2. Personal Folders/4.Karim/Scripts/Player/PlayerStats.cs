@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        playerHealth = FindObjectOfType<Health>();
+        playerHealth = this.GetComponent<Health>();
         anim = this.GetComponent<Animator>();
         maxHealth = 6;
         currentHealth = maxHealth;
