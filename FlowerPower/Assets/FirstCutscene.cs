@@ -29,7 +29,7 @@ public class FirstCutscene : MonoBehaviour
 
         if (index == comicPanels.Length)
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("AnnaLevel12020");
         }
 
         

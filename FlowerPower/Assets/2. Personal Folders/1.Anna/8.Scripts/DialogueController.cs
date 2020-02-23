@@ -24,10 +24,14 @@ public class DialogueController : MonoBehaviour
     public Transform centerTextLocation;
     public float lerpSpeedText;
 
+    AnnaPlayerMovement playerMovement;
+
 
     private void Start()
     {
         panel = this.gameObject;
+        playerMovement = FindObjectOfType<AnnaPlayerMovement>();
+
         this.gameObject.SetActive(true);
         StartCoroutine(TypingLetters());
     }
@@ -72,6 +76,8 @@ public class DialogueController : MonoBehaviour
 
     public IEnumerator TypingLetters()
     {
+        playerMovement.move = false;
+
         //Foreach will allow us to access a specfic variable type in statements. IE: Each letter in a sentence.
         foreach (var letter in dialogueArray[index].ToCharArray()) //ToCharArray copies the chars and put them into unicode (readable)
         {
@@ -95,6 +101,8 @@ public class DialogueController : MonoBehaviour
             sunnyProfile.SetActive(false);
             rosieProfile.SetActive(false);
             this.gameObject.SetActive(false);
+            playerMovement.move = true;
+
         }
     }
 }

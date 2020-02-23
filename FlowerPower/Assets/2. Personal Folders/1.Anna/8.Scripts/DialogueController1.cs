@@ -26,11 +26,13 @@ public class DialogueController1 : MonoBehaviour
     public Animator objectivePanelAni;
     public Animator panelMovement;
 
+    AnnaPlayerMovement playerMovement;
     bool doOnce;
 
     private void Start()
     {
         //ReStart();
+        playerMovement = FindObjectOfType<AnnaPlayerMovement>();
         StartCo();
     }
 
@@ -39,11 +41,13 @@ public class DialogueController1 : MonoBehaviour
         textPanel.SetActive(false);
         sunnyProfile.SetActive(false);
         rosieProfile.SetActive(false);
+
         //objectivePanelAni.SetTrigger("FinishedObjective");
     }
-    
+
     public void StartCo()
     {
+
         if (!doOnce)
         {
             textPanel.SetActive(true); //Change to play animation
@@ -118,9 +122,12 @@ public class DialogueController1 : MonoBehaviour
             sunnyProfile.SetActive(false);
             rosieProfile.SetActive(false);
             textPanel.SetActive(false);
-            doOnce = false;
 
+
+            doOnce = false;
+            //make player move
             //set NEW OBJECTIVE
         }
+            Debug.Log(playerMovement.move);
     }
 }

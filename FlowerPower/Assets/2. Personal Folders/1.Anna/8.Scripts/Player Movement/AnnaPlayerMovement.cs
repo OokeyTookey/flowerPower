@@ -10,6 +10,7 @@ public class AnnaPlayerMovement : MonoBehaviour
     private float moveYAxis; //Needed for input 2.0.
 
     public Animator anim;
+    public bool move = true;
 
     private Rigidbody RB; //For player rigidbody.
     private Collider playerCollider; //For player collider to check if grounded.
@@ -31,32 +32,41 @@ public class AnnaPlayerMovement : MonoBehaviour
     void Start()
     {
         originalSpeed = speed;
-        RB = GetComponent<Rigidbody>(); 
+        RB = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         anim = this.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        moveXAxis = Input.GetAxis("Horizontal"); //Takes input from the player.
-        moveYAxis = Input.GetAxis("Vertical"); ////Always between -1 & 1
+        if (move)
+        {
+            moveXAxis = Input.GetAxisRaw("Horizontal"); //Takes input from the player.
+            moveYAxis = Input.GetAxisRaw("Vertical"); ////Always between -1 & 1
+        }
+        else
+        {
+            moveXAxis = moveYAxis = 0;
+        }
 
         var cameraDirection = Camera.main; // ---- Calcuate the direction using the input & makes it relative to the camera's variables.
-        direction = (moveYAxis * new Vector3(cameraDirection.transform.forward.x, 0, cameraDirection.transform.forward.z)  + moveXAxis * cameraDirection.transform.right).normalized;
+        direction = (moveYAxis * new Vector3(cameraDirection.transform.forward.x, 0, cameraDirection.transform.forward.z) + moveXAxis * cameraDirection.transform.right).normalized;
 
         if (direction.magnitude != 0) //If there is input, then rotate object based on direction.
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSlerpSpeed); 
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSlerpSpeed);
         }
 
         if (moveXAxis == 0 && moveYAxis == 0)
         {
+            Debug.Log("DO THING");
+
             anim.SetInteger("AnimatorX", 0);
         }
 
-        if (moveXAxis != 0 || moveYAxis !=0)
+        if (moveXAxis != 0 || moveYAxis != 0)
         {
-            anim.SetInteger("AnimatorX",1);
+            anim.SetInteger("AnimatorX", 1);
         }
         var moveWithVelo = direction * speed; //Creating new varible for player movement. 
         moveWithVelo.y = RB.velocity.y; //making sure we are not messing with the Y & it stays the same.
@@ -68,7 +78,7 @@ public class AnnaPlayerMovement : MonoBehaviour
         float jumpForce = 2 * jumpHeight / timeTillMaxHeight;
 
         //- ----------- JUMP FUNCTION
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded() && move)
         {
             anim.SetTrigger("jump");
             RB.velocity = new Vector3(0, jumpForce, 0); //Adds jump force. 
@@ -76,6 +86,7 @@ public class AnnaPlayerMovement : MonoBehaviour
 
         RB.velocity += fakeGravity * Time.deltaTime; //Constantly adds gravity to sunny. 
     }
+
 
     private bool IsGrounded()
     {

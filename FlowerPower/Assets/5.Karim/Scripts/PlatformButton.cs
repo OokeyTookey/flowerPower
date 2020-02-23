@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformButton : MonoBehaviour
+/*public class PlatformButton : MonoBehaviour
 {
 
     public Animator animator;
@@ -31,4 +31,4 @@ public class PlatformButton : MonoBehaviour
             buttonPressed = true;
         }
     }
-}
+}*/

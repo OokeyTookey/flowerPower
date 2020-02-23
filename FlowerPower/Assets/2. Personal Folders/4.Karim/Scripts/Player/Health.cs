@@ -12,6 +12,24 @@ public class Health : MonoBehaviour
         playerStats = FindObjectOfType<PlayerStats>();
     }
 
+
+    private void Update()
+    {
+        for (int i = 0; i < playerStats.maxHealth - playerStats.currentHealth; i++)
+        {
+            if (playerStats.currentHealth >= 0)
+            {
+                healthPetals[i].SetActive(false);
+            }
+        }
+
+        for (int i = playerStats.maxHealth - 1; i >= playerStats.maxHealth - playerStats.currentHealth; i--)
+        {
+            if (playerStats.currentHealth <= playerStats.maxHealth)
+                healthPetals[i].SetActive(true);
+        }
+    }
+
     public void LoseHealth()
     {
         for (int i = 0; i < playerStats.maxHealth - playerStats.currentHealth; i++)
